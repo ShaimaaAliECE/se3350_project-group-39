@@ -1,0 +1,29 @@
+
+
+.App{
+  background-color: lightblue;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn{
+  margin: 10px;
+  background-color: beige;
+  color: black;
+  border-color: white;
+  width: 200px;
+}
+
+#title{
+  color:black;
+  font-size: calc(10px + 2vmin);
+  margin: 50px;
+}
+
