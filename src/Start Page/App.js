@@ -7,7 +7,7 @@ function App() {
   // Navigation
   const navigate = useNavigate();
 
-  // Logout function
+  // Function for taking the user to the next page when they click the start button
   const start = async () => {
       navigate('/selectionPage');
   }
