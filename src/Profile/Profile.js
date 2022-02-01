@@ -39,7 +39,7 @@ export default class Profile extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getData();
   }
 
