@@ -17,7 +17,9 @@ export default class Profile extends Component {
       method: "GET",
       url:"/profile",
       headers: {
+
         Authorization: 'Bearer ' + this.props.token
+
       }
     })
     .then((response) => {

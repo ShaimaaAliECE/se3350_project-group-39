@@ -20,32 +20,11 @@ const menu = (
   </Menu>
 );
 
-const level = (
-  <Menu className="Menu"> 
-    <Menu.Item>1</Menu.Item>
-    <Menu.Item>2</Menu.Item>
-    <Menu.Item>3</Menu.Item>
-  </Menu>
-);
 
-const ListSize = (
-  <Menu className="Menu"> 
-    <Menu.Item>1</Menu.Item>
-    <Menu.Item>2</Menu.Item>
-    <Menu.Item>3</Menu.Item>
-  </Menu>
-);
-
-function onChange(value) {
-  console.log('onChange: ', value);
-}
-
-function onAfterChange(value) {
-  console.log('onAfterChange: ', value);
-}
 
 function SelectionPage() {
-  const { disabled } = false;
+
+  const [level, setLevel] = useState(0)
   return (
     <div >
       <header className="App">
@@ -69,9 +48,11 @@ function SelectionPage() {
       display: 'block', width: 700, padding: 30
     }}>
       <h2>Select a Level</h2>
-      <Slider defaultValue={0} disabled={false} max={10} 
+      <Slider defaultValue={0} disabled={false} max={10} onChange={(value)=> {
+        setLevel(value)
+      }}
       />
-      Slider Value: {4}
+      Slider Value: {level}
     </div>
    
                   

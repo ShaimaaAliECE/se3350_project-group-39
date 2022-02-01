@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Start Page/App';
+import App from './App';
 import SelectionPage from './GenPage/SelectionPage'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuPage from './Menu Page/MenuPage';
 import Profile from './Profile/Profile';
-import Login from './login/Login';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,8 +15,7 @@ ReactDOM.render(
         <Route path="/" element={<App/>}></Route>
         <Route path="/selectionPage" element={<SelectionPage/>}></Route>
         <Route path="/MenuPage" element={<MenuPage/>}></Route>
-        <Route path="/Profile" element={<Profile token={localStorage.getItem('token')}/>}></Route>
-        <Route path="/Login" element={<Login/>}></Route>
+        <Route path="/Profile" element={<Profile/>}></Route>
       </Routes>
     </Router>
   </React.StrictMode>,
