@@ -6,7 +6,7 @@ function Header(props) {
     function logMeOut() {
         axios({
         method: "POST",
-        url:"/logout",
+        url:"/",
         })
         .then((response) => {
         props.token()
