@@ -16,7 +16,7 @@ ReactDOM.render(
         <Route path="/" element={<App/>}></Route>
         <Route path="/selectionPage" element={<SelectionPage/>}></Route>
         <Route path="/MenuPage" element={<MenuPage/>}></Route>
-        <Route path="/Profile" element={<Profile/>}></Route>
+        <Route path="/Profile" element={<Profile token={localStorage.getItem('token')}/>}></Route>
         <Route path="/Login" element={<Login/>}></Route>
       </Routes>
     </Router>
