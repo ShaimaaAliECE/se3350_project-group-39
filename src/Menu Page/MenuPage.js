@@ -11,24 +11,13 @@ function MenuPage() {
   // Navigation
   const navigate = useNavigate();
 
-  // Function for taking the user to the next page when they click the start button
-  const start = async () => {
-      navigate('/SelectionPage');
-  }
-
-  const login = async () => {
-    navigate('/Login');
-}
-
   return (
     <div id="menu-body">
         <Header removeToken={removeToken}/>
         <div id="menu">
             <div id='title'> Algorithms Game</div>
-            <button id='startBtn' class = 'btn' onClick={start}> Start </button> 
-            <button id='statsBtn' class = 'btn'> Statistics </button> 
-            <button id='quitBtn' class = 'btn' onClick={login}> Logout </button> 
-            
+            <button id='startBtn' className='btn' onClick={() => {navigate('/SelectionPage')}}> Start </button>
+            <button id='statsBtn' className='btn' onClick={() => { navigate('/Profile') }}> Statistics </button>
         </div>
     </div>
   );

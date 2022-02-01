@@ -77,8 +77,6 @@ function SelectionPage() {
                   
  
           <button>Start</button>
-
-
         </div>
       </header>
     </div>
