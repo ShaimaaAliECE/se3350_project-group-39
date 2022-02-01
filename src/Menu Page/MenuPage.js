@@ -17,9 +17,9 @@ function MenuPage() {
   }
 
   return (
-    <div className="menu-body">
+    <div id="menu-body">
         <Header removeToken={removeToken}/>
-        <div className="menu">
+        <div id="menu">
             <div id='title'> Algorithms Game</div>
             <button id='startBtn' class = 'btn' onClick={start}> Start </button> 
             <button id='statsBtn' class = 'btn'> Statistics </button> 
