@@ -6,12 +6,19 @@
     width: 200px;
 }
 
-.menu{
-    background-color: lightblue;
-}
-
 #title{
     color:black;
     font-size: calc(10px + 2vmin);
     margin: 50px;
+  }
+
+  #menu{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #menu-body{
+    background-color: lightblue;
+    height: 100vh;
   }

@@ -16,15 +16,18 @@ function MenuPage() {
       navigate('/SelectionPage');
   }
 
+  const login = async () => {
+    navigate('/Login');
+}
+
   return (
-    <div className="menu-body">
+    <div id="menu-body">
         <Header removeToken={removeToken}/>
-        <div className="menu">
+        <div id="menu">
             <div id='title'> Algorithms Game</div>
-            <button id='startBtn' class = 'btn' onClick={start}> Start </button> 
-            <button id='statsBtn' class = 'btn'> Statistics </button> 
-            <button id='quitBtn' class = 'btn'> Quit </button> 
-            
+            <button id='startBtn' className='btn' onClick={start}> Start </button>
+    <button id='statsBtn' className='btn' onClick={() => { navigate('/Profile') }}> Statistics </button>
+            <button id='quitBtn' className='btn' onClick={login}> Logout </button>
         </div>
     </div>
   );

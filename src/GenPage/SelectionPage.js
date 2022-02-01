@@ -13,8 +13,6 @@ function SelectionPage() {
           <p1>Select a Level</p1>
           <p1>List Size</p1>
           <button>Start</button>
-
-
         </div>
       </header>
     </div>
