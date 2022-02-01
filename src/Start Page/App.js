@@ -1,28 +1,22 @@
 import './App.css';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import useToken from '../login/useToken';
+
+import Login from '../login/Login';
 
 function App() {
+  
+  const { setToken, removeToken } = useToken();
 
-  // Navigation
-  const navigate = useNavigate();
-
-  // Function for taking the user to the next page when they click the start button
-  const start = async () => {
-      navigate('/selectionPage');
-  }
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <div id='title'> Algorithms Game</div>
-        <button id='startBtn' class = 'btn' onClick={start}> Start </button> 
-        <button id='statsBtn' class = 'btn'> Statistics </button> 
-        <button id='quitBtn' class = 'btn'> Quit </button> 
-        
-      </header>
-    </div>
+  return(
+      <div className="App">
+          <Login setToken={setToken}/>
+      </div>
   );
+
 }
 
 export default App;
+
+
