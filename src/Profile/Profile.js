@@ -9,7 +9,7 @@ function Profile(props) {
       method: "GET",
       url:"/profile",
       headers: {
-        Authorization: 'Bearer ' + props.token
+        Authorization: 'Bearer' + props.token
       }
     })
     .then((response) => {
