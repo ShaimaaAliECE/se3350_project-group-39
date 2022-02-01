@@ -1,15 +1,17 @@
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Header(props) {
+    const navigate = useNavigate();
     
-
     function logMeOut() {
         axios({
         method: "POST",
-        url:"/",
+        url:"/login",
         })
         .then((response) => {
         props.token()
+        navigate('/')
         }).catch((error) => {
         if (error.response) {
             console.log(error.response)
