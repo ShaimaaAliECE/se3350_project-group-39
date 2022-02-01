@@ -2,11 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Start Page/App';
+import SelectionPage from './GenPage/SelectionPage'
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MenuPage from './GenPage/MenuPage';
+import Profile from './Profile/Profile'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route path="/" element={<App/>}></Route>
+        <Route path="/selectionPage" element={<SelectionPage/>}></Route>
+        <Route path="/MenuPage" element={<MenuPage/>}></Route>
+        <Route path="/Profile" element={<Profile/>}></Route>
+      </Routes>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
