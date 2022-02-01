@@ -14,7 +14,7 @@ jwt = JWTManager(api)
 
 
 #Routing function to create an access token with each login
-#need to configure algorhitm to search array of available logins
+#need to configure algorithm to search array of available logins
 @api.route('/token', methods=["POST"])
 def createToken():
     email = request.json.get("email", None)
@@ -44,7 +44,7 @@ def myProfile():
 #Loging out route
 @api.route('/logout', methods=["POST"])
 def logout():
-    response = jsonify({"msg": "succesfully logges out"})
+    response = jsonify({"msg": "successfully logged out"})
     unset_jwt_cookies(response)
     return response
 
