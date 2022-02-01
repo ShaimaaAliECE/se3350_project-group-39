@@ -16,7 +16,7 @@ function MenuPage() {
         <Header removeToken={removeToken}/>
         <div id="menu">
             <div id='title'> Algorithms Game</div>
-            <button id='startBtn' className='btn' onClick={() => {navigate('/SelectionPage')}}> Start </button>
+            <button id='startBtn' className='btn' onClick={() => {navigate('/SelectionPage')}}> Selection </button>
             <button id='statsBtn' className='btn' onClick={() => { navigate('/Profile') }}> Statistics </button>
         </div>
     </div>
