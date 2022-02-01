@@ -5,8 +5,8 @@ import App from './Start Page/App';
 import SelectionPage from './GenPage/SelectionPage'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MenuPage from './GenPage/MenuPage';
-import Profile from './Profile/Profile'
+import MenuPage from './Menu Page/MenuPage';
+import Profile from './Profile/Profile';
 
 ReactDOM.render(
   <React.StrictMode>

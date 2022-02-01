@@ -1,0 +1,17 @@
+.btn{
+    margin: 10px;
+    background-color: beige;
+    color: black;
+    border-color: white;
+    width: 200px;
+}
+
+.menu{
+    background-color: lightblue;
+}
+
+#title{
+    color:black;
+    font-size: calc(10px + 2vmin);
+    margin: 50px;
+  }
