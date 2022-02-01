@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 function Header(props) {
     const navigate = useNavigate();
-    
+
     function logMeOut() {
         axios({
         method: "POST",
         url:"/logout",
         })
         .then((response) => {
-        props.token()
-        navigate('/');
+            props.token()
+            navigate('/');
         }).catch((error) => {
         if (error.response) {
             console.log(error.response)
@@ -22,7 +22,7 @@ function Header(props) {
 
         return(
             <header className="header">
-                <button onClick={logMeOut}> 
+                <button onClick={logMeOut}>
                     Logout
                 </button>
             </header>
