@@ -12,6 +12,16 @@ api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
 
 jwt = JWTManager(api)
 
+# global variables
+stats = {  # dictionary to store the statistics
+    'test': [
+        {
+            'algorithm': 'BubbleSort',
+            'level': 1,
+            'time': 10.00
+        }
+    ]
+}
 
 #Routing function to create an access token with each login
 #need to configure algorithm to search array of available logins
@@ -66,3 +76,23 @@ def refresh_expiring_jwts(response):
         # Case where there is not a valid JWT. Just return the original respone
         return response
 
+# route to add statistics
+@api.route('/add_entry', methods=["POST"])
+def add_entry():
+    if request.method == "POST":
+        data = request.form
+
+        # create a new entry if one for the user doesn't exist
+        if stats[f'{data["user"]}']:
+            stats[f'{data["user"]}'].append({
+                'level': data["level"],
+                'algorithm': data["algorithm"],
+                'time': data["time"]
+            });
+        else:
+            stats[f'{data["user"]}'] = [{
+                'level': data["level"],
+                'algorithm': data["algorithm"],
+                'time': data["time"]
+            }]
+        return { 'message': 'Successfully added to statistics' }
