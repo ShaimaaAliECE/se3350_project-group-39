@@ -1,6 +1,7 @@
 
 
 .App{
+  background-image: url(https://thumbs.dreamstime.com/z/seamless-pattern-theme-school-education-subject-mathematics-light-hand-drawn-graphics-formulas-icons-blue-background-129423746.jpg);
   background-color: lightblue;
   min-height: 100vh;
   display: flex;
