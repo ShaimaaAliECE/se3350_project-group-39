@@ -10,6 +10,7 @@ function SelectionPage() {
   const [level, setLevel] = useState(0);
   const [listSize, setListSize] = useState(0);
   const [algo, setAlgo] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div>
