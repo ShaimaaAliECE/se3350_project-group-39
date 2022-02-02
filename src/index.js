@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuPage from './Menu Page/MenuPage';
 import Profile from './Profile/Profile';
-import useToken from './login/useToken';
+import useToken from './useToken';
 import Game from './GamePage/Game';
 
 ReactDOM.render(

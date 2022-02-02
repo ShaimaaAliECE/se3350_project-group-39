@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Slider, Switch, PageHeader, Select, Image } from "antd";
 import "antd/dist/antd.css";
-import useToken from '../login/useToken';
+import useToken from '../useToken';
 import Header from "../Header/Header";
 
 const { Option } = Select;
