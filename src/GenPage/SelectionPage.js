@@ -10,13 +10,12 @@ function SelectionPage() {
   const [level, setLevel] = useState(0);
   const [listSize, setListSize] = useState(0);
   const [algo, setAlgo] = useState("");
-  const navigate = useNavigate();
 
   return (
     <div>
       <header className="App">
         <div className="App-header">
-          <PageHeader className="site-page-header" title="Select Your Algo" onBack={() => navigate('/MenuPage')}/>
+          <PageHeader className="site-page-header" title="Select Your Algo" />
 
           <div
             style={{
