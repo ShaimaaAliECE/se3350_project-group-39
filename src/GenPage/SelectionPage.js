@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Slider, Switch, PageHeader, Select, Image } from "antd";
 import "antd/dist/antd.css";
+import useToken from '../login/useToken';
+import Header from "../Header/Header";
 
 const { Option } = Select;
 
@@ -11,10 +13,12 @@ function SelectionPage() {
   const [listSize, setListSize] = useState(0);
   const [algo, setAlgo] = useState("");
   const navigate = useNavigate();
+  const {removeToken} = useToken();
 
   return (
     <div>
-      <header className="App">
+      <Header removeToken={removeToken}/>
+      <div className="App">
         <div className="App-header">
           <PageHeader className="site-page-header" title="Select Your Algo" onBack={() => navigate('/MenuPage')}/>
 
@@ -24,7 +28,6 @@ function SelectionPage() {
               width: 500,
               padding: 30,
             }}
-            
           >
             <h2>Select a Algorithm</h2>
             <Image
@@ -91,7 +94,7 @@ function SelectionPage() {
           ><button onClick={() => (navigate('/Game'))}>Start</button></div>
           
         </div>
-      </header>
+      </div>
     </div>
   );
 }
