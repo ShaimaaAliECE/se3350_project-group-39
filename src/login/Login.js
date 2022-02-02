@@ -5,7 +5,7 @@ import './Login.css';
 
 
 function Login(props) {
-    
+
     const [loginForm, setloginForm] = useState(
         {
             email: "",
@@ -31,13 +31,13 @@ function Login(props) {
                 console.log(error.response)
                 console.log(error.response.status)
                 console.log(error.response.headers)
-                } 
+                }
         })
 
         setloginForm(({
             email: "",
             password: ""}))
-    
+
         event.preventDefault()
     }
 
@@ -50,38 +50,38 @@ function Login(props) {
 
 
     return (
-        <div>  
+        <div>
             <h1>Know Your Algo</h1>
             <h2>Login</h2>
-            <div className = "loginframe">
-            
+            <div className = "loginFrame">
+
             <div>
                 <form className="login">
-                    
-                    <input onChange={handleChange} 
+
+                    <input onChange={handleChange}
                             type="email"
-                            text={loginForm.email} 
-                            name="email" 
-                            placeholder="Email" 
+                            text={loginForm.email}
+                            name="email"
+                            placeholder="Email"
                             value={loginForm.email} />
-                   
-                    <input onChange={handleChange} 
+
+                    <input onChange={handleChange}
                             type="password"
-                            text={loginForm.password} 
-                            name="password" 
-                            placeholder="Password" 
+                            text={loginForm.password}
+                            name="password"
+                            placeholder="Password"
                             value={loginForm.password} />
-                    
-            <div className='sumbit-btn'>
-                <button onClick={logMeIn}>Submit</button>
+
+            <div className='submit-btn'>
+                <button className='btn' onClick={logMeIn}>Submit</button>
             </div>
-             
+
                 </form>
             </div>
             </div>
         </div>
       );
-  
+
 }
 
 export default Login;

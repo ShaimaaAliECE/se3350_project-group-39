@@ -20,7 +20,7 @@ function SelectionPage() {
       <Header removeToken={removeToken}/>
       <div className="App">
         <div className="App-header">
-          <PageHeader className="site-page-header" title="Select Your Algo" onBack={() => navigate('/MenuPage')}/>
+          <PageHeader className="site-page-header" title="Select Your Algo" />
 
           <div
             style={{

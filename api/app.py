@@ -1,8 +1,9 @@
 import json
 from flask import Flask, request, jsonify
 from datetime import datetime, timedelta, timezone
-from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
+from random import seed, randint
 
 
 api = Flask(__name__)
@@ -96,3 +97,14 @@ def add_entry():
                 'time': data["time"]
             }]
         return { 'message': 'Successfully added to statistics' }
+
+# route to get randome numbers
+@api.route('/random', methods=["GET"])
+def random_nums():
+    config = request.args
+
+    results = []
+
+    for _ in range(int(config["count"])):
+        results.append(randint(int(config["min"]), int(config["max"])))
+    return jsonify(results)
