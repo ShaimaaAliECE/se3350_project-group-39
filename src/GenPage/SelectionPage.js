@@ -1,74 +1,62 @@
-import './selectionPage.css';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Menu, Dropdown,Slider, Switch} from 'antd';
+import "./selectionPage.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Slider, Switch, PageHeader, Select } from "antd";
 import "antd/dist/antd.css";
 
-import { PageHeader } from 'antd';
-
-const menu = (
-  <Menu className="Menu" selectable> 
-    <Menu.Item>
-      Merge Sort
-    </Menu.Item>
-    <Menu.Item>
-      Quick Sort
-    </Menu.Item>
-    <Menu.Item>
-      Bubble Sort
-    </Menu.Item>
-  </Menu>
-);
-
-
+const { Option } = Select;
 
 function SelectionPage() {
+  const [level, setLevel] = useState(0);
+  const [algo, setAlgo] = useState("");
 
-  const [level, setLevel] = useState(0)
-  const [algo, setAlgo] = useState("")
   return (
-    <div >
+    <div>
       <header className="App">
         <div className="App-header">
+          <PageHeader className="site-page-header" title="Select Your Algo" />
 
-                  <PageHeader
-                    className="site-page-header"
-                    title="Select Your Algo"
-                    />
+          <div
+            style={{
+              display: "block",
+              padding: 30,
+            }}
+          >
+            <h2>Select a Level</h2>
+            <Select
+              defaultValue="Bubble Sort"
+              style={{ width: 120 }}
+              onChange={(value) => {
+                console.log(value);
+                setAlgo(value);
+              }}
+            >
+              <Option value="b">Bubble Sort</Option>
+              <Option value="q">Quick Sort</Option>
+              <Option value="m">Merge Sort</Option>
+            </Select>
+          </div>
 
 
-              <div style={{"padding":"10px","theme": "#1DA57A"}}>
+          <div
+            style={{
+              display: "block",
+              width: 700,
+              padding: 30,
+            }}
+          >
+            <h2>Select a Level</h2>
+            <Slider
+              defaultValue={0}
+              disabled={false}
+              max={10}
+              onChange={(value) => {
+                setLevel(value);
+              }}
+            />
+            Slider Value: {level}
+          </div>
 
-
-              <Dropdown overlay={menu} trigger={(value)=> {
-                console.log(value)
-        setAlgo(value)
-      }}>
-                  <a className="ant-dropdown-link" href="#">
-                    Choose an Algo Here
-                  </a>
-                </Dropdown>
-              </div>
-
-              <div style={{"padding":"10px","theme": "#1DA57A"}}>
-             
-              </div>
-              <div style={{
-      display: 'block', width: 700, padding: 30
-    }}>
-      <h2>Select a Level</h2>
-      <Slider defaultValue={0} disabled={false} max={10} onChange={(value)=> {
-        
-        setLevel(value)
-      }}
-      />
-      Slider Value: {level}
-    </div>
-
-    {algo}
-   
-                  
- 
           <button>Start</button>
         </div>
       </header>
