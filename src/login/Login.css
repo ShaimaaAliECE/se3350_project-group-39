@@ -1,0 +1,16 @@
+.loginframe{
+    justify-content: center;
+    align-items: center ;
+    padding-left: 45.5%;
+    padding-top: 150px;
+    }   
+
+h1{
+    justify-content: center;
+    display: flex;
+    padding-top: 20px;
+}
+
+input{
+    padding-bottom: 10px;
+}

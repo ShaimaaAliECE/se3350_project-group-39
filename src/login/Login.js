@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import './Login.css';
+
 
 function Login(props) {
     
@@ -48,24 +50,34 @@ function Login(props) {
 
 
     return (
-        <div>
-          <h1>Login</h1>
-            <form className="login">
-              <input onChange={handleChange} 
-                    type="email"
-                    text={loginForm.email} 
-                    name="email" 
-                    placeholder="Email" 
-                    value={loginForm.email} />
-              <input onChange={handleChange} 
-                    type="password"
-                    text={loginForm.password} 
-                    name="password" 
-                    placeholder="Password" 
-                    value={loginForm.password} />
-  
-            <button onClick={logMeIn}>Submit</button>
-          </form>
+        <div>  
+            <h1>Know Your Algo</h1>
+            <div className = "loginframe">
+            <h2>Login</h2>
+            <div>
+                <form className="login">
+                    <div>
+                    <input onChange={handleChange} 
+                            type="email"
+                            text={loginForm.email} 
+                            name="email" 
+                            placeholder="Email" 
+                            value={loginForm.email} />
+                    </div>
+                    <div>
+                    <input onChange={handleChange} 
+                            type="password"
+                            text={loginForm.password} 
+                            name="password" 
+                            placeholder="Password" 
+                            value={loginForm.password} />
+                    </div> 
+           
+                <button onClick={logMeIn}>Submit</button>
+             
+                </form>
+            </div>
+            </div>
         </div>
       );
   
