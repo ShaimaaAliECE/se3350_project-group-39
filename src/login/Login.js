@@ -52,28 +52,29 @@ function Login(props) {
     return (
         <div>  
             <h1>Know Your Algo</h1>
-            <div className = "loginframe">
             <h2>Login</h2>
+            <div className = "loginframe">
+            
             <div>
                 <form className="login">
-                    <div>
+                    
                     <input onChange={handleChange} 
                             type="email"
                             text={loginForm.email} 
                             name="email" 
                             placeholder="Email" 
                             value={loginForm.email} />
-                    </div>
-                    <div>
+                   
                     <input onChange={handleChange} 
                             type="password"
                             text={loginForm.password} 
                             name="password" 
                             placeholder="Password" 
                             value={loginForm.password} />
-                    </div> 
-           
+                    
+            <div className='sumbit-btn'>
                 <button onClick={logMeIn}>Submit</button>
+            </div>
              
                 </form>
             </div>
