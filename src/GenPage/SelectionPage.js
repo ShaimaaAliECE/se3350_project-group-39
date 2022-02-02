@@ -7,15 +7,15 @@ import "antd/dist/antd.css";
 import { PageHeader } from 'antd';
 
 const menu = (
-  <Menu className="Menu"> 
+  <Menu className="Menu" selectable> 
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">Merge Sort</a>
+      Merge Sort
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">Quick Sort</a>
+      Quick Sort
     </Menu.Item>
     <Menu.Item>
-      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">Bubble Sort</a>
+      Bubble Sort
     </Menu.Item>
   </Menu>
 );
@@ -25,16 +25,25 @@ const menu = (
 function SelectionPage() {
 
   const [level, setLevel] = useState(0)
+  const [algo, setAlgo] = useState("")
   return (
     <div >
       <header className="App">
         <div className="App-header">
+
                   <PageHeader
                     className="site-page-header"
                     title="Select Your Algo"
                     />
+
+
               <div style={{"padding":"10px","theme": "#1DA57A"}}>
-              <Dropdown overlay={menu}>
+
+
+              <Dropdown overlay={menu} trigger={(value)=> {
+                console.log(value)
+        setAlgo(value)
+      }}>
                   <a className="ant-dropdown-link" href="#">
                     Choose an Algo Here
                   </a>
@@ -49,11 +58,14 @@ function SelectionPage() {
     }}>
       <h2>Select a Level</h2>
       <Slider defaultValue={0} disabled={false} max={10} onChange={(value)=> {
+        
         setLevel(value)
       }}
       />
       Slider Value: {level}
     </div>
+
+    {algo}
    
                   
  
