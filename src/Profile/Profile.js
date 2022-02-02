@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import './Profile.css';
 
 export default class Profile extends Component {
 
@@ -46,16 +47,20 @@ export default class Profile extends Component {
   render() {
     const { profileData } = this.state;
     return (
-      <div className="Profile">
+      <div>
+        <h1>User Statistics</h1>
+        <div className='dataframe'>
+        <div className="profile">
+          {
+            profileData &&
+            <div>
+              <p>Profile name: {profileData.profile_name}</p>
+              <p>About me: {profileData.about_me}</p>
+            </div>
+          }
 
-        {
-          profileData &&
-          <div>
-            <p>Profile name: {profileData.profile_name}</p>
-            <p>About me: {profileData.about_me}</p>
-          </div>
-        }
-
+        </div>
+        </div>
       </div>
     )
   }

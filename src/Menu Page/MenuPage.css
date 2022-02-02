@@ -22,3 +22,8 @@
     background-color: lightblue;
     height: 100vh;
   }
+
+  .logoutbtn{
+    background-color: transparent;
+    border: none;
+  }

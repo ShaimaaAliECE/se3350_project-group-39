@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import './Header.css';
 
 function Header(props) {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Header(props) {
 
         return(
             <header className="header">
-                <button onClick={logMeOut}>
+                <button className="btn" onClick={logMeOut}>
                     Logout
                 </button>
             </header>
