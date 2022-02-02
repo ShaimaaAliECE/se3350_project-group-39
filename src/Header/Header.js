@@ -11,7 +11,7 @@ function Header(props) {
         url:"/logout",
         })
         .then((response) => {
-            props.token()
+            props.removeToken()
             navigate('/');
         }).catch((error) => {
         if (error.response) {
