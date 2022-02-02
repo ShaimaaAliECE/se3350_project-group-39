@@ -69,7 +69,7 @@ function SelectionPage() {
               padding: 30,
             }}
             
-          ><button>Start</button></div>
+          ><button onClick={() => (navigate('/Game'))}>Start</button></div>
           
         </div>
       </header>
