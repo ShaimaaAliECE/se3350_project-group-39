@@ -6,3 +6,18 @@
   .Menu {
     color: white;
   }
+  .profile{
+    display: flex;
+    justify-content: center ;
+    border-style: inset;
+    border-radius: 20px;
+    width: max-content;
+    padding: 10px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dataframe{
+    display: flex;
+    justify-content: center;
+}
