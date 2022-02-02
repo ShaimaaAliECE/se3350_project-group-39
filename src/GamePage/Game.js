@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import Header from '../Header/Header';
-import useToken from '../login/useToken';
+import useToken from '../useToken';
 import './Game.css';
+
 
 function Game() {
 
