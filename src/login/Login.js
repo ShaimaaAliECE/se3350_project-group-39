@@ -53,7 +53,7 @@ function Login(props) {
         <div>
             <h1>Know Your Algo</h1>
             <h2>Login</h2>
-            <div className = "loginframe">
+            <div className = "loginFrame">
 
             <div>
                 <form className="login">
