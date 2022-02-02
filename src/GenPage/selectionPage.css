@@ -1,23 +1,25 @@
 .ant-dropdown-trigger {
-    color: white;
-    font-size: larger;
-  }
+  color: white;
+  font-size: larger;
+}
 
-  .Menu {
-    color: white;
-  }
-  .profile{
-    display: flex;
-    justify-content: center ;
-    border-style: inset;
-    border-radius: 20px;
-    width: max-content;
-    padding: 10px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    display: block;
-    width: 700;
-    padding: 30;
+.Menu {
+  color: white;
+}
+
+.profile {
+  display: flex;
+  justify-content: center ;
+  border-style: inset;
+  width: max-content;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  width: 700px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: lightblue;
+  border: 2px solid #f1f1f1;
 }
 
 .dataframe{

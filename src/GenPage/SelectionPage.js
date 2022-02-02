@@ -31,12 +31,12 @@ function SelectionPage() {
           >
             <h2>Select a Algorithm</h2>
             <Image
-              width={100}
+              width={'25%'}
               src="https://cdn.onlinewebfonts.com/svg/img_546218.png"
             />
             <Select
-              defaultValue="Bubble Sort"
-              style={{ width: 120 }}
+              defaultValue="b"
+              style={{ width: '75%' }}
               onChange={(value) => {
                 console.log(value);
                 setAlgo(value);
@@ -49,14 +49,7 @@ function SelectionPage() {
           </div>
 
 
-          <div
-            style={{
-              display: "block",
-              width: 700,
-              padding: 30,
-            }}
-            className="profile"
-          >
+    <div style={{ width: 700, padding: 30, display: "block", borderRadius: 7, borderWidth: 2, borderColor: '#f1f1f1' }} className="profile">
             <h2>Select a Level</h2>
             <Slider
               defaultValue={0}
@@ -90,9 +83,9 @@ function SelectionPage() {
               width: 700,
               padding: 30,
             }}
-            
+
           ><button onClick={() => (navigate('/Game'))}>Start</button></div>
-          
+
         </div>
       </div>
     </div>
