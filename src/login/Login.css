@@ -1,0 +1,24 @@
+.loginframe{
+    justify-content: center;
+    align-items: center ;
+    padding-left: 40.5%;
+    }   
+
+h1{
+    justify-content: center;
+    display: flex;
+    padding-top: 20px;
+}
+
+h2{
+    justify-content: center;
+    display: flex;
+    padding-top: 50px;
+}
+
+
+
+button{
+    width: 32.2%;
+    background-color: rgb(52, 123, 214);
+}

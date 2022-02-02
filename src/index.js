@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuPage from './Menu Page/MenuPage';
 import Profile from './Profile/Profile';
+import useToken from './login/useToken';
+import Game from './GamePage/Game';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +17,9 @@ ReactDOM.render(
         <Route path="/" element={<App/>}></Route>
         <Route path="/selectionPage" element={<SelectionPage/>}></Route>
         <Route path="/MenuPage" element={<MenuPage/>}></Route>
-        <Route path="/Profile" element={<Profile/>}></Route>
+        <Route path="/Profile" element={<Profile token={localStorage.getItem('token')} setToken={() => {const { saveToken } = useToken(); return saveToken; }} />}></Route>
+        <Route path="/Game" element={<Game/>}></Route>
+
       </Routes>
     </Router>
   </React.StrictMode>,

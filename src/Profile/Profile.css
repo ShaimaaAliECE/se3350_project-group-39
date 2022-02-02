@@ -1,0 +1,13 @@
+.profile{
+    display: flex;
+    justify-content: center ;
+    border-style: inset;
+    border-radius: 20px;
+    width: max-content;
+    padding: 10px;
+}
+
+.dataframe{
+    display: flex;
+    justify-content: center;
+}
