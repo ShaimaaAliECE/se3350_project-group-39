@@ -1,13 +1,14 @@
 import "./selectionPage.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Slider, Switch, PageHeader, Select } from "antd";
+import { Slider, Switch, PageHeader, Select, Image } from "antd";
 import "antd/dist/antd.css";
 
 const { Option } = Select;
 
 function SelectionPage() {
   const [level, setLevel] = useState(0);
+  const [listSize, setListSize] = useState(0);
   const [algo, setAlgo] = useState("");
   const navigate = useNavigate();
 
@@ -18,7 +19,6 @@ function SelectionPage() {
           <PageHeader className="site-page-header" title="Select Your Algo" onBack={() => navigate('/MenuPage')}/>
 
           <div
-            className="profile"
             style={{
               display: "block",
               width: 500,
@@ -27,6 +27,10 @@ function SelectionPage() {
             
           >
             <h2>Select a Algorithm</h2>
+            <Image
+              width={100}
+              src="https://cdn.onlinewebfonts.com/svg/img_546218.png"
+            />
             <Select
               defaultValue="Bubble Sort"
               style={{ width: 120 }}
@@ -62,6 +66,21 @@ function SelectionPage() {
             Slider Value: {level}
           </div>
 
+
+
+          <div
+          >
+            <h2>Select a List Size []</h2>
+            <Slider
+              defaultValue={0}
+              disabled={false}
+              max={10}
+              onChange={(value) => {
+                setListSize(value);
+              }}
+            />
+            Slider Value: {listSize}
+          </div>
           <div
             style={{
               display: "block",
@@ -69,7 +88,7 @@ function SelectionPage() {
               padding: 30,
             }}
             
-          ><button>Start</button></div>
+          ><button onClick={() => (navigate('/Game'))}>Start</button></div>
           
         </div>
       </header>

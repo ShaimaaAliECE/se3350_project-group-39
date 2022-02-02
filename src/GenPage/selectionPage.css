@@ -15,6 +15,9 @@
     padding: 10px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    width: 700;
+    padding: 30;
 }
 
 .dataframe{
