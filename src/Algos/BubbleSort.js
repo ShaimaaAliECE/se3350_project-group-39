@@ -4,7 +4,7 @@ const swap = (arr, i, j) => {
     arr[j] = temp
 }
 
-const BubbleSort = (blocks) => {
+const bubbleSort = (blocks) => {
 
     const numbers = blocks.slice()
     const order = []
@@ -26,4 +26,4 @@ const BubbleSort = (blocks) => {
     return order
 }
 
-export default BubbleSort
+export default bubbleSort
