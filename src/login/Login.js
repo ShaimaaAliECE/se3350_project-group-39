@@ -19,32 +19,34 @@ function Login(props) {
         axios({
             method: 'POST',
             url: '/token',
-            data:   {
+            data: {
                 email: loginForm.email,
                 password: loginForm.password
             }
-        }).then((response) =>   {
+        }).then((response) => {
             props.setToken(response.data.access_token)
             navigate('/MenuPage')
-        }).catch((error) =>    {
+        }).catch((error) => {
             if (error.response) {
                 console.log(error.response)
                 console.log(error.response.status)
                 console.log(error.response.headers)
-                }
+            }
         })
 
         setloginForm(({
             email: "",
-            password: ""}))
+            password: ""
+        }))
 
         event.preventDefault()
     }
 
-    function handleChange(event)    {
-        const {value, name} = event.target
+    function handleChange(event) {
+        const { value, name } = event.target
         setloginForm(prevNote => ({
-            ...prevNote, [name]: value})
+            ...prevNote, [name]: value
+        })
         )
     }
 
@@ -52,35 +54,39 @@ function Login(props) {
     return (
         <div>
             <h1>Know Your Algo</h1>
-            <h2>Login</h2>
-            <div className = "loginFrame">
 
-            <div>
+            <div className="loginFrame">
+
+
+                <p class="sign" align="center">Sign in</p>
+
                 <form className="login">
 
-                    <input onChange={handleChange}
-                            type="email"
-                            text={loginForm.email}
-                            name="email"
-                            placeholder="Email"
-                            value={loginForm.email} />
+                    <input class="un" onChange={handleChange}
+                        type="email"
+                        text={loginForm.email}
+                        name="email"
+                        placeholder="Email"
+                        value={loginForm.email}
+                        align="center" />
 
-                    <input onChange={handleChange}
-                            type="password"
-                            text={loginForm.password}
-                            name="password"
-                            placeholder="Password"
-                            value={loginForm.password} />
+                    <input class="pass" onChange={handleChange}
+                        type="password"
+                        text={loginForm.password}
+                        name="password"
+                        placeholder="Password"
+                        value={loginForm.password}
+                        align="center" />
 
-            <div className='submit-btn'>
-                <button className='btn' onClick={logMeIn}>Submit</button>
-            </div>
+                    <div className='submit-btn' >
+                        <button className='btn' onClick={logMeIn}>Submit</button>
+                    </div>
 
                 </form>
-            </div>
+
             </div>
         </div>
-      );
+    );
 
 }
 
