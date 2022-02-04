@@ -13,12 +13,14 @@ function MenuPage() {
 
   return (
     <div id="menu-body">
-      <Header removeToken={removeToken}/>
         <div id="menu">
             <div id='title'> Algorithms Game</div>
             <button id='startBtn' className='btn' onClick={() => {navigate('/SelectionPage')}}> Selection </button>
             <button id='statsBtn' className='btn' onClick={() => { navigate('/Profile') }}> Statistics </button>
-            <button className='logoutbtn'> <Header token={removeToken}/> </button>  
+<<<<<<< HEAD
+            <Header removeToken={removeToken}/>
+=======
+>>>>>>> d7b5daa107ceef5d2dc153f7fa347f9f13cafba7
 
         </div>
     </div>
