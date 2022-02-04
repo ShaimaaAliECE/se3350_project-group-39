@@ -1,16 +1,17 @@
 .btn{
     margin: 10px;
-    background-color: beige;
+    background-color: whitesmoke;
     color: black;
-    border-color: white;
+    border-color: black;
     width: 200px;
+    border-radius: 50px;
 }
 
 #title{
     color:black;
-    font-size: calc(10px + 2vmin);
+    font-size: calc(10  px + 2vmin);
     margin: 50px;
-  }
+    }
 
   #menu{
     display: flex;
