@@ -58,11 +58,11 @@ function Login(props) {
             <div className="loginFrame">
 
 
-                <p class="sign" align="center">Sign in</p>
+                <p className="sign" align="center">Sign in</p>
 
                 <form className="login">
 
-                    <input class="un" onChange={handleChange}
+                    <input className="un" onChange={handleChange}
                         type="email"
                         text={loginForm.email}
                         name="email"
@@ -70,7 +70,7 @@ function Login(props) {
                         value={loginForm.email}
                         align="center" />
 
-                    <input class="pass" onChange={handleChange}
+                    <input className="pass" onChange={handleChange}
                         type="password"
                         text={loginForm.password}
                         name="password"
