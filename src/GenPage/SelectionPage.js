@@ -19,21 +19,17 @@ function SelectionPage() {
     <div>
       <Header removeToken={removeToken}/>
       <div className="App">
-        <div className="App-header">
+          <div className="App-header">
+                    
           <PageHeader className="site-page-header" title="Select Your Algo" />
 
-          <div
-            style={{
-              display: "block",
-              width: 500,
-              padding: 30,
-            }}
-          >
-            <h2>Select a Algorithm</h2>
-            <Image
-              width={'25%'}
-              src="https://cdn.onlinewebfonts.com/svg/img_546218.png"
-            />
+
+          <div className="loginFrame">
+          <p className="sign" align="center">Select a Algorithm</p>
+            
+
+            <div align="center" style={{padding:"10px"}}>
+              
             <Select
               defaultValue="b"
               style={{ width: '75%' }}
@@ -46,55 +42,63 @@ function SelectionPage() {
               <Option value="q">Quick Sort</Option>
               <Option value="m">Merge Sort</Option>
             </Select>
-          </div>
-
-
-    <div style={{ width: 700, padding: 30, display: "block", borderRadius: 7, borderWidth: 2, borderColor: '#f1f1f1' }} className="profile">
-            <h2>Select a Level</h2>
-            <Slider
-              defaultValue={0}
-              disabled={false}
-              max={10}
-              onChange={(value) => {
-                setLevel(value);
-              }}
-            />
-            Slider Value: {level}
-          </div>
-
-
-
-          <div
-          >
-            <h2>Select a List Size []</h2>
-            <Slider
-              defaultValue={0}
-              disabled={false}
-              max={10}
-              onChange={(value) => {
-                setListSize(value);
-              }}
-            />
-            Slider Value: {listSize}
-          </div>
-          <div
-            style={{
-              display: "block",
-              width: 700,
-              padding: 30,
-            }}
-
-          >
-
-           <div className="submit-btn">
-           <button className="btn" onClick={() => (navigate('/Game'))}>Start</button>
-             </div> 
             </div>
 
-        </div>
+            <div align="center">
+            <Image align="center" style={{padding:"10px"}}
+              width={'25%'}
+              src="https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png"
+            />
+            </div>
+
+            <p className="sign" align="center">Select a Level</p>
+          <div align="center" style={{padding:"10px"}}>
+                      <Slider
+                        defaultValue={0}
+                        disabled={false}
+                        max={10}
+                        onChange={(value) => {
+                          setLevel(value);
+                        }}
+                      />
+                      <p className="sign" align="center">Difficulty: {level}</p>
+          </div>
+
+          <p className="sign" align="center">Select a List Size []</p>
+          <div align="center" style={{padding:"10px"}}>
+          <Slider
+                        defaultValue={0}
+                        disabled={false}
+                        max={10}
+                        onChange={(value) => {
+                          setListSize(value);
+                        }}
+                      />
+                      <p className="sign" align="center">Size of List: {listSize}</p>
+                      </div>
+                      <div align="center" style={{padding:"10px"}}>
+
+           <div aligh="center" className="submit-btn">
+           <button  className="btn" onClick={() => (navigate('/Game'))}>Start</button>
+             </div> 
+             </div> 
+          </div>
+
+         
+          
+          </div>
+
+
+
+          
+          
+
+        
       </div>
     </div>
   );
 }
 
 export default SelectionPage;
+
+
