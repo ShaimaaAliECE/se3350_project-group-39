@@ -12,7 +12,7 @@ function MenuPage() {
   const navigate = useNavigate();
 
   return (
-    <div id="menu-body">
+    <div id="menu-body" className='App'>
       <Header removeToken={removeToken}/>
         <div id="menu">
             <div id='title'> Algorithms Game</div>

@@ -17,7 +17,7 @@ function SelectionPage() {
 
   return (
     <div>
-      <Header removeToken={removeToken}/>
+      
       <div className="App">
           <div className="App-header">
                     
