@@ -2,7 +2,7 @@ import "./SelectionPage.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Slider,PageHeader, Select, Image } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import useToken from '../useToken';
 import Header from "../Header/Header";
 
@@ -35,7 +35,7 @@ function SelectionPage() {
 
             <p className="sign" align="center">Select a Algorithm</p>
             
-            <div align="center" style={{padding:"10px"}}>
+            <div align="center" className="barDiv">
               
             <Select
               defaultValue="b"
@@ -52,15 +52,16 @@ function SelectionPage() {
             </div>
 
             <div align="center">
-            <Image align="center" style={{padding:"10px"}}
-              width={'50%'}
+            <Image align="center" className="barDiv"
+              width={500}
+              height={400}
               src={sortImage[algo]}
               fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
             />
             </div>
 
             <p className="sign" align="center">Select a Level</p>
-          <div align="center" style={{padding:"10px"}}>
+          <div align="center" className="barDiv">
                       <Slider
                         defaultValue={0}
                         disabled={false}
@@ -73,7 +74,9 @@ function SelectionPage() {
           </div>
 
           <p className="sign" align="center">Select a List Size []</p>
-          <div align="center" style={{padding:"10px"}}>
+
+
+          <div align="center" className="barDiv">
           <Slider
                         defaultValue={0}
                         disabled={false}
