@@ -27,7 +27,7 @@ function SelectionPage() {
       <div className="App">
           <div className="App-header">
                     
-          <Header />      
+          <Header removeToken={removeToken}/>      
           <PageHeader className="site-page-header" title="Select Your Algo" />
 
 
