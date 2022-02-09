@@ -5,11 +5,14 @@ import { Slider,PageHeader, Select, Image } from "antd";
 import "antd/dist/antd.min.css";
 import useToken from '../useToken';
 import Header from "../Header/Header";
+import Expand from 'react-expand-animated';
+import Game from '../GamePage/Game';
 
 const { Option } = Select;
 function SelectionPage() {
   const [level, setLevel] = useState(0);
   const [listSize, setListSize] = useState(0);
+  const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("b");
   const navigate = useNavigate();
   const {removeToken} = useToken();
@@ -19,6 +22,14 @@ function SelectionPage() {
     q: "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
     m: "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png"
   }
+
+  function renderInfo() {
+    return(
+      <Game/>
+    );
+  }
+
+
 
   return (
     <div>
@@ -95,18 +106,16 @@ function SelectionPage() {
           </div>
 
           <div className="barDiv">
-           <button className="submit"  onClick={() => (navigate('/Game'))}>Start</button>
+           <button className="submit"  onClick={() => setClicked(!clicked) }>Start</button>
+           <Expand className="expand" open={clicked}>
+                <div className="expandDiv">
+                    {renderInfo()}
+                </div>
+            </Expand>
              </div> 
              </div> 
           
           </div>
-
-
-
-          
-          
-
-        
       </div>
     </div>
   );
