@@ -1,8 +1,8 @@
 .profile{
     display: flex;
     justify-content: center ;
-    border-style: inset;
-    border-radius: 20px;
+    border-radius: 5px;
+    background-color: white;
     width: max-content;
     padding: 10px;
 }
@@ -10,4 +10,8 @@
 .dataframe{
     display: flex;
     justify-content: center;
+}
+
+p {
+  text-transform: uppercase;
 }

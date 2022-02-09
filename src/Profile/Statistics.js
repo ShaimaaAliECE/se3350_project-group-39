@@ -38,7 +38,7 @@ export default class Statistics extends Component {
         return (
             <div className="stats-container">
                 <div className="stat-header-container">
-                  <label>STAT ID</label>
+                  <label>STAT NO</label>
                   <label>LEVEL</label>
                   <label>ALGORITHM</label>
                   <label>TIME</label>
