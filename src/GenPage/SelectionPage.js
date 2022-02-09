@@ -60,6 +60,7 @@ function SelectionPage() {
 
             {/* <p className="sign" align="center">Select a Level</p> */}
           <div className="barDiv">
+          <p className="sign" align="center">Difficulty: {level}</p>
                       <Slider
                         style={{width: "200px"}}
                         defaultValue={0}
@@ -69,13 +70,14 @@ function SelectionPage() {
                           setLevel(value);
                         }}
                       />
-                      <p className="sign" align="center">Difficulty: {level}</p>
+                      
           </div>
 
           {/* <p className="sign" align="center">Select a List Size []</p> */}
 
 
           <div  className="barDiv">
+          <p className="sign" align="center">Size of List: {listSize}</p>
           <Slider
                         style={{width: "200px"}}
                         defaultValue={0}
@@ -85,7 +87,7 @@ function SelectionPage() {
                           setListSize(value);
                         }}
                       />
-                      <p className="sign" align="center">Size of List: {listSize}</p>
+                      
                       </div>
                       <div align="center" style={{padding:"10px"}}>
 
