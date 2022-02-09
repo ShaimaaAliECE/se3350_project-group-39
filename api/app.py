@@ -98,6 +98,13 @@ def add_entry():
             }]
         return { 'message': 'Successfully added to statistics' }
 
+# route to get all the statistics
+@api.route('/get_stats', methods=["GET"])
+@jwt_required()
+def get_stats():
+    email = get_jwt_identity()
+    return { 'data': stats[email] }
+
 # route to get randome numbers
 @api.route('/random', methods=["GET"])
 def random_nums():
