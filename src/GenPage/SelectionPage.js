@@ -27,41 +27,41 @@ function SelectionPage() {
           <div className="App-header">
                     
           <Header removeToken={removeToken}/>      
-          <PageHeader className="site-page-header" title="Select Your Algo" />
 
 
           <div className="Frame">
 
-            <p className="sign" align="center">Select a Algorithm</p>
+            <p align="center" className="sign" >Select a Algorithm</p>
             
-            <div align="center" className="barDiv">
+            <div className="barDiv">
               
             <Select
               defaultValue="b"
-              style={{ width: '75%' }}
               onChange={(value) => {
                 console.log(value)
                 setAlgo(value);
               }}
             >
-              <Option value="b">Bubble Sort</Option>
+              <Option className="op" value="b">Bubble Sort</Option>
               <Option value="q">Quick Sort</Option>
               <Option value="m">Merge Sort</Option>
             </Select>
-            </div>
-
-            <div align="center">
-            <Image align="center" className="barDiv"
-              width={500}
-              height={400}
+            <Image align="bottom"
+              width={300}
+              height={150}
+              
               src={sortImage[algo]}
               fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
             />
+
             </div>
 
-            <p className="sign" align="center">Select a Level</p>
-          <div align="center" className="barDiv">
+            
+
+            {/* <p className="sign" align="center">Select a Level</p> */}
+          <div className="barDiv">
                       <Slider
+                        style={{width: "200px"}}
                         defaultValue={0}
                         disabled={false}
                         max={10}
@@ -72,11 +72,12 @@ function SelectionPage() {
                       <p className="sign" align="center">Difficulty: {level}</p>
           </div>
 
-          <p className="sign" align="center">Select a List Size []</p>
+          {/* <p className="sign" align="center">Select a List Size []</p> */}
 
 
-          <div align="center" className="barDiv">
+          <div  className="barDiv">
           <Slider
+                        style={{width: "200px"}}
                         defaultValue={0}
                         disabled={false}
                         max={10}
@@ -88,13 +89,13 @@ function SelectionPage() {
                       </div>
                       <div align="center" style={{padding:"10px"}}>
 
-           <div aligh="center" className="submit-btn">
-           <button  className="btn" onClick={() => (navigate('/Game'))}>Start</button>
-             </div> 
-             </div> 
+          
           </div>
 
-         
+          <div className="barDiv">
+           <button className="submit"  onClick={() => (navigate('/Game'))}>Start</button>
+             </div> 
+             </div> 
           
           </div>
 
