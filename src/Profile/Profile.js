@@ -55,12 +55,12 @@ export default class Profile extends Component {
             {
               profileData &&
               <div>
-                <p>Profile Name: {profileData.profile_name}</p>
-                <p>About Me: {profileData.about_me}</p>
-                <p>Favorite Algo: (most used algo)</p>
-                <p>PR: (time taken)</p>
-                <p>Highest Level: (respective to fav algo)</p>
-                <p>Total Games Completed: (number of games won)</p>
+                <p>Profile Name: <i>{profileData.profile_name}</i></p>
+                <p>About Me: <i>{profileData.about_me}</i></p>
+                <p>Favorite Algo: <i>(most used algo)</i></p>
+                <p>PR: <i>(time taken)</i></p>
+                <p>Highest Level: <i>(respective to fav algo)</i></p>
+                <p>Total Games Completed: <i>(number of games won)</i></p>
               </div>
             }
           </div>
