@@ -1,4 +1,4 @@
-import "./SelectionPage.css";
+import "./selectionPage.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Slider,PageHeader, Select, Image } from "antd";
