@@ -25,7 +25,7 @@ function Login(props) {
             }
         }).then((response) => {
             props.setToken(response.data.access_token)
-            navigate('/MenuPage')
+            navigate('/')
         }).catch((error) => {
             if (error.response) {
                 console.log(error.response)
