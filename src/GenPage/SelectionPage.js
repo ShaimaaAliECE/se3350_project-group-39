@@ -7,7 +7,6 @@ import useToken from '../useToken';
 import Header from "../Header/Header";
 
 const { Option } = Select;
-//
 function SelectionPage() {
   const [level, setLevel] = useState(0);
   const [listSize, setListSize] = useState(0);
