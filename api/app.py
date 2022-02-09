@@ -4,14 +4,24 @@ from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
 from random import seed, randint
+from flaskext.mysql import MySQL
+from db import get_user
 
 
 api = Flask(__name__)
-
+mysql = MySQL()
 api.config["JWT_SECRET_KEY"] = "Value"
 api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
+# mysql configs
+api.config['MYSQL_DATABASE_USER'] = 'root'
+api.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+api.config['MYSQL_DATABASE_DB'] = 'EmpData'
+api.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
+mysql.init_app(api)
 
 jwt = JWTManager(api)
+
 
 # global variables
 stats = {  # dictionary to store the statistics
