@@ -4,24 +4,45 @@ from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
 from random import seed, randint
+
+# modules to connect to the db
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sesssionmaker
+
 from flaskext.mysql import MySQL
-from db import get_user
 
+# methods to use access the database
+from db import get_user, add_user, add_stats, get_stats
 
+# create the flask app
 api = Flask(__name__)
+
+# mysql connection object
 mysql = MySQL()
+
+# jwt configs
 api.config["JWT_SECRET_KEY"] = "Value"
 api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
+
 # mysql configs
 api.config['MYSQL_DATABASE_USER'] = 'root'
 api.config['MYSQL_DATABASE_PASSWORD'] = 'root'
 api.config['MYSQL_DATABASE_DB'] = 'EmpData'
 api.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
+# SQLAlchemy configs
+api.config['SESSION_PERMANENT'] = False
+api.config['SESSION_TYPE'] = 'filesystem'
+
+# connect to database using SQLAlchemy
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sesssionmaker(bind=engine))
+
+# Establish mySQL connection
 mysql.init_app(api)
 
+# connect the flask jwt to the flask app
 jwt = JWTManager(api)
-
 
 # global variables
 stats = {  # dictionary to store the statistics
@@ -93,6 +114,13 @@ def add_entry():
     if request.method == "POST":
         data = request.form
 
+        # validate the user input
+        if data['user'] == '' or data['level'] <= 0 or data['algorithm'] == '' or data['time'] <= 0:
+            return {'message': 'Invalid statistic!'}
+
+        # using sql database
+        ## add_entry(db, data['email'], data['level'], data['algorithm'], data['time'])
+
         # create a new entry if one for the user doesn't exist
         if stats[f'{data["user"]}']:
             stats[f'{data["user"]}'].append({
@@ -106,13 +134,18 @@ def add_entry():
                 'algorithm': data["algorithm"],
                 'time': data["time"]
             }]
-        return { 'message': 'Successfully added to statistics' }
+        return { 'message': 'Successfully added to statistics!' }
 
 # route to get all the statistics
 @api.route('/get_stats', methods=["GET"])
 @jwt_required()
 def get_stats():
     email = get_jwt_identity()
+
+    # using sql database
+    ## data = get_stats(db, email)
+    ## return { 'data': data }
+
     return { 'data': stats[email] }
 
 # route to get randome numbers
