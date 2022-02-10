@@ -6,8 +6,8 @@ from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
 from random import seed, randint
 
 # modules to connect to the db
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sesssionmaker
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import scoped_session, sesssionmaker
 
 from flaskext.mysql import MySQL
 
@@ -35,8 +35,8 @@ api.config['SESSION_PERMANENT'] = False
 api.config['SESSION_TYPE'] = 'filesystem'
 
 # connect to database using SQLAlchemy
-engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sesssionmaker(bind=engine))
+# engine = create_engine(os.getenv("DATABASE_URL"))
+# db = scoped_session(sesssionmaker(bind=engine))
 
 # Establish mySQL connection
 mysql.init_app(api)

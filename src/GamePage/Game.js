@@ -35,12 +35,10 @@ function Game({ min, max, count, algorithm }) {
     return (
 
         <div id="game-body">
-            <Header removeToken={removeToken}/>
 
             <div>
                 { numbers }
             </div>
-
 
         </div>
     );
