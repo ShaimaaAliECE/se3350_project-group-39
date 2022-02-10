@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../Header/Header';
 import useToken from '../useToken';
 import './Game.css';
 import mergeSort from '../Algos/MergeSort';
