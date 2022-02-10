@@ -106,10 +106,10 @@ function SelectionPage() {
           </div>
 
           <div className="barDiv">
-           <button className="submit"  onClick={() => setClicked(!clicked) }>Start</button>
+           <button className="submit"  onClick={() => setClicked(!clicked) }>{!clicked ? "Start" : "Exit"}</button>
            <Expand className="expand" open={clicked}>
                 <div className="expandDiv">
-                    {renderInfo()}
+                    {clicked ? renderInfo() : undefined}
                 </div>
             </Expand>
              </div> 

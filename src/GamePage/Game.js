@@ -25,7 +25,6 @@ function Game({ min, max, count, algorithm }) {
         }).then((response)  =>  {
             const res = response.data;
             setNumbers([...res]);
-            console.log(numbers);
         })
     }
 
@@ -39,13 +38,11 @@ function Game({ min, max, count, algorithm }) {
             <Header removeToken={removeToken}/>
 
             <div>
-
+                { numbers }
             </div>
 
 
         </div>
-
-
     );
 }
 
