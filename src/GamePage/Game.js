@@ -6,16 +6,16 @@ import mergeSort from '../Algos/MergeSort';
 import axios from 'axios';
 
 
-function Game({}) {
+function Game({ min, max, count, algorithm }) {
 
     //states
-    const { numbers, setNumbers } = useState();
-    const { blocks, setBlocks } = useState();
-    const { algo, setAlso } = useState();
-    const { sorting, isSorting } = useState();
-    const { speed, setSpeed } = useState(250);
-    const { compare, setCompare } = useState();
- 
+    const [ numbers, setNumbers ] = useState([]);
+    const [ blocks, setBlocks ] = useState();
+    const [ algo, setAlso ] = useState('');
+    const [ sorting, isSorting ] = useState(false);
+    const [ speed, setSpeed ] = useState(250);
+    const [ compare, setCompare ] = useState();
+
     const {removeToken} = useToken();
 
     function getRandomNumbers() {
@@ -24,13 +24,14 @@ function Game({}) {
             url: '/random',
         }).then((response)  =>  {
             const res = response.data;
-            setNumbers(res);
+            setNumbers([...res]);
+            console.log(numbers);
         })
     }
 
     useEffect(()=>  {
         getRandomNumbers();
-    });
+    }, []);
 
     return (
 
@@ -41,7 +42,7 @@ function Game({}) {
 
             </div>
 
-            
+
         </div>
 
 
