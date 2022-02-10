@@ -37,7 +37,7 @@ function Game({ min, max, count, algorithm }) {
         <div id="game-body">
 
             <div>
-                { numbers }
+                Game Over!
             </div>
 
         </div>
