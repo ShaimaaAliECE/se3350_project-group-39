@@ -5,6 +5,7 @@ import ListBlocks from './Components/ListBlock';
 import { render } from '@testing-library/react';
 
 
+<<<<<<< HEAD
 export default function Game({size, algorythm, difficulty}) {
 
     //states
@@ -24,12 +25,40 @@ export default function Game({size, algorythm, difficulty}) {
         genRandomNumbers();
         console.log(blocks);
     })
+=======
+function Game({ min, max, count, algorithm }) {
+
+    //states
+    const [ numbers, setNumbers ] = useState([]);
+    const [ blocks, setBlocks ] = useState();
+    const [ algo, setAlso ] = useState('');
+    const [ sorting, isSorting ] = useState(false);
+    const [ speed, setSpeed ] = useState(250);
+    const [ compare, setCompare ] = useState();
+
+    const {removeToken} = useToken();
+
+    function getRandomNumbers() {
+        axios({
+            method: 'GET',
+            url: '/random',
+        }).then((response)  =>  {
+            const res = response.data;
+            setNumbers([...res]);
+        })
+    }
+
+    useEffect(()=>  {
+        getRandomNumbers();
+    }, []);
+>>>>>>> dbf1e6909c73986fc7902bf1ceaa5965642ee772
 
     //core logic
     function handleSort()  {
 
         sortOrder()
 
+<<<<<<< HEAD
         setIsSorting(true);
 
         algo === 'bubbleSort' ? sortOrder(bubbleSort(blocks)) : (() => {
@@ -98,5 +127,14 @@ export default function Game({size, algorythm, difficulty}) {
     
     }
 
+=======
+            <div>
+                { numbers }
+            </div>
+
+
+        </div>
+    );
+>>>>>>> dbf1e6909c73986fc7902bf1ceaa5965642ee772
 }
 

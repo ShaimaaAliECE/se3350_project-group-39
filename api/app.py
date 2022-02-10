@@ -122,6 +122,11 @@ def random_nums():
 
     results = []
 
-    for _ in range(int(config["count"])):
-        results.append(randint(int(config["min"]), int(config["max"])))
+    # default values
+    ## count --> 10
+    ## min --> 0
+    ## max --> 10
+
+    for _ in range(int(config.get("count", 10))):
+        results.append(randint(int(config.get("min", 0)), int(config.get("max", 10))))
     return jsonify(results)

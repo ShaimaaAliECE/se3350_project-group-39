@@ -1,0 +1,19 @@
+.stats-container {
+  width: 75%;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.stat-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.stat-header-container > label {
+  color: lightblue;
+  font-weight: bold;
+}

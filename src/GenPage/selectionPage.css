@@ -53,6 +53,7 @@
 
 .submit:hover {
   background: linear-gradient(to right, #582d61, #ce19ee);
+  cursor: pointer;
 }
 
 
@@ -69,6 +70,7 @@ h1 {
 .barDiv {
   padding:40px;
   float: left;
+  text-align: center;
 }
 
 .sign {
@@ -84,4 +86,9 @@ h1 {
   font-family: "Ubuntu", sans-serif;
   font-weight: bold;
   font-size: 16px;
+}
+
+.alg-img {
+  height: 300px;
+  text-align: center;
 }

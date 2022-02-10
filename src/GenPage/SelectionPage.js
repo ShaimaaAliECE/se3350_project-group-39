@@ -56,6 +56,7 @@ function SelectionPage() {
 
           
 
+<<<<<<< HEAD
           {/* <p className="sign" align="center">Select a Level</p> */}
         <div className="barDiv">
         <p className="sign" align="center">Difficulty: {level}</p>
@@ -103,6 +104,20 @@ function SelectionPage() {
             </div> 
         
         </div>
+=======
+          <div className="barDiv">
+           <button className="submit"  onClick={() => setClicked(!clicked) }>{!clicked ? "Start" : "Exit"}</button>
+           <Expand className="expand" open={clicked}>
+                <div className="expandDiv">
+                    {clicked ? renderInfo() : undefined}
+                </div>
+            </Expand>
+             </div> 
+             </div> 
+          
+          </div>
+      </div>
+>>>>>>> dbf1e6909c73986fc7902bf1ceaa5965642ee772
     </div>
   );
 }
