@@ -5,12 +5,15 @@ import { Slider,PageHeader, Select, Image } from "antd";
 import "antd/dist/antd.min.css";
 import useToken from '../useToken';
 import Header from "../Header/Header";
+import Expand from 'react-expand-animated';
+import Game from '../GamePage/Game';
 
 const { Option } = Select;
 function SelectionPage() {
-  const [level, setLevel] = useState(0);
-  const [listSize, setListSize] = useState(0);
-  const [algo, setAlgo] = useState("b");
+  const [level, setLevel] = useState(1);
+  const [listSize, setListSize] = useState(10);
+  const [clicked, setClicked] = useState(false);
+  const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
   const {removeToken} = useToken();
 
@@ -21,93 +24,85 @@ function SelectionPage() {
   }
 
   return (
-    <div>
       
-      <div className="App">
-          <div className="App-header">
+    <div className="App">
+        <div className="App-header">
+        <div className="Frame">
+
+          <p align="center" className="sign" >Select a Algorithm</p>
+          
+          <div className="barDiv">
+            
+          <Select
+            defaultValue="mergeSort"
+            onChange={(value) => {
+              console.log(value)
+              setAlgo(value);
+            }}
+          >
+            <Option className="bubbleSort" value="b">Bubble Sort</Option>
+            <Option value="quickSort">Quick Sort</Option>
+            <Option value="mergeSort">Merge Sort</Option>
+          </Select>
+          <Image align="bottom"
+            width={300}
+            height={150}
+            
+            src={sortImage[algo]}
+            fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+          />
+
+          </div>
+
+          
+
+          {/* <p className="sign" align="center">Select a Level</p> */}
+        <div className="barDiv">
+        <p className="sign" align="center">Difficulty: {level}</p>
+                    <Slider
+                      style={{width: "200px"}}
+                      defaultValue={0}
+                      disabled={false}
+                      max={10}
+                      onChange={(value) => {
+                        setLevel(value);
+                      }}
+                    />
                     
-          <Header removeToken={removeToken}/>      
+        </div>
+
+        {/* <p className="sign" align="center">Select a List Size []</p> */}
 
 
-          <div className="Frame">
-
-            <p align="center" className="sign" >Select a Algorithm</p>
-            
-            <div className="barDiv">
-              
-            <Select
-              defaultValue="b"
-              onChange={(value) => {
-                console.log(value)
-                setAlgo(value);
-              }}
-            >
-              <Option className="op" value="b">Bubble Sort</Option>
-              <Option value="q">Quick Sort</Option>
-              <Option value="m">Merge Sort</Option>
-            </Select>
-            <Image align="bottom"
-              width={300}
-              height={150}
-              
-              src={sortImage[algo]}
-              fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
-            />
-
-            </div>
-
-            
-
-            {/* <p className="sign" align="center">Select a Level</p> */}
-          <div className="barDiv">
-          <p className="sign" align="center">Difficulty: {level}</p>
-                      <Slider
-                        style={{width: "200px"}}
-                        defaultValue={0}
-                        disabled={false}
-                        max={10}
-                        onChange={(value) => {
-                          setLevel(value);
-                        }}
-                      />
-                      
-          </div>
-
-          {/* <p className="sign" align="center">Select a List Size []</p> */}
-
-
-          <div  className="barDiv">
-          <p className="sign" align="center">Size of List: {listSize}</p>
-          <Slider
-                        style={{width: "200px"}}
-                        defaultValue={0}
-                        disabled={false}
-                        max={10}
-                        onChange={(value) => {
-                          setListSize(value);
-                        }}
-                      />
-                      
-                      </div>
-                      <div align="center" style={{padding:"10px"}}>
-
-          
-          </div>
-
-          <div className="barDiv">
-           <button className="submit"  onClick={() => (navigate('/Game'))}>Start</button>
-             </div> 
-             </div> 
-          
-          </div>
-
-
-
-          
-          
+        <div  className="barDiv">
+        <p className="sign" align="center">Size of List: {listSize}</p>
+        <Slider
+                      style={{width: "200px"}}
+                      defaultValue={0}
+                      disabled={false}
+                      max={10}
+                      onChange={(value) => {
+                        setListSize(value);
+                      }}
+                    />
+                    
+                    </div>
+                    <div align="center" style={{padding:"10px"}}>
 
         
-      </div>
+        </div>
+
+        <div className="barDiv">
+          <button className="submit"  onClick={() => setClicked(!clicked) }>Start</button>
+          <Expand className="expand" open={clicked}>
+              <div className="expandDiv">
+                  <Game algorythm={algo} difficulty={level} size={listSize}/>
+              </div>
+          </Expand>
+            </div> 
+            </div> 
+        
+        </div>
     </div>
   );
 }

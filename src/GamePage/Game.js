@@ -1,84 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../Header/Header';
-import useToken from '../useToken';
 import './Game.css';
-import mergeSort from '../Algos/MergeSort';
 import bubbleSort from '../Algos/BubbleSort';
-import quickSort from '../Algos/QuickSort';
-import axios from 'axios';
 import ListBlocks from './Components/ListBlock';
+import { render } from '@testing-library/react';
 
 
-function Game(props) {
+export default function Game({size, algorythm, difficulty}) {
 
     //states
-    const [ length, setLength ] = useState(props.length);
+    const [ length, setLength ] = useState(size);
+    const [ level, setLevel ] = useState(difficulty);
     const [ blocks, setBlocks ] = useState();
-    const [ algo, setAlso ] = useState(props.algo);
+    const [ algo, setAlso ] = useState(algorythm);
     const [ isSorting, setIsSorting ] = useState();
     const [ speed, setSpeed ] = useState(200);
     const [ compare, setCompare ] = useState([]);
 	const [ completed, setCompleted ] = useState(true);
     const [ sortedIndex, setSortedIndex ] = useState([]);
     const [ swap, setSwap ] = useState([]);
-    const [ removeToken ] = useToken();
-
-
-    //core logic
-    const genRandomNumbers = () =>    {
-        setCompleted(false);
-        setIsSorting(false);
-        setSortedIndex([]);
-
-        const randomArray = Array.from(Array(length+1).keys()).slice(1);
-
-        for (let i = randomArray.length - 1; i > 0; i--)    {
-            const randomindex = Math.floor(Math.random() * (i - 1));
-            const temp = randomArray[i];
-
-            randomArray[i] = randomArray[randomindex];
-            randomArray[randomindex] = temp;
-        }
-
-        setBlocks(randomArray);
-    }
 
 
     useEffect(()=>  {
         genRandomNumbers();
-    }, [length, algo])
+        console.log(blocks);
+    })
 
-    const handleSort = () =>    {
-        const sortOrder = (order) =>    {
-            (function loop(i) {
-                setTimeout(function ()  {
-                    const [j, k, arr, index] = order[i]
-                    setCompare([j,k])
-                    setSwap([])
+    //core logic
+    function handleSort()  {
 
-                    if (index !== null) {
-                        setSortedIndex((prevState) =>   (
-                            [...prevState, index]
-                        ))
-                    }
-
-                    if (arr)    {
-                        setBlocks(arr)
-                        if (j !== null || k != null)
-                            setSwap([j,k])
-                    }
-
-                    if (++i < order.length) {
-                        loop(i)
-                    } else {
-                        setIsSorting(false);
-                        setCompleted(true);
-                    }
-                }, speed)
-            })(0)
-        }
-
-
+        sortOrder()
 
         setIsSorting(true);
 
@@ -89,23 +39,64 @@ function Game(props) {
 
     }
 
-    return (
 
+    const sortOrder = () =>  {
+        (function loop(i) {
+            setTimeout(function ()  {
+                const [j, k, arr, index] = order[i]
+                setCompare([j,k])
+                setSwap([])
+
+                if (index !== null) {
+                    setSortedIndex((prevState) =>   (
+                        [...prevState, index]
+                    ))
+                }
+
+                if (arr)    {
+                    setBlocks(arr)
+                    if (j !== null || k != null)
+                        setSwap([j,k])
+                }
+
+                if (++i < order.length) {
+                    loop(i)
+                } else {
+                    setIsSorting(false);
+                    setCompleted(true);
+                }
+            }, speed)
+    })(0)
+
+    function genRandomNumbers()    {
+        setCompleted(false);
+        setIsSorting(false);
+        setSortedIndex([]);
+
+    
+        for (let i = 0; i < length; i++) {
+            setBlocks([...blocks], Math.random());
+        }
+
+        handleSort();
+    }
+    
+    
+        return (
         <div id="game-body">
-            <Header removeToken={removeToken}/>
 
             <ListBlocks 
+                length={length}
 				blocks={blocks} 
 				compare={isSorting && compare}
 				swap={isSorting && swap}
 				sorted={sortedIndex} 
 			/>
 
-            
         </div>
+        );
+    
+    }
 
-
-    );
 }
 
-export default Game;
