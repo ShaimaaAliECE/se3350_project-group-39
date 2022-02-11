@@ -4,9 +4,15 @@
     min-height: 520px;
     min-width: 90%;
     text-align: center;
+    list-style-type: none;
+    display: flex;
 }
 
-.listBlocks > .block{
+.listBlocks li {
+  margin: 1px;
+}
+
+.listBlocks .block{
     background-color: turquoise;
     color: #282c34;
     display: inline-block;
