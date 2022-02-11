@@ -53,7 +53,7 @@ function Login(props) {
 
     return (
         <div>
-            <h1>Know Your Algo</h1>
+            <h1 id="title">Know Your Algo</h1>
 
             <div className="loginFrame">
 
