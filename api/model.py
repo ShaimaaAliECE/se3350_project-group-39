@@ -9,7 +9,6 @@ def create_user_table():
         CREATE TABLE users (
             email TEXT PRIMARY KEY
             ,password TEXT
-            ,
         ) 
     '''
 

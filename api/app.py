@@ -6,8 +6,8 @@ from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
 from random import seed, randint
 
-# method to use access the database
-from db import create_connection
+# methods to access the database
+from db import get_user, get_statistics, add_statistics
 
 # create the flask app
 api = Flask(__name__)
@@ -36,7 +36,8 @@ stats = {  # dictionary to store the statistics
 def createToken():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    if email != "test" or password != "test":
+    user = get_user(email) # get the user details from the 
+    if user is None or user[1] != password:
         return {"msg: Wrong email or password"}, 401
 
     access_token = create_access_token(identity=email)
@@ -50,15 +51,17 @@ def createToken():
 @api.route('/profile')
 @jwt_required()
 def myProfile():
+    email = get_jwt_identity()
+
     response_body = {
-        "name" : "User",
-        "about" : "Hello I am User"
+        "name" : email,
+        "about" : f"Hello I am {email}!"
     }
 
     return response_body
 
 
-#Loging out route
+# Logout out route
 @api.route('/logout', methods=["POST"])
 def logout():
     response = jsonify({"msg": "successfully logged out"})
@@ -85,27 +88,18 @@ def refresh_expiring_jwts(response):
 
 # route to add statistics
 @api.route('/add_entry', methods=["POST"])
+@jwt_required
 def add_entry():
     if request.method == "POST":
         data = request.form
 
         # validate the user input
-        if data['user'] == '' or data['level'] <= 0 or data['algorithm'] == '' or data['time'] <= 0:
+        if data['level'] <= 0 or data['algorithm'] == '' or data['time'] <= 0:
             return {'message': 'Invalid statistic!'}
 
-        # create a new entry if one for the user doesn't exist
-        if stats[f'{data["user"]}']:
-            stats[f'{data["user"]}'].append({
-                'level': data["level"],
-                'algorithm': data["algorithm"],
-                'time': data["time"]
-            });
-        else:
-            stats[f'{data["user"]}'] = [{
-                'level': data["level"],
-                'algorithm': data["algorithm"],
-                'time': data["time"]
-            }]
+        # insert statistics to the db
+        add_statistics(email=get_jwt_identity(), algorithm=data['algorithm'], level=data['level'], time=data['time'])
+
         return { 'message': 'Successfully added to statistics!' }
 
 # route to get all the statistics
@@ -114,7 +108,10 @@ def add_entry():
 def get_stats():
     email = get_jwt_identity()
 
-    return { 'data': stats[email] }
+    # get the statistics from the db
+    data = get_statistics(email)
+
+    return { 'data': data }
 
 # route to get randome numbers
 @api.route('/random', methods=["GET"])
@@ -131,4 +128,3 @@ def random_nums():
     for _ in range(int(config.get("count", 10))):
         results.append(randint(int(config.get("min", 0)), int(config.get("max", 10))))
     return jsonify(results)
-
