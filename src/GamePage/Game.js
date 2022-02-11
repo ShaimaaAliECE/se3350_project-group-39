@@ -18,29 +18,27 @@ export default function Game({algorythm, difficulty, size,  }) {
 	const [ completed, setCompleted ] = useState(true);
     const [ sortedIndex, setSortedIndex ] = useState([]);
     const [ swap, setSwap ] = useState([]);
-    
+
     function getRandomNumbers() {
         axios({
             method: 'GET',
-            url: '/random', 
+            url: '/random',
             data: {
                 size: length,
             }
-        }).then((response) => {
-            setBlocks(response);
-            console.log(blocks)
+        }).then(({ data }) => {
+            setBlocks(data);
         })
 
         handleSort();
-        
+
     }
 
-    useEffect(()=>  {
+    useEffect(() => {
         getRandomNumbers()
-        console.log(blocks)
     }, [length])
 
-    
+
     function handleSort()  {
         const sortOrder = (order) =>  {
             (function loop(i) {
@@ -76,21 +74,18 @@ export default function Game({algorythm, difficulty, size,  }) {
 			setIsSorting(false)
 			setCompleted(true)
 		})()
-        }    
+        }
     }
-    
+
     return (
         <div id="game-body">
-
-            {/* 
-            <ListBlocks 
+            <ListBlocks
                 length={length}
-				blocks={blocks} 
+				blocks={blocks}
 				compare={isSorting && compare}
 				swap={isSorting && swap}
-				sorted={sortedIndex} 
+				sorted={sortedIndex}
 			/>
-            */}
 
         </div>
     );
