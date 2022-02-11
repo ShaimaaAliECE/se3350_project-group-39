@@ -24,7 +24,6 @@ function SelectionPage() {
   }
 
   return (
-      
     <div className="App">
         <div className="App-header">
         <div className="Frame">
@@ -40,7 +39,7 @@ function SelectionPage() {
               setAlgo(value);
             }}
           >
-            <Option className="bubbleSort" value="b">Bubble Sort</Option>
+            <Option value="bubbleSort">Bubble Sort</Option>
             <Option value="quickSort">Quick Sort</Option>
             <Option value="mergeSort">Merge Sort</Option>
           </Select>
@@ -54,41 +53,24 @@ function SelectionPage() {
 
           </div>
 
-          
-
-<<<<<<< HEAD
-          {/* <p className="sign" align="center">Select a Level</p> */}
-        <div className="barDiv">
-        <p className="sign" align="center">Difficulty: {level}</p>
-                    <Slider
-                      style={{width: "200px"}}
-                      defaultValue={0}
-                      disabled={false}
-                      max={10}
-                      onChange={(value) => {
-                        setLevel(value);
-                      }}
-                    />
-                    
-        </div>
 
         {/* <p className="sign" align="center">Select a List Size []</p> */}
 
 
         <div  className="barDiv">
-        <p className="sign" align="center">Size of List: {listSize}</p>
-        <Slider
-                      style={{width: "200px"}}
-                      defaultValue={0}
-                      disabled={false}
-                      max={10}
-                      onChange={(value) => {
-                        setListSize(value);
-                      }}
-                    />
-                    
-                    </div>
-                    <div align="center" style={{padding:"10px"}}>
+            <p className="sign" align="center">Size of List: {listSize}</p>
+            <Slider
+                style={{width: "200px"}}
+                defaultValue={0}
+                disabled={false}
+                max={10}
+                onChange={(value) => {
+                  setListSize(value);
+                }}
+            />
+                        
+                        </div>
+            <div align="center" style={{padding:"10px"}}>
 
         
         </div>
@@ -97,27 +79,14 @@ function SelectionPage() {
           <button className="submit"  onClick={() => setClicked(!clicked) }>Start</button>
           <Expand className="expand" open={clicked}>
               <div className="expandDiv">
-                  <Game algorythm={algo} difficulty={level} size={listSize}/>
+                hello
+                  {/*<Game algorythm={algo} difficulty={level} size={listSize}/>*/}
               </div>
           </Expand>
             </div> 
             </div> 
         
         </div>
-=======
-          <div className="barDiv">
-           <button className="submit"  onClick={() => setClicked(!clicked) }>{!clicked ? "Start" : "Exit"}</button>
-           <Expand className="expand" open={clicked}>
-                <div className="expandDiv">
-                    {clicked ? renderInfo() : undefined}
-                </div>
-            </Expand>
-             </div> 
-             </div> 
-          
-          </div>
-      </div>
->>>>>>> dbf1e6909c73986fc7902bf1ceaa5965642ee772
     </div>
   );
 }
