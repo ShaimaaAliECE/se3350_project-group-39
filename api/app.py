@@ -82,7 +82,6 @@ def refresh_expiring_jwts(response):
 def add_entry():
     if request.method == "POST":
         data = json.loads(request.data)
-        print(data)
 
         # validate the user input
         if data['level'] <= 0 or data['algorithm'] == '' or data['time'] <= 0:

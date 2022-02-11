@@ -77,6 +77,5 @@ def add_statistics(email, algorithm, level, time):
     '''
     cursor.execute(query)
 
-    data = cursor.fetchall()
+    conn.commit()
 
-    return data
