@@ -36,7 +36,8 @@ stats = {  # dictionary to store the statistics
 def createToken():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    user = get_user(email) # get the user details from the 
+
+    user = get_user(email) # get the user details from the db
     if user is None or user[1] != password:
         return {"msg: Wrong email or password"}, 401
 
