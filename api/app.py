@@ -19,17 +19,6 @@ api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
 # connect the flask jwt to the flask app
 jwt = JWTManager(api)
 
-# global variables
-stats = {  # dictionary to store the statistics
-    'test': [
-        {
-            'algorithm': 'BubbleSort',
-            'level': 1,
-            'time': 10.00
-        }
-    ]
-}
-
 #Routing function to create an access token with each login
 #need to configure algorithm to search array of available logins
 @api.route('/token', methods=["POST"])
@@ -38,7 +27,7 @@ def createToken():
     password = request.json.get("password", None)
 
     user = get_user(email) # get the user details from the db
-    if user is None or user[1] != password:
+    if user is None or user['password'] != password:
         return {"msg: Wrong email or password"}, 401
 
     access_token = create_access_token(identity=email)

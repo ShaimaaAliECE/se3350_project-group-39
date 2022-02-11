@@ -5,6 +5,8 @@ def create_connection():
     # connect to the db file
     conn = sqlite3.connect('./sqlite.db')
 
+    conn.row_factory = sqlite3.Row
+
     # return the connection
     return conn
 
@@ -18,14 +20,14 @@ def get_user(email):
             *
         FROM
             users
-        WHERE 
+        WHERE
             email=\'{email}\'
     '''
     cursor.execute(query)
 
     data = cursor.fetchone()
 
-    return data
+    return dict(data)
 
 # method to get all the statistics of a user
 def get_statistics(email):
@@ -34,17 +36,24 @@ def get_statistics(email):
 
     query = f'''
         SELECT
-            *
+            algorithm
+            ,level
+            ,time
         FROM
             statistics stat
         JOIN  users u
             ON (stat.email = u.email)
-        WHERE 
+        WHERE
             u.email=\'{email}\';
     '''
     cursor.execute(query)
 
-    data = cursor.fetchall()
+    rows = cursor.fetchall()
+
+    # make the object json serializable
+    data = list()
+    for row in rows:
+        data.append(dict(row))
 
     return data
 
@@ -62,8 +71,8 @@ def add_statistics(email, algorithm, level, time):
         ) VALUES (
             \'{email}\'
             ,\'{algorithm}\'
-            ,level
-            ,time
+            ,{level}
+            ,{time}
         );
     '''
     cursor.execute(query)

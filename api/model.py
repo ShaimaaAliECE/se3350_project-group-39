@@ -9,7 +9,7 @@ def create_user_table():
         CREATE TABLE users (
             email TEXT PRIMARY KEY
             ,password TEXT
-        ) 
+        )
     '''
 
     # execute the query
@@ -21,7 +21,7 @@ def create_user_table():
 def create_statistics_table():
     conn = create_connection()
 
-    # query to create user table
+    # query to create statistics table
     query = '''
         CREATE TABLE statistics (
             email TEXT
@@ -29,7 +29,7 @@ def create_statistics_table():
             ,level INTEGER
             ,time DECIMAL(10, 5)
             ,FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE
-        ) 
+        )
     '''
 
     # execute the query
