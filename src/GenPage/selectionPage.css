@@ -92,3 +92,11 @@ h1 {
   height: 300px;
   text-align: center;
 }
+
+.imgDiv {
+  padding: 10px;
+}
+
+.dropdown {
+  padding: 10px;
+}
