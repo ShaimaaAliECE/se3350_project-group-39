@@ -1,4 +1,3 @@
 {
-    "editor.formatOnSave": false,
-    "vetur.format.enable": true,
+    "editor.formatOnSave": true,
 }
