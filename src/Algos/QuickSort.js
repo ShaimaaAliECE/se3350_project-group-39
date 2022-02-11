@@ -27,11 +27,11 @@ const partition = (numbers, left, right) => {
 
 const quickSortHelper = (numbers, left, right) => {
     if (left >= right) {
-        if (left===right) order.push([null,null,null,l])
+        if (left===right) order.push([null,null,null,left])
         return
     }
 
-    const pivot = left + Math.floor(Math.random() * (r-1))
+    const pivot = left + Math.floor(Math.random() * (right-1))
 
     swap(numbers, left, pivot)
     order.push([left, pivot, numbers.slice(), null])

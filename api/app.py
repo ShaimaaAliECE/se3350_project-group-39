@@ -131,3 +131,4 @@ def random_nums():
     for _ in range(int(config.get("count", 10))):
         results.append(randint(int(config.get("min", 0)), int(config.get("max", 10))))
     return jsonify(results)
+

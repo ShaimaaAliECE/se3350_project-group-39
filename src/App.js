@@ -2,15 +2,14 @@ import './App.css';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react';
 import useToken from './useToken';
-import Login from './login/Login';
-
+import Game from './GamePage/Game'
 function App() {
   
   const { setToken, removeToken } = useToken();
 
   return(
       <div className="App">
-          <Login setToken={setToken}/>
+          <Game algorythm="mergeSort" difficulty={1} size={10} />
       </div>
   );
 
