@@ -7,10 +7,10 @@ import useToken from "../useToken";
 import Header from "../Header/Header";
 import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
-//
+import axios from 'axios';
 
 const { Option } = Select;
-function SelectionPage() {
+function SelectionPage(props) {
   const [level, setLevel] = useState(1);
   const [listSize, setListSize] = useState(10);
   const [clicked, setClicked] = useState(false);
@@ -25,6 +25,26 @@ function SelectionPage() {
     mergeSort:
       "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png",
   };
+
+  // record the score in the backend
+  const handleExit = () => {
+    axios({
+      method: 'POST',
+      url: '/add_entry',
+      headers: {
+        Authorization: 'Bearer ' + props.token
+      },
+      data: {
+        algorithm: algo,
+        level: level,
+        time: 0.0
+      }
+    }).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      throw err;
+    })
+  }
 
   return (
     <div className="App">
@@ -89,9 +109,12 @@ function SelectionPage() {
         <div align="center" style={{ padding: "10px" }}></div>
 
         <div className="barDiv">
-          <button className="submit" onClick={() => setClicked(!clicked)}>
-            Start
-          </button>
+    {
+      !clicked ?
+      <button className="submit" onClick={() => setClicked(true)}>Start</button>
+      :
+              <button className="submit" onClick={() => {setClicked(false); handleExit()}}>Exit</button>
+    }
           <Expand className="expand" open={clicked}>
             <div className="expandDiv">
               <Game algorythm={algo} difficulty={level} size={listSize} />
