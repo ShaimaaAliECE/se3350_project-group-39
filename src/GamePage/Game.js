@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './Game.css';
-import bubbleSort from '../Algos/BubbleSort';
+import mergeSort from '../Algos/MergeSort'
 import ListBlocks from './Components/ListBlock';
+import axios from 'axios';
 
 
-export default function Game({size, algorythm, difficulty}) {
+export default function Game({algorythm, difficulty, size,  }) {
 
     //states
     const [ length, setLength ] = useState(size);
     const [ level, setLevel ] = useState(difficulty);
-    const [ blocks, setBlocks ] = useState();
-    const [ algo, setAlso ] = useState(algorythm);
+    const [ blocks, setBlocks ] = useState([3,2,1]);
+    const [ algo, setAlgo ] = useState(algorythm);
     const [ isSorting, setIsSorting ] = useState();
     const [ speed, setSpeed ] = useState(200);
     const [ compare, setCompare ] = useState([]);
@@ -18,26 +19,29 @@ export default function Game({size, algorythm, difficulty}) {
     const [ sortedIndex, setSortedIndex ] = useState([]);
     const [ swap, setSwap ] = useState([]);
     
-    function genRandomNumbers()    {
-        setCompleted(false);
-        setIsSorting(false);
-        setSortedIndex([]);
-
-    
-        for (let i = 0; i < length; i++) {
-            setBlocks([...blocks], Math.random());
-        }
+    function getRandomNumbers() {
+        axios({
+            method: 'GET',
+            url: '/random', 
+            data: {
+                size: length,
+            }
+        }).then((response) => {
+            setBlocks(response);
+            console.log(blocks)
+        })
 
         handleSort();
+        
     }
 
     useEffect(()=>  {
-        genRandomNumbers();
-        console.log(blocks);
-    })
+        getRandomNumbers()
+        console.log(blocks)
+    }, [length])
 
+    
     function handleSort()  {
-
         const sortOrder = (order) =>  {
             (function loop(i) {
                 setTimeout(function ()  {
@@ -68,18 +72,17 @@ export default function Game({size, algorythm, difficulty}) {
 
         setIsSorting(true);
 
-        algo === 'bubbleSort' ? sortOrder(bubbleSort(blocks)) : (() => {
+        algo === 'mergeSort' ? sortOrder(mergeSort(blocks)) : (() => {
 			setIsSorting(false)
 			setCompleted(true)
 		})()
-    
         }    
-    
     }
     
     return (
         <div id="game-body">
 
+            {/* 
             <ListBlocks 
                 length={length}
 				blocks={blocks} 
@@ -87,9 +90,10 @@ export default function Game({size, algorythm, difficulty}) {
 				swap={isSorting && swap}
 				sorted={sortedIndex} 
 			/>
+            */}
 
         </div>
-        );
+    );
 
 }
 

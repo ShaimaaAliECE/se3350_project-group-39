@@ -15,12 +15,11 @@ function SelectionPage() {
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
-  const {removeToken} = useToken();
 
   const sortImage = {
-    b: "https://cdn.programiz.com/cdn/farfuture/kn1zM7ZGIj60jcTe3mv8gAtbrvFHqxgqfQ7F9MdjPuA/mtime:1582112622/sites/tutorial2program/files/Bubble-sort-0.png",
-    q: "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
-    m: "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png"
+    bubbleSort: "https://cdn.programiz.com/cdn/farfuture/kn1zM7ZGIj60jcTe3mv8gAtbrvFHqxgqfQ7F9MdjPuA/mtime:1582112622/sites/tutorial2program/files/Bubble-sort-0.png",
+    quickSort: "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
+    mergeSort: "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png"
   }
 
   return (
@@ -51,7 +50,7 @@ function SelectionPage() {
             fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
           />
 
-          </div>
+        </div>
 
 
         {/* <p className="sign" align="center">Select a List Size []</p> */}
@@ -79,8 +78,7 @@ function SelectionPage() {
           <button className="submit"  onClick={() => setClicked(!clicked) }>Start</button>
           <Expand className="expand" open={clicked}>
               <div className="expandDiv">
-                hello
-                  {/*<Game algorythm={algo} difficulty={level} size={listSize}/>*/}
+                  <Game algorythm={algo} difficulty={level} size={listSize}/>
               </div>
           </Expand>
             </div> 
