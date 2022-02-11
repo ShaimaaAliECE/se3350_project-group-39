@@ -67,7 +67,7 @@ function SelectionPage() {
           <div  className="barDiv">
             <p className="sign" align="center">Level: {level}</p>
             <Slider
-                style={{width: "200px"}}
+                style={{width: "300px"}}
                 defaultValue={0}
                 disabled={false}
                 max={10}
@@ -76,8 +76,7 @@ function SelectionPage() {
                 }}
             />
                         
-                        </div>
-            <div align="center" style={{padding:"10px"}}>    
+
         </div>
 
         {/* <p className="sign" align="center">Select a List Size []</p> */}
@@ -86,7 +85,7 @@ function SelectionPage() {
         <div  className="barDiv">
             <p className="sign" align="center">Size of List: {listSize}</p>
             <Slider
-                style={{width: "200px"}}
+                style={{width: "300px"}}
                 defaultValue={0}
                 disabled={false}
                 max={10}
