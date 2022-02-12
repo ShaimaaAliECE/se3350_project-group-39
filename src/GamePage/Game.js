@@ -39,8 +39,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         // update states
         setLength(size);
 
-        
-
     }, [clicked]);
 
     // Sorts the array of numbers
