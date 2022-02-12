@@ -128,16 +128,16 @@ function SelectionPage(props) {
               Start
             </button>
           ) : (
-            <button
-              className="submit"
-              onClick={() => {
-                setClicked(false);
-                handleExit();
-              }}
-            >
-              Exit
-            </button>
-          )}
+              <button
+                className="submit"
+                onClick={() => {
+                  setClicked(false);
+                  handleExit();
+                }}
+              >
+                Exit
+              </button>
+            )}
           <Expand className="expand" open={clicked}>
             <div className="expandDiv">
               {clicked ? (
