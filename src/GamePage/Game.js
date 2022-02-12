@@ -38,7 +38,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
         getRandomNumbers();
 
-    }, [clicked, size]);
+    }, [clicked]);
 
     function handleSort() {
 
