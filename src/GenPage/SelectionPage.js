@@ -20,11 +20,11 @@ function SelectionPage() {
 
     const sortImage = {
         bubbleSort:
-            "https://cdn.programiz.com/cdn/farfuture/kn1zM7ZGIj60jcTe3mv8gAtbrvFHqxgqfQ7F9MdjPuA/mtime:1582112622/sites/tutorial2program/files/Bubble-sort-0.png",
+            "./assets/AlgoImages/bubbleSort.png",
         quickSort:
-            "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
+            "./assets/AlgoImages/quickSort.png",
         mergeSort:
-            "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png",
+            "./assets/AlgoImages/bubbleSort.png",
     };
 
     return (
@@ -46,13 +46,15 @@ function SelectionPage() {
                         <Option value="quickSort">Quick Sort</Option>
                         <Option value="mergeSort">Merge Sort</Option>
                     </Select>
-                    <Image
-                        align="bottom"
-                        width={300}
-                        height={150}
-                        src={sortImage[algo]}
-                        fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
-                    />
+                    <div className="imgDiv">
+                      <Image
+                          align="bottom"
+                          width={275}
+                          height={100}
+                          src={sortImage[algo]}
+                          fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+                      />
+                    </div>
                 </div>
 
                 <div className="barDiv">
@@ -63,7 +65,7 @@ function SelectionPage() {
                         style={{ width: "300px" }}
                         defaultValue={0}
                         disabled={false}
-                        max={10}
+                        max={5}
                         onChange={(value) => {
                             setLevel(value);
                         }}
@@ -78,9 +80,10 @@ function SelectionPage() {
                     </p>
                     <Slider
                         style={{ width: "300px" }}
-                        defaultValue={0}
+                        defaultValue={10}
                         disabled={false}
-                        max={10}
+                        max={100}
+                        step={10}
                         onChange={(value) => {
                             setListSize(value);
                         }}
