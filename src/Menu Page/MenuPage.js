@@ -15,6 +15,7 @@ function MenuPage() {
             <Header removeToken={removeToken} />
             <div id="menu">
                 <div id="title"> Algorithms Game</div>
+                <div id="loginFrame">
                 <button
                     id="startBtn"
                     className="btn"
@@ -35,6 +36,7 @@ function MenuPage() {
                     {' '}
                     Statistics{' '}
                 </button>
+                </div>
             </div>
         </div>
     )
