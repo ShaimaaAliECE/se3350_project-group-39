@@ -9,7 +9,7 @@ import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
 import axios from "axios";
 import Timer from "./Timer";
-import levelData from '../*.json';
+// import levelData from '../levels.json';
 
 const { Option } = Select;
 
