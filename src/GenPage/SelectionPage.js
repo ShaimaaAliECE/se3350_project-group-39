@@ -73,13 +73,16 @@ function SelectionPage(props) {
             <Option value="quickSort">Quick Sort</Option>
             <Option value="mergeSort">Merge Sort</Option>
           </Select>
-          <Image
-            align="bottom"
-            width={300}
-            height={150}
-            src={sortImage[algo]}
-            fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
-          />
+          <div>
+            <Image
+              align="bottom"
+              width={300}
+              height={150}
+              src={sortImage[algo]}
+              fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+            />
+          </div>
+          
         </div>
 
         <div className="barDiv">
