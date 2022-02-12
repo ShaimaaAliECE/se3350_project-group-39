@@ -21,11 +21,11 @@ function SelectionPage(props) {
 
   const sortImage = {
     bubbleSort:
-      "https://cdn.programiz.com/cdn/farfuture/kn1zM7ZGIj60jcTe3mv8gAtbrvFHqxgqfQ7F9MdjPuA/mtime:1582112622/sites/tutorial2program/files/Bubble-sort-0.png",
+      "./assets/AlgoImages/bubbleSort.png",
     quickSort:
-      "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
+      "./assets/AlgoImages/quickSort.png",
     mergeSort:
-      "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png",
+      "./assets/AlgoImages/quickSort.png",
   };
 
   const handleTime = (curTime) => {
@@ -78,8 +78,7 @@ function SelectionPage(props) {
               align="bottom"
               width={250}
               height={100}
-              src={require("./b.png")}
-             // src={sortImage[algo]}
+              src={sortImage[algo]}
               fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
             />
           </div>
