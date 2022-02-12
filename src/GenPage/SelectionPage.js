@@ -32,33 +32,7 @@ function SelectionPage() {
     setTime(curTime);
   };
 
-<<<<<<< HEAD
-  // method to store the statistics when a level ends
-  const handleCompletion = () => {
-    axios({
-      method: "POST",
-      url: "/add_entry",
-      data: {
-        algorithm: algo,
-        level: level,
-        time: 0,
-        // time: time
-      },
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-=======
   // Function to set the difficulty 
->>>>>>> 3ada0d663a518a43c0c04bd820f8c58787bfc88e
   function getDifficulty() {
     let value = level;
     if (value == 1 || value == 2) {
