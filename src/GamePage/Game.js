@@ -17,6 +17,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [sortedIndex, setSortedIndex] = useState([]);
     const [swap, setSwap] = useState([]);
 
+    // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
         axios({
             method: "GET",

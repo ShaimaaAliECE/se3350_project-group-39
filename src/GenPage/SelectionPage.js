@@ -19,6 +19,7 @@ function SelectionPage({ handleLength, handleSpeed, handleAlgo, generateRandomAr
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
 
+  // Images used when the user is selecting an algo
   const sortImage = {
     bubbleSort:
       "./assets/AlgoImages/bubbleSort.png",
@@ -29,7 +30,7 @@ function SelectionPage({ handleLength, handleSpeed, handleAlgo, generateRandomAr
   };
 
 
-
+  // Function to set the difficulty 
   function getDifficulty() {
 
     let value = level
