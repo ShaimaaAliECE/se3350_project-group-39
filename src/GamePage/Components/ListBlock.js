@@ -24,7 +24,7 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
         );
 
         setList(blocks);
-    }, [blocks.length]);
+    }, [blocks]);
 
     const renderBlocks = (block, i) => {
         if (blocks !== undefined) {
