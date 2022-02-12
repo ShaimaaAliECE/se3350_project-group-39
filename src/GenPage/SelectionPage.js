@@ -9,14 +9,14 @@ import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
 import axios from "axios";
 import Timer from "./Timer";
-// import levelData from '../levels.json';
+import levelData from '../Levels.json';
 
 const { Option } = Select;
 
 function SelectionPage({ handleLength, handleSpeed, handleAlgo, generateRandomArray, handleSort, sorting, completed, len, speed }) {
   const [level, setLevel] = useState(1);
   const [time, setTime] = useState(0.0);
-  const [listSize, setListSize] = useState(10);
+  const [listSize, setListSize] = useState(levelData["levels"][`${level}`]["size"]);
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
@@ -30,6 +30,10 @@ function SelectionPage({ handleLength, handleSpeed, handleAlgo, generateRandomAr
     mergeSort:
       "./assets/AlgoImages/bubbleSort.png",
   };
+
+  useEffect(() => {
+    setListSize(levelData["levels"][`${level}`]["size"]);
+  }, [level]);
 
     // method to set time from the timer component
     const handleTime = (curTime) => {
@@ -136,13 +140,15 @@ function SelectionPage({ handleLength, handleSpeed, handleAlgo, generateRandomAr
                     </p>
                     <Slider
                         style={{ width: "270px" }}
-                        defaultValue={10}
+                        defaultValue={listSize}
+                        value={listSize}
                         disabled={false}
                         max={100}
                         step={10}
                         onChange={(value) => {
                             setListSize(value);
                         }}
+                        disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
                     />
                 </div>
 
