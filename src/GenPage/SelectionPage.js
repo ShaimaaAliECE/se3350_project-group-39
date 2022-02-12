@@ -13,6 +13,7 @@ import Timer from "./Timer";
 const { Option } = Select;
 function SelectionPage() {
     const [level, setLevel] = useState(1);
+    const [time, setTime] = useState(0.0);
     const [listSize, setListSize] = useState(10);
     const [clicked, setClicked] = useState(false);
     const [algo, setAlgo] = useState("mergeSort");
@@ -25,6 +26,33 @@ function SelectionPage() {
             "./assets/AlgoImages/quickSort.png",
         mergeSort:
             "./assets/AlgoImages/bubbleSort.png",
+    };
+
+    // method to set time from the timer component
+    const handleTime = (curTime) => {
+      setTime(curTime);
+    }
+
+    // method to store the statistics when a level ends
+    const handleCompletion = () => {
+      axios({
+        method: 'POST',
+        url: '/add_entry',
+        data: {
+          algorithm: algo,
+          level: level,
+          time: 0
+          // time: time
+        },
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((res) => {
+          console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     };
 
     return (
@@ -93,12 +121,20 @@ function SelectionPage() {
                 <div align="center" style={{ padding: "10px" }}></div>
 
                 <div className="barDiv">
+                { !clicked ? 
                     <button
                         className="submit"
-                        onClick={() => setClicked(!clicked)}
+                        onClick={() => setClicked(true)}
                     >
                         Start
+                    </button> :
+                    <button
+                        className="submit"
+                        onClick={() => { setClicked(false); handleCompletion(); }}
+                    >
+                        Exit
                     </button>
+                }
                     <Expand className="expand" open={clicked}>
                         <div className="expandDiv">
                             <Game
@@ -106,6 +142,10 @@ function SelectionPage() {
                                 difficulty={level}
                                 size={listSize}
                             />
+                        { clicked ?
+                            <Timer handleTimeChange={handleTime} />
+                            : undefined
+                        }
                         </div>
                     </Expand>
                 </div>

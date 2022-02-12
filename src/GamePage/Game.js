@@ -21,8 +21,9 @@ export default function Game({ algorythm, difficulty, size }) {
         axios({
             method: "GET",
             url: "/random",
-            data: {
-                size: length,
+            params: {
+                size: size,
+                min: 1
             },
         }).then(({ data }) => {
             setBlocks(data);
@@ -32,8 +33,13 @@ export default function Game({ algorythm, difficulty, size }) {
     }
 
     useEffect(() => {
+        // update states
+        setAlgo(algorythm);
+        setLevel(difficulty);
+        setLength(size);
+
         getRandomNumbers();
-    }, [length]);
+    }, [size, algorythm, difficulty]);
 
     function handleSort() {
         const sortOrder = (order) => {

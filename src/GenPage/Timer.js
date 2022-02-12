@@ -6,7 +6,7 @@ export default class Timer extends Component {
     super(props);
 
     this.state = {
-      display: 0,
+      display: '00.00',
       start: new Date()
     }
   }
