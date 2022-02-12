@@ -9,11 +9,13 @@
 
 .loginFrame {
     width: 400px;
-    height: 400px;
+    height: 350px;
     margin: 4em auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
     text-align: center;
+    background-color: rgba(18,50,108,0.1);
+
 }
 
 .sign {
@@ -43,7 +45,7 @@
 
 .submit-btn > button:hover {
     cursor: pointer;
-    filter: brightness(95%);
+    filter: brightness(75%);
 }
 
 .un {
