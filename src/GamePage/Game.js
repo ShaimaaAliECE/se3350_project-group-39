@@ -5,19 +5,19 @@ import ListBlocks from './Components/ListBlock';
 import axios from 'axios';
 
 
-export default function Game({algorythm, difficulty, size,  }) {
+export default function Game({ algorythm, difficulty, size, }) {
 
     //states
-    const [ length, setLength ] = useState(size);
-    const [ level, setLevel ] = useState(difficulty);
-    const [ blocks, setBlocks ] = useState([3,2,1]);
-    const [ algo, setAlgo ] = useState(algorythm);
-    const [ isSorting, setIsSorting ] = useState();
-    const [ speed, setSpeed ] = useState(200);
-    const [ compare, setCompare ] = useState([]);
-	const [ completed, setCompleted ] = useState(true);
-    const [ sortedIndex, setSortedIndex ] = useState([]);
-    const [ swap, setSwap ] = useState([]);
+    const [length, setLength] = useState(size);
+    const [level, setLevel] = useState(difficulty);
+    const [blocks, setBlocks] = useState([3, 2, 1]);
+    const [algo, setAlgo] = useState(algorythm);
+    const [isSorting, setIsSorting] = useState();
+    const [speed, setSpeed] = useState(200);
+    const [compare, setCompare] = useState([]);
+    const [completed, setCompleted] = useState(true);
+    const [sortedIndex, setSortedIndex] = useState([]);
+    const [swap, setSwap] = useState([]);
 
     function getRandomNumbers() {
         axios({
@@ -34,29 +34,33 @@ export default function Game({algorythm, difficulty, size,  }) {
 
     }
 
+    const handleAlgo = (event) => {
+        setAlgo(event.target.value);
+    }
+
     useEffect(() => {
         getRandomNumbers()
     }, [length])
 
 
-    function handleSort()  {
-        const sortOrder = (order) =>  {
+    function handleSort() {
+        const sortOrder = (order) => {
             (function loop(i) {
-                setTimeout(function ()  {
+                setTimeout(function () {
                     const [j, k, arr, index] = order[i]
-                    setCompare([j,k])
+                    setCompare([j, k])
                     setSwap([])
 
                     if (index !== null) {
-                        setSortedIndex((prevState) =>   (
+                        setSortedIndex((prevState) => (
                             [...prevState, index]
                         ))
                     }
 
-                    if (arr)    {
+                    if (arr) {
                         setBlocks(arr)
                         if (j !== null || k != null)
-                            setSwap([j,k])
+                            setSwap([j, k])
                     }
 
                     if (++i < order.length) {
@@ -68,12 +72,12 @@ export default function Game({algorythm, difficulty, size,  }) {
                 }, speed)
             })(0)
 
-        setIsSorting(true);
+            setIsSorting(true);
 
-        algo === 'mergeSort' ? sortOrder(mergeSort(blocks)) : (() => {
-			setIsSorting(false)
-			setCompleted(true)
-		})()
+            algo === 'mergeSort' ? sortOrder(mergeSort(blocks)) : (() => {
+                setIsSorting(false)
+                setCompleted(true)
+            })()
         }
     }
 
@@ -81,12 +85,13 @@ export default function Game({algorythm, difficulty, size,  }) {
         <div id="game-body">
             <ListBlocks
                 length={length}
-				blocks={blocks}
-				compare={isSorting && compare}
-				swap={isSorting && swap}
-				sorted={sortedIndex}
-			/>
+                blocks={blocks}
+                compare={isSorting && compare}
+                swap={isSorting && swap}
+                sorted={sortedIndex}
+            />
 
+            <button id='startBtn' onClick={() => handleSort()}> START </button>
         </div>
     );
 
