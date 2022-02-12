@@ -11,14 +11,6 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
 
   useEffect(() => {
-    const handleResize = () => {
-      setWidth(
-        Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
-      );
-    };
-
-    window.addEventListener("resize", handleResize);
-
     setWidth(
       Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
     );

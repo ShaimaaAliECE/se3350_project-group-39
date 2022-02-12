@@ -42,8 +42,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         getRandomNumbers();
         // update states
         setLength(size);
-        setAlgo(algorythm);
-        setLevel(difficulty);
 
     }, [clicked]);
 
