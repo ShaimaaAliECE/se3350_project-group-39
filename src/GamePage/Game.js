@@ -31,13 +31,14 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         handleSort();
     }
 
+    // Called every time the start button is clicked 
     useEffect(() => {
         getRandomNumbers();
 
     }, [clicked]);
 
+    // Sorts the array of numbers
     function handleSort() {
-
         const sortOrder = (order) => {
             (function loop(i) {
                 setTimeout(function () {
@@ -75,6 +76,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         sortOrder(mergeSort(blocks));
     }
 
+    // Displays all the blocks in the array
     return (
         <div id="game-body">
             <ListBlocks
