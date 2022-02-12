@@ -107,7 +107,7 @@ def get_stats():
 @api.route('/random', methods=["GET"])
 def random_nums():
     config = request.args
-
+    print(config)
     results = []
 
     # default values
