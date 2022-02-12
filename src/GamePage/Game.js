@@ -65,6 +65,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 }, speed);
             })(0);
 
+            // Changes the colours when the array is being sorted
             setIsSorting(true);
 
             // algo === "mergeSort"
