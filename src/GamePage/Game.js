@@ -4,11 +4,11 @@ import mergeSort from "../Algos/MergeSort";
 import ListBlocks from "./Components/ListBlock";
 import axios from "axios";
 
-export default function Game({ algorythm, difficulty, size }) {
+export default function Game({ algorythm, difficulty, size, clicked }) {
     //states
     const [length, setLength] = useState(size);
     const [level, setLevel] = useState(difficulty);
-    const [blocks, setBlocks] = useState([3, 2, 1]);
+    const [blocks, setBlocks] = useState([]);
     const [algo, setAlgo] = useState(algorythm);
     const [isSorting, setIsSorting] = useState();
     const [speed, setSpeed] = useState(200);
@@ -33,8 +33,8 @@ export default function Game({ algorythm, difficulty, size }) {
 
     useEffect(() => {
         getRandomNumbers();
-        
-    }, [length]);
+
+    }, [clicked]);
 
     function handleSort() {
 
