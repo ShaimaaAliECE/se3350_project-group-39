@@ -1,51 +1,51 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import './Login.css'
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login(props) {
     const [loginForm, setloginForm] = useState({
-        email: '',
-        password: '',
-    })
+        email: "",
+        password: "",
+    });
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function logMeIn(event) {
         axios({
-            method: 'POST',
-            url: '/token',
+            method: "POST",
+            url: "/token",
             data: {
                 email: loginForm.email,
                 password: loginForm.password,
             },
         })
             .then((response) => {
-                props.setToken(response.data.access_token)
-                navigate('/')
+                props.setToken(response.data.access_token);
+                navigate("/");
             })
             .catch((error) => {
                 if (error.response) {
-                    console.log(error.response)
-                    console.log(error.response.status)
-                    console.log(error.response.headers)
+                    console.log(error.response);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
                 }
-            })
+            });
 
         setloginForm({
-            email: '',
-            password: '',
-        })
+            email: "",
+            password: "",
+        });
 
-        event.preventDefault()
+        event.preventDefault();
     }
 
     function handleChange(event) {
-        const { value, name } = event.target
+        const { value, name } = event.target;
         setloginForm((prevNote) => ({
             ...prevNote,
             [name]: value,
-        }))
+        }));
     }
 
     return (
@@ -88,7 +88,7 @@ function Login(props) {
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

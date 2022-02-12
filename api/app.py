@@ -1,38 +1,23 @@
+import os
 import json
 from flask import Flask, request, jsonify
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
 from random import seed, randint
-from flaskext.mysql import MySQL
-from db import get_user
 
+# methods to access the database
+from db import get_user, get_statistics, add_statistics
 
+# create the flask app
 api = Flask(__name__)
-mysql = MySQL()
+
+# jwt configs
 api.config["JWT_SECRET_KEY"] = "Value"
 api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
-# mysql configs
-api.config['MYSQL_DATABASE_USER'] = 'root'
-api.config['MYSQL_DATABASE_PASSWORD'] = 'root'
-api.config['MYSQL_DATABASE_DB'] = 'EmpData'
-api.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
-mysql.init_app(api)
-
+# connect the flask jwt to the flask app
 jwt = JWTManager(api)
-
-
-# global variables
-stats = {  # dictionary to store the statistics
-    'test': [
-        {
-            'algorithm': 'BubbleSort',
-            'level': 1,
-            'time': 10.00
-        }
-    ]
-}
 
 #Routing function to create an access token with each login
 #need to configure algorithm to search array of available logins
@@ -40,7 +25,9 @@ stats = {  # dictionary to store the statistics
 def createToken():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    if email != "test" or password != "test":
+
+    user = get_user(email) # get the user details from the db
+    if user is None or user['password'] != password:
         return {"msg: Wrong email or password"}, 401
 
     access_token = create_access_token(identity=email)
@@ -54,15 +41,17 @@ def createToken():
 @api.route('/profile')
 @jwt_required()
 def myProfile():
+    email = get_jwt_identity()
+
     response_body = {
-        "name" : "User",
-        "about" : "Hello I am User"
+        "name" : email,
+        "about" : f"Hello I am {email}!"
     }
 
     return response_body
 
 
-#Loging out route
+# Logout out route
 @api.route('/logout', methods=["POST"])
 def logout():
     response = jsonify({"msg": "successfully logged out"})
@@ -89,31 +78,30 @@ def refresh_expiring_jwts(response):
 
 # route to add statistics
 @api.route('/add_entry', methods=["POST"])
+@jwt_required()
 def add_entry():
     if request.method == "POST":
-        data = request.form
+        data = json.loads(request.data)
 
-        # create a new entry if one for the user doesn't exist
-        if stats[f'{data["user"]}']:
-            stats[f'{data["user"]}'].append({
-                'level': data["level"],
-                'algorithm': data["algorithm"],
-                'time': data["time"]
-            });
-        else:
-            stats[f'{data["user"]}'] = [{
-                'level': data["level"],
-                'algorithm': data["algorithm"],
-                'time': data["time"]
-            }]
-        return { 'message': 'Successfully added to statistics' }
+        # validate the user input
+        if data['level'] <= 0 or data['algorithm'] == '' or data['time'] <= 0:
+            return {'message': 'Invalid statistic!'}
+
+        # insert statistics to the db
+        add_statistics(email=get_jwt_identity(), algorithm=data['algorithm'], level=data['level'], time=data['time'])
+
+        return { 'message': 'Successfully added to statistics!' }
 
 # route to get all the statistics
 @api.route('/get_stats', methods=["GET"])
 @jwt_required()
 def get_stats():
     email = get_jwt_identity()
-    return { 'data': stats[email] }
+
+    # get the statistics from the db
+    data = get_statistics(email)
+
+    return { 'data': data }
 
 # route to get randome numbers
 @api.route('/random', methods=["GET"])
@@ -130,4 +118,3 @@ def random_nums():
     for _ in range(int(config.get("size", 10))):
         results.append(randint(int(config.get("min", 0)), int(config.get("max", 10))))
     return jsonify(results)
-
