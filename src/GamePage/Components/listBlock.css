@@ -1,12 +1,11 @@
-
-.listBlocks{
+.listBlocks {
     margin: 0 auto;
     min-height: 520px;
     min-width: 90%;
     text-align: center;
 }
 
-.listBlocks > .block{
+.listBlocks > .block {
     background-color: turquoise;
     color: #282c34;
     display: inline-block;
