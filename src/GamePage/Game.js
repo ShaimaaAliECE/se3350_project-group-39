@@ -34,9 +34,9 @@ export default function Game({ algorythm, difficulty, size }) {
 
     useEffect(() => {
         // update states
+        setLength(size);
         setAlgo(algorythm);
         setLevel(difficulty);
-        setLength(size);
 
         getRandomNumbers();
     }, [size, algorythm, difficulty]);
