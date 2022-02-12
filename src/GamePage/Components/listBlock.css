@@ -1,5 +1,4 @@
-
-.listBlocks{
+.listBlocks {
     margin: 0 auto;
     min-height: 520px;
     min-width: 90%;
@@ -9,10 +8,10 @@
 }
 
 .listBlocks li {
-  margin: 1px;
+    margin: 1px;
 }
 
-.listBlocks .block{
+.listBlocks .block {
     background-color: turquoise;
     color: #282c34;
     display: inline-block;

@@ -1,4 +1,4 @@
-.btn{
+.btn {
     margin: 10px;
     background-color: whitesmoke;
     color: black;
@@ -7,24 +7,24 @@
     border-radius: 50px;
 }
 
-#title{
-    color:black;
-    font-size: calc(10  px + 2vmin);
+#title {
+    color: black;
+    font-size: calc(10 px + 2vmin);
     margin: 50px;
-    }
+}
 
-  #menu{
+#menu {
     display: flex;
     align-items: center;
     flex-direction: column;
-  }
+}
 
-  #menu-body{
+#menu-body {
     background-color: lightblue;
     height: 100vh;
-  }
+}
 
-  .logoutbtn{
+.logoutbtn {
     background-color: transparent;
     border: none;
-  }
+}
