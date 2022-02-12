@@ -7,7 +7,7 @@ import useToken from "../useToken";
 import Header from "../Header/Header";
 import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
-import axios from 'axios';
+import axios from "axios";
 import Timer from "./Timer";
 
 const { Option } = Select;
@@ -21,38 +21,40 @@ function SelectionPage(props) {
 
   const sortImage = {
     bubbleSort:
-      "https://cdn.programiz.com/cdn/farfuture/kn1zM7ZGIj60jcTe3mv8gAtbrvFHqxgqfQ7F9MdjPuA/mtime:1582112622/sites/tutorial2program/files/Bubble-sort-0.png",
+      "./assets/AlgoImages/bubbleSort.png",
     quickSort:
-      "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
+      "./assets/AlgoImages/quickSort.png",
     mergeSort:
-      "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png",
+      "./assets/AlgoImages/quickSort.png",
   };
 
   const handleTime = (curTime) => {
     console.log(curTime);
     setTime(curTime);
-  }
+  };
 
   // record the score in the backend
   const handleExit = () => {
     axios({
-      method: 'POST',
-      url: '/add_entry',
+      method: "POST",
+      url: "/add_entry",
       headers: {
-        Authorization: 'Bearer ' + props.token
+        Authorization: "Bearer " + props.token,
       },
       data: {
         algorithm: algo,
         level: level,
         // time: time
-        time: 0
-      }
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      throw err;
+        time: 0,
+      },
     })
-  }
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
 
   return (
     <div className="App">
@@ -78,12 +80,10 @@ function SelectionPage(props) {
               align="bottom"
               width={250}
               height={100}
-              src={require("./b.png")}
-             // src={sortImage[algo]}
+              src={sortImage[algo]}
               fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
             />
           </div>
-          
         </div>
 
         <div className="barDiv">
@@ -92,9 +92,10 @@ function SelectionPage(props) {
           </p>
           <Slider
             style={{ width: "300px" }}
-            defaultValue={0}
+            defaultValue={1}
             disabled={false}
-            max={10}
+            max={5}
+            min={1}
             onChange={(value) => {
               setLevel(value);
             }}
@@ -109,9 +110,10 @@ function SelectionPage(props) {
           </p>
           <Slider
             style={{ width: "300px" }}
-            defaultValue={0}
+            defaultValue={10}
             disabled={false}
-            max={10}
+            min={10}
+            max={100}
             onChange={(value) => {
               setListSize(value);
             }}
@@ -121,16 +123,29 @@ function SelectionPage(props) {
         <div align="center" style={{ padding: "10px" }}></div>
 
         <div className="barDiv">
-    {
-      !clicked ?
-      <button className="submit" onClick={() => setClicked(true)}>Start</button>
-      :
-              <button className="submit" onClick={() => {setClicked(false); handleExit()}}>Exit</button>
-    }
+          {!clicked ? (
+            <button className="submit" onClick={() => setClicked(true)}>
+              Start
+            </button>
+          ) : (
+            <button
+              className="submit"
+              onClick={() => {
+                setClicked(false);
+                handleExit();
+              }}
+            >
+              Exit
+            </button>
+          )}
           <Expand className="expand" open={clicked}>
             <div className="expandDiv">
-              <Game algorythm={algo} difficulty={level} size={listSize} />
-    {clicked ? <Timer handleTimeChange={handleTime} /> : undefined}
+              {clicked ? (
+                <>
+                  <Game algorythm={algo} difficulty={level} size={listSize} />
+                  <Timer handleTimeChange={handleTime} />
+                </>
+              ) : undefined}
             </div>
           </Expand>
         </div>
