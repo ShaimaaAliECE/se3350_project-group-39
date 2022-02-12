@@ -22,7 +22,7 @@ function Login(props) {
         })
             .then((response) => {
                 props.setToken(response.data.access_token);
-                navigate("/");
+                navigate("/MenuPage");
             })
             .catch((error) => {
                 if (error.response) {

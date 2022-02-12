@@ -11,8 +11,10 @@ import axios from "axios";
 import Timer from "./Timer";
 
 const { Option } = Select;
-function SelectionPage() {
+
+function SelectionPage( { handleLength, handleSpeed, handleAlgo, generateRandomArray, handleSort, sorting, completed, len, speed}) {
     const [level, setLevel] = useState(1);
+    const [time, setTime] = useState(0.0);
     const [listSize, setListSize] = useState(10);
     const [clicked, setClicked] = useState(false);
     const [algo, setAlgo] = useState("mergeSort");
@@ -20,12 +22,54 @@ function SelectionPage() {
 
     const sortImage = {
         bubbleSort:
-            "https://cdn.programiz.com/cdn/farfuture/kn1zM7ZGIj60jcTe3mv8gAtbrvFHqxgqfQ7F9MdjPuA/mtime:1582112622/sites/tutorial2program/files/Bubble-sort-0.png",
+            "./assets/AlgoImages/bubbleSort.png",
         quickSort:
-            "https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png",
+            "./assets/AlgoImages/quickSort.png",
         mergeSort:
-            "https://cdn.programiz.com/cdn/farfuture/PRTu8e23Uz212XPrrzN_uqXkVZVY_E0Ta8GZp61-zvw/mtime:1586425911/sites/tutorial2program/files/merge-sort-example_0.png",
+            "./assets/AlgoImages/bubbleSort.png",
     };
+
+    // method to set time from the timer component
+    const handleTime = (curTime) => {
+      setTime(curTime);
+    }
+
+    // method to store the statistics when a level ends
+    const handleCompletion = () => {
+      axios({
+        method: 'POST',
+        url: '/add_entry',
+        data: {
+          algorithm: algo,
+          level: level,
+          time: 0
+          // time: time
+        },
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then((res) => {
+          console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    };
+
+
+  function getDifficulty() {
+
+      let value = level
+      if (value === 1 || value === 2) {
+        return "./assets/Levels/easy.png"
+      }
+      else if (value === 3 || value === 4) {
+        return "./assets/Levels/medium.png"
+      }
+      else {
+        return "./assets/Levels/hard.png"
+      }
+  }
 
     return (
         <div className="App">
@@ -46,13 +90,15 @@ function SelectionPage() {
                         <Option value="quickSort">Quick Sort</Option>
                         <Option value="mergeSort">Merge Sort</Option>
                     </Select>
-                    <Image
-                        align="bottom"
-                        width={300}
-                        height={150}
-                        src={sortImage[algo]}
-                        fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
-                    />
+                    <div className="imgDiv">
+                      <Image
+                          align="bottom"
+                          width={275}
+                          height={100}
+                          src={sortImage[algo]}
+                          fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+                      />
+                    </div>
                 </div>
 
                 <div className="barDiv">
@@ -61,13 +107,23 @@ function SelectionPage() {
                     </p>
                     <Slider
                         style={{ width: "300px" }}
-                        defaultValue={0}
+                        defaultValue={1}
                         disabled={false}
-                        max={10}
+                        min={1}
+                        max={5}
                         onChange={(value) => {
                             setLevel(value);
                         }}
                     />
+                    <div className="imgDiv">
+                      <Image
+                          align="bottom"
+                          width={300}
+                          height={130}
+                          src={getDifficulty()}
+                          fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+                      />
+                    </div>
                 </div>
 
                 {/* <p className="sign" align="center">Select a List Size []</p> */}
@@ -77,25 +133,40 @@ function SelectionPage() {
                         Size of List: {listSize}
                     </p>
                     <Slider
-                        style={{ width: "300px" }}
-                        defaultValue={0}
+                        style={{ width: "270px" }}
+                        defaultValue={10}
                         disabled={false}
-                        max={10}
+                        max={100}
+                        step={10}
                         onChange={(value) => {
                             setListSize(value);
                         }}
                     />
                 </div>
 
-                <div align="center" style={{ padding: "10px" }}></div>
-
-                <div className="barDiv">
-                    <button
+                <div align="center" style={{ padding: "10px" }}>
+                  <div>
+                  { !clicked ? 
+                  <button 
                         className="submit"
-                        onClick={() => setClicked(!clicked)}
+                        onClick={() => setClicked(true)}
                     >
                         Start
+                    </button> :
+                    <button
+                        className="submit"
+                        onClick={() => { setClicked(false); handleCompletion(); }}
+                    >
+                        Exit
                     </button>
+                  }
+                  </div>
+                  
+                
+                </div>
+
+                <div className="barDiv">
+                   
                     <Expand className="expand" open={clicked}>
                         <div className="expandDiv">
                             <Game
@@ -103,6 +174,10 @@ function SelectionPage() {
                                 difficulty={level}
                                 size={listSize}
                             />
+                        { clicked ?
+                            <Timer handleTimeChange={handleTime} />
+                            : undefined
+                        }
                         </div>
                     </Expand>
                 </div>

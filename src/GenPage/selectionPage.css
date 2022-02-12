@@ -46,13 +46,14 @@
     padding-top: 10px;
     font-family: "Ubuntu", sans-serif;
     margin-left: 25%;
+    margin-right: 25%;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
     position: relative;
 }
 
 .submit:hover {
-    background: linear-gradient(to right, #250a2b, #320f38);
+    background: linear-gradient(to right, #0d043f, #10072e);
     cursor: pointer;
 }
 

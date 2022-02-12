@@ -21,8 +21,9 @@ export default function Game({ algorythm, difficulty, size }) {
         axios({
             method: "GET",
             url: "/random",
-            data: {
-                size: length,
+            params: {
+                size: size,
+                min: 1
             },
         }).then(({ data }) => {
             setBlocks(data);
@@ -32,10 +33,16 @@ export default function Game({ algorythm, difficulty, size }) {
     }
 
     useEffect(() => {
+        // update states
+        setLength(size);
+        setAlgo(algorythm);
+        setLevel(difficulty);
+
         getRandomNumbers();
-    }, [length]);
+    }, [size, algorythm, difficulty]);
 
     function handleSort() {
+
         const sortOrder = (order) => {
             (function loop(i) {
                 setTimeout(function () {
@@ -63,13 +70,14 @@ export default function Game({ algorythm, difficulty, size }) {
 
             setIsSorting(true);
 
-            algo === "mergeSort"
-                ? sortOrder(mergeSort(blocks))
-                : (() => {
-                      setIsSorting(false);
-                      setCompleted(true);
-                  })();
+            // algo === "mergeSort"
+            //     ? sortOrder(mergeSort(blocks))
+            //     : (() => {
+            //           setIsSorting(false);
+            //           setCompleted(true);
+            //       })();
         };
+        sortOrder(mergeSort(blocks));
     }
 
     return (
