@@ -42,6 +42,7 @@ export default function Game({ algorythm, difficulty, size }) {
     }, [size, algorythm, difficulty]);
 
     function handleSort() {
+
         const sortOrder = (order) => {
             (function loop(i) {
                 setTimeout(function () {
@@ -69,13 +70,14 @@ export default function Game({ algorythm, difficulty, size }) {
 
             setIsSorting(true);
 
-            algo === "mergeSort"
-                ? sortOrder(mergeSort(blocks))
-                : (() => {
-                      setIsSorting(false);
-                      setCompleted(true);
-                  })();
+            // algo === "mergeSort"
+            //     ? sortOrder(mergeSort(blocks))
+            //     : (() => {
+            //           setIsSorting(false);
+            //           setCompleted(true);
+            //       })();
         };
+        sortOrder(mergeSort(blocks));
     }
 
     return (
