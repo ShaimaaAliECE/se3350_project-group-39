@@ -40,8 +40,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         setAlgo(algorythm);
         setLevel(difficulty);
 
-        
-
     }, [clicked]);
 
     // Sorts the array of numbers
