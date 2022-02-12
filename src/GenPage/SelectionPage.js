@@ -11,7 +11,8 @@ import axios from "axios";
 import Timer from "./Timer";
 
 const { Option } = Select;
-function SelectionPage() {
+
+function SelectionPage( { handleLength, handleSpeed, handleAlgo, generateRandomArray, handleSort, sorting, completed, len, speed}) {
     const [level, setLevel] = useState(1);
     const [listSize, setListSize] = useState(10);
     const [clicked, setClicked] = useState(false);
@@ -26,6 +27,22 @@ function SelectionPage() {
         mergeSort:
             "./assets/AlgoImages/bubbleSort.png",
     };
+
+
+
+  function getDifficulty() {
+
+      let value = level
+      if (value ==1 || value == 2) {
+        return "./assets/Levels/easy.png"
+      }
+      else if (value ==3 || value == 4) {
+        return "./assets/Levels/medium.png"
+      }
+      else {
+        return "./assets/Levels/hard.png"
+      }
+  }
 
     return (
         <div className="App">
@@ -63,13 +80,23 @@ function SelectionPage() {
                     </p>
                     <Slider
                         style={{ width: "300px" }}
-                        defaultValue={0}
+                        defaultValue={1}
                         disabled={false}
+                        min={1}
                         max={5}
                         onChange={(value) => {
                             setLevel(value);
                         }}
                     />
+                    <div className="imgDiv">
+                      <Image
+                          align="bottom"
+                          width={300}
+                          height={130}
+                          src={getDifficulty()}
+                          fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+                      />
+                    </div>
                 </div>
 
                 {/* <p className="sign" align="center">Select a List Size []</p> */}
@@ -79,7 +106,7 @@ function SelectionPage() {
                         Size of List: {listSize}
                     </p>
                     <Slider
-                        style={{ width: "300px" }}
+                        style={{ width: "270px" }}
                         defaultValue={10}
                         disabled={false}
                         max={100}
@@ -90,15 +117,21 @@ function SelectionPage() {
                     />
                 </div>
 
-                <div align="center" style={{ padding: "10px" }}></div>
-
-                <div className="barDiv">
-                    <button
+                <div align="center" style={{ padding: "10px" }}>
+                  <div>
+                  <button 
                         className="submit"
                         onClick={() => setClicked(!clicked)}
                     >
                         Start
                     </button>
+                  </div>
+                  
+                
+                </div>
+
+                <div className="barDiv">
+                   
                     <Expand className="expand" open={clicked}>
                         <div className="expandDiv">
                             <Game
