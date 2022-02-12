@@ -20,14 +20,14 @@ function SelectionPage( { handleLength, handleSpeed, handleAlgo, generateRandomA
     const [algo, setAlgo] = useState("mergeSort");
     const navigate = useNavigate();
 
-    const sortImage = {
-        bubbleSort:
-            "./assets/AlgoImages/bubbleSort.png",
-        quickSort:
-            "./assets/AlgoImages/quickSort.png",
-        mergeSort:
-            "./assets/AlgoImages/bubbleSort.png",
-    };
+  const sortImage = {
+    bubbleSort:
+      "./assets/AlgoImages/bubbleSort.png",
+    quickSort:
+      "./assets/AlgoImages/quickSort.png",
+    mergeSort:
+      "./assets/AlgoImages/bubbleSort.png",
+  };
 
     // method to set time from the timer component
     const handleTime = (curTime) => {
@@ -71,11 +71,11 @@ function SelectionPage( { handleLength, handleSpeed, handleAlgo, generateRandomA
       }
   }
 
-    return (
-        <div className="App">
-            <div className="Frame">
-                <p align="center" className="sign">
-                    Select a Algorithm
+  return (
+    <div className="App">
+      <div className="Frame">
+        <p align="center" className="sign">
+          Select a Algorithm
                 </p>
 
                 <div className="barDiv">
@@ -182,8 +182,8 @@ function SelectionPage( { handleLength, handleSpeed, handleAlgo, generateRandomA
                     </Expand>
                 </div>
             </div>
-        </div>
-    );
+          </div>
+  );
 }
 
 export default SelectionPage;
