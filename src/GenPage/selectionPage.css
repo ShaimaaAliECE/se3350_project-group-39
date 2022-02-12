@@ -100,3 +100,7 @@ h1 {
 .dropdown {
     padding: 10px;
 }
+
+.game-div   {
+    min-height: 56vh;
+}
