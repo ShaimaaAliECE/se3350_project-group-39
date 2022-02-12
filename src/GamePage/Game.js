@@ -17,6 +17,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [sortedIndex, setSortedIndex] = useState([]);
     const [swap, setSwap] = useState([]);
 
+    // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
         axios({
             method: "GET",
@@ -32,6 +33,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         handleSort();
     }
 
+    // Called every time the start button is clicked 
     useEffect(() => {
         // update states
         setLength(size);
@@ -40,8 +42,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
     }, [clicked]);
 
+    // Sorts the array of numbers
     function handleSort() {
-
         const sortOrder = (order) => {
             (function loop(i) {
                 setTimeout(function () {
@@ -79,6 +81,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         sortOrder(mergeSort(blocks));
     }
 
+    // Displays all the blocks in the array
     return (
         <div id="game-body">
             <ListBlocks
