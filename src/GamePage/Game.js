@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Game.css";
 import mergeSort from "../Algos/MergeSort";
+import bubbleSort from "../Algos/BubbleSort";
+import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
 import axios from "axios";
 
@@ -17,6 +19,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [sortedIndex, setSortedIndex] = useState([]);
     const [swap, setSwap] = useState([]);
 
+    // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
         axios({
             method: "GET",
@@ -27,9 +30,11 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             },
         }).then(({ data }) => {
             setBlocks(data);
+            
         });
-
         handleSort();
+
+       
     }
 
     // Called every time the start button is clicked 
@@ -69,6 +74,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 }, speed);
             })(0);
 
+            // Changes the colours when the array is being sorted
             setIsSorting(true);
 
             // algo === "mergeSort"
@@ -77,8 +83,21 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             //           setIsSorting(false);
             //           setCompleted(true);
             //       })();
+
+
         };
-        sortOrder(mergeSort(blocks));
+        if (algo == "mergeSort") {
+            sortOrder(mergeSort(blocks));
+
+        } else if (algo == "quickSort") {
+            sortOrder(quickSort(blocks));
+
+        } else if (algo == "bubbleS ort") {
+            sortOrder(bubbleSort(blocks));
+      
+        }
+
+        
     }
 
     // Displays all the blocks in the array

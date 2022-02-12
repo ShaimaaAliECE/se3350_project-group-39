@@ -20,6 +20,7 @@ function SelectionPage() {
   const [time, setTime] = useState();
   const navigate = useNavigate();
 
+  // Images used when the user is selecting an algo
   const sortImage = {
     bubbleSort: "./assets/AlgoImages/bubbleSort.png",
     quickSort: "./assets/AlgoImages/quickSort.png",
@@ -31,6 +32,7 @@ function SelectionPage() {
     setTime(curTime);
   };
 
+<<<<<<< HEAD
   // method to store the statistics when a level ends
   const handleCompletion = () => {
     axios({
@@ -54,6 +56,9 @@ function SelectionPage() {
       });
   };
 
+=======
+  // Function to set the difficulty 
+>>>>>>> 3ada0d663a518a43c0c04bd820f8c58787bfc88e
   function getDifficulty() {
     let value = level;
     if (value == 1 || value == 2) {
