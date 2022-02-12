@@ -35,10 +35,11 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
     // Called every time the start button is clicked 
     useEffect(() => {
+        getRandomNumbers();
         // update states
         setLength(size);
 
-        getRandomNumbers();
+        
 
     }, [clicked]);
 
