@@ -60,10 +60,10 @@ function SelectionPage( { handleLength, handleSpeed, handleAlgo, generateRandomA
   function getDifficulty() {
 
       let value = level
-      if (value ==1 || value == 2) {
+      if (value === 1 || value === 2) {
         return "./assets/Levels/easy.png"
       }
-      else if (value ==3 || value == 4) {
+      else if (value === 3 || value === 4) {
         return "./assets/Levels/medium.png"
       }
       else {
