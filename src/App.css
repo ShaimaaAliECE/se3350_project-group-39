@@ -24,7 +24,6 @@ h1 {
 }
 
 #title {
-    color: black;
     font-size: calc(10px + 2vmin);
     margin: 50px;
 }

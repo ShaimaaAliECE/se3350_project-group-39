@@ -1,11 +1,15 @@
 body {
-    background-image: url('https://influence.digital/wp-content/uploads/2021/12/algorithm.jpeg');
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ), url('https://influence.digital/wp-content/uploads/2021/12/algorithm.jpeg');
     margin: 0 !important;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
         'Helvetica Neue', 'Open Sans' sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
 }
 
 code {
