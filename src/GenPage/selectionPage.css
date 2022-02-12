@@ -52,7 +52,7 @@
 }
 
 .submit:hover {
-  background: linear-gradient(to right, #582d61, #ce19ee);
+  background: linear-gradient(to right, #250a2b, #320f38);
   cursor: pointer;
 }
 
@@ -93,7 +93,7 @@ h1 {
 }
 
 .imgDiv {
-  padding: 10px;
+  padding: 20px;
 }
 
 .dropdown {
