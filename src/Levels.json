@@ -4,15 +4,15 @@
             "size" : 10,
             "min": 1,
             "max" : 20,
-            "isMovable" : false,
-            "tutorial" : true
+            "isMovable" : true,
+            "tutorial" : false
         },
         "2" : {
             "size" : 10,
             "min" : 1,
             "max" : 20,
             "isMovable" : true,
-            "tutorial" : true
+            "tutorial" : false
         },
         "3" : {
             "size" : 10,

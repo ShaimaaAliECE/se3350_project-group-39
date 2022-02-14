@@ -3,8 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./listBlock.css";
 
 function ListBlocks({ blocks, compare, sorted, swap }) {
-  console.log(blocks);
-  const [width, setWidth] = useState(
+    const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
@@ -30,6 +29,7 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
   };
 
   console.log(list);
+
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>

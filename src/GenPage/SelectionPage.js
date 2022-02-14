@@ -28,7 +28,7 @@ function SelectionPage() {
     mergeSort: "./assets/AlgoImages/bubbleSort.png",
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     setListSize(levelData["levels"][`${level}`]["size"]);
   }, [level]);
 
@@ -145,7 +145,12 @@ function SelectionPage() {
             step={10}
             onChange={(value) => {
               setListSize(value);
+              console.log("value   = " + value);
             }}
+            onAfterChange={() =>{
+              console.log("listsize = " + listSize);
+            }}
+            
             disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
           />
         </div>
@@ -154,11 +159,11 @@ function SelectionPage() {
           <div>
             <button className="submit" onClick={() => setClicked(!clicked)}>
               Start
-            </button> : 
+            </button> 
           </div>
         </div>
 
-        <div className="game-div">
+        <div id="array-display" className="game-div">
           <div className="expand">
             <div className="expandDiv">
               <Game

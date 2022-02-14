@@ -28,13 +28,16 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 size: size,
                 min: 1
             },
+            
         }).then(({ data }) => {
             setBlocks(data);
+        console.log("the size set + " +size);
             
         });
-        handleSort();
+        if(clicked){
+            handleSort();
+        }
 
-       
     }
 
     // Called every time the start button is clicked 
@@ -43,7 +46,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         // update states
         setLength(size);
 
-    }, [clicked]);
+    }, [clicked, size]);
 
     // Sorts the array of numbers
     function handleSort() {
