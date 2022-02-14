@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function ListBlocks({ blocks, compare, sorted, swap }) {
+function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -44,6 +44,9 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
               const height = (block * 500) / blocks.length;
               let bg = "turquoise";
 
+              if(needsSorting){
+                bg = "turquoise";
+              }
               // i th element is being compared with some other element
               if (
                 compare &&
@@ -56,9 +59,12 @@ function ListBlocks({ blocks, compare, sorted, swap }) {
                 bg = "red";
               }
               // i th element is in its correct position
-              if (sorted && sorted.includes(i)) {
+              if (sorted && sorted.includes(i) && !needsSorting) {
                 bg = "#4bc52e";
               }
+
+              
+              
 
               const style = {
                 backgroundColor: bg,

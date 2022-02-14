@@ -145,7 +145,6 @@ function SelectionPage() {
             step={10}
             onChange={(value) => {
               setListSize(value);
-              console.log("value   = " + value);
             }}
             onAfterChange={() =>{
               console.log("listsize = " + listSize);
@@ -172,11 +171,11 @@ function SelectionPage() {
                 size={listSize}
                 clicked={clicked}
               />
+            </div>
               { clicked ?
                   <Timer handleTimeChange={handleTime} />
                   : undefined
               }
-            </div>
           </div>
         </div>
       </div>

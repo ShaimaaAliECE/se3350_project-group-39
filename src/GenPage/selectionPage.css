@@ -103,5 +103,15 @@ h1 {
 
 .game-div   {
     min-height: 56vh;
-    background-color: rebeccapurple;
+    background-color: white;
+}
+
+.expand{
+}
+
+.expandDiv{
+    justify-content: center;
+    display: flex;
+    background-color: purple;
+    padding-right: 40px;
 }

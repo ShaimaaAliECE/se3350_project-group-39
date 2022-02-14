@@ -12,7 +12,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [level, setLevel] = useState(difficulty);
     const [blocks, setBlocks] = useState([]);
     const [algo, setAlgo] = useState(algorythm);
-    const [isSorting, setIsSorting] = useState();
+    const [isSorting, setIsSorting] = useState(true);
     const [speed, setSpeed] = useState(200);
     const [compare, setCompare] = useState([]);
     const [completed, setCompleted] = useState(true);
@@ -31,16 +31,19 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             
         }).then(({ data }) => {
             setBlocks(data);
-        console.log("the size set = " +size);
             
         });
         if(clicked){
+            setIsSorting(true);
             handleSort();
         }
-
+        if(isSorting === false){
+            setIsSorting(true);
+        }
+        console.log("isSorting = " + isSorting); 
     }
 
-    // Called every time the start button is clicked 
+    // Called every time the start button is clicked and when the sliders are moved
     useEffect(() => {
         getRandomNumbers();
         // update states
@@ -51,7 +54,10 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     // Sorts the array of numbers
     function handleSort() {
         const sortOrder = (order) => {
-            (function loop(i) {
+
+            setIsSorting(true);
+
+            (function loop(i) { 
                 setTimeout(function () {
                     const [j, k, arr, index] = order[i];
                     setCompare([j, k]);
@@ -76,7 +82,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             })(0);
 
             // Changes the colours when the array is being sorted
-            setIsSorting(true);
 
             // algo === "mergeSort"
             //     ? sortOrder(mergeSort(blocks))
@@ -108,7 +113,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 length={length}
                 blocks={blocks}
                 compare={isSorting && compare}
-                swap={isSorting && swap}
+                swap={swap}
+                needsSorting={isSorting}
                 sorted={sortedIndex}
             />
         </div>
