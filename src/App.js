@@ -1,21 +1,16 @@
-import './App.css';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
-import React, { useState, useEffect } from 'react';
-import useToken from './useToken';
-import Game from './GamePage/Game'
+import "./App.css";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Login from "./login/Login";
+import useToken from "./useToken";
+
 function App() {
-  
-  const { setToken, removeToken } = useToken();
-
-  return(
-      <div className="App">
-          <Game algorythm="mergeSort" difficulty={1} size={10} />
-      </div>
-  );
-
+    const { setToken } = useToken();
+    return (
+        <div className="App">
+            <Login setToken={setToken} />
+        </div>
+    );
 }
 
 export default App;
-
-
- 

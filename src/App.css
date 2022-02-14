@@ -1,32 +1,31 @@
 h1 {
-  color: white;
+    color: white;
 }
 
-.App{
-  background-image: url("https://influence.digital/wp-content/uploads/2021/12/algorithm.jpeg");
-  background-color: lightblue;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.App {
+    background-image: url("https://influence.digital/wp-content/uploads/2021/12/algorithm.jpeg");
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.App-header{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.App-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.btn{
-  margin: 10px;
-  background-color: beige;
-  color: black;
-  border-color: white;
-  width: 200px;
+.btn {
+    margin: 10px;
+    background-color: beige;
+    color: black;
+    border-color: white;
+    width: 200px;
 }
 
-#title{
-  color:black;
-  font-size: calc(10px + 2vmin);
-  margin: 50px;
+#title {
+    color: black;
+    font-size: calc(10px + 2vmin);
+    margin: 50px;
 }
-
