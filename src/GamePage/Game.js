@@ -31,7 +31,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             
         }).then(({ data }) => {
             setBlocks(data);
-        console.log("the size set + " +size);
+        console.log("the size set = " +size);
             
         });
         if(clicked){

@@ -20,7 +20,7 @@ function SelectionPage() {
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
-
+  const word = "Start";
   // Images used when the user is selecting an algo
   const sortImage = {
     bubbleSort: "./assets/AlgoImages/bubbleSort.png",
@@ -158,7 +158,7 @@ function SelectionPage() {
         <div align="center" style={{ padding: "10px" }}>
           <div>
             <button className="submit" onClick={() => setClicked(!clicked)}>
-              Start
+              {clicked ? 'Reset' : 'Start'}
             </button> 
           </div>
         </div>
