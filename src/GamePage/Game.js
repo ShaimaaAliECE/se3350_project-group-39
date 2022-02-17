@@ -5,6 +5,7 @@ import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
 import axios from "axios";
+import { resetServerContext } from "react-beautiful-dnd";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     //states
@@ -39,6 +40,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         }
         if(isSorting === false){
             setIsSorting(true);
+            setSortedIndex(() => []); //resets the sorting array
         }
         console.log("isSorting = " + isSorting); 
     }
@@ -48,8 +50,9 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         getRandomNumbers();
         // update states
         setLength(size);
-
+        
     }, [clicked, size]);
+
 
     // Sorts the array of numbers
     function handleSort() {

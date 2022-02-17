@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
 function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
@@ -10,13 +10,15 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
 
   useEffect(() => {
+
     setWidth(
       Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
     );
  
       setList(blocks);
   
-  }, [blocks]);
+  }, [blocks, sorted]);
+
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
@@ -29,6 +31,7 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
   };
 
   console.log(list);
+  
 
 
   return (
@@ -41,12 +44,14 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
             ref={provided.innerRef}
           >
             {list.map((block, i) => {
-              const height = (block * 500) / blocks.length;
+              const height = ((block * 500) / blocks.length) + 10 ;
               let bg = "turquoise";
 
-              if(needsSorting){
+              // the array is resetted
+              if (needsSorting){
                 bg = "turquoise";
               }
+
               // i th element is being compared with some other element
               if (
                 compare &&
@@ -55,13 +60,23 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
                 bg = "#ffff50";
               }
 
+              // while swaping blokcks
               if (swap && (i === swap[0] || i === swap[1])) {
                 bg = "red";
               }
-              // i th element is in its correct position
-              if (sorted && sorted.includes(i) && !needsSorting) {
+
+              //while its being sorted and until it resets
+              if (sorted && sorted.includes(i)) {
                 bg = "#4bc52e";
               }
+              
+
+              // // i th element is in its correct position
+              // if (sorted && !needsSorting) {
+              //   bg = "#4bc52e";
+              // }
+
+
 
               
               

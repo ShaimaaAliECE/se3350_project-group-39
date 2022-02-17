@@ -141,7 +141,7 @@ function SelectionPage() {
             defaultValue={listSize}
             value={listSize}
             disabled={false}
-            max={100}
+            max={50}
             step={10}
             onChange={(value) => {
               setListSize(value);
