@@ -28,14 +28,14 @@ function SelectionPage() {
     mergeSort: "./assets/AlgoImages/bubbleSort.png",
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     setListSize(levelData["levels"][`${level}`]["size"]);
   }, [level]);
 
-    // method to set time from the timer component
-    const handleTime = (curTime) => {
-      setTime(curTime);
-    }
+  // method to set time from the timer component
+  const handleTime = (curTime) => {
+    setTime(curTime);
+  }
 
   // method to store the statistics when a level ends
   const handleCompletion = () => {
@@ -58,21 +58,21 @@ function SelectionPage() {
       .catch((err) => {
         console.log(err);
       });
-    };
+  };
 
   // Function to set the difficulty 
   function getDifficulty() {
 
-      let value = level
-      if (value === 1 || value === 2) {
-        return "./assets/Levels/easy.png"
-      }
-      else if (value === 3 || value === 4) {
-        return "./assets/Levels/medium.png"
-      }
-      else {
-        return "./assets/Levels/hard.png"
-      }
+    let value = level
+    if (value === 1 || value === 2) {
+      return "./assets/Levels/easy.png"
+    }
+    else if (value === 3 || value === 4) {
+      return "./assets/Levels/medium.png"
+    }
+    else {
+      return "./assets/Levels/hard.png"
+    }
   }
 
   return (
@@ -146,10 +146,10 @@ function SelectionPage() {
             onChange={(value) => {
               setListSize(value);
             }}
-            onAfterChange={() =>{
+            onAfterChange={() => {
               console.log("listsize = " + listSize);
             }}
-            
+
             disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
           />
         </div>
@@ -158,24 +158,23 @@ function SelectionPage() {
           <div>
             <button className="submit" onClick={() => setClicked(!clicked)}>
               {clicked ? 'Reset' : 'Start'}
-            </button> 
+            </button>
           </div>
         </div>
 
-        <div id="array-display" className="game-div">
-          <div className="expand">
-            <div className="expandDiv">
-              <Game
-                algorythm={algo}
-                difficulty={level}
-                size={listSize}
-                clicked={clicked}
-              />
-            </div>
-              { clicked ?
-                  <Timer handleTimeChange={handleTime} />
-                  : undefined
-              }
+        <div className="expand">
+          <div className="expandDiv">
+            <Game
+              algorythm={algo}
+              difficulty={level}
+              size={listSize}
+              clicked={clicked}
+            />
+
+            {clicked ?
+              <Timer handleTimeChange={handleTime} />
+              : undefined
+            }
           </div>
         </div>
       </div>

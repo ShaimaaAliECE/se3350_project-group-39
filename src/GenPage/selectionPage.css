@@ -76,7 +76,7 @@ h1 {
 
 .sign {
     padding-top: 40px;
-    color: #8c55aa;
+    color: #fff;
     font-family: "Ubuntu", sans-serif;
     font-weight: bold;
     font-size: 23px;
@@ -113,6 +113,4 @@ h1 {
 .expandDiv{
     justify-content: center;
     display: flex;
-    background-color: purple;
-    padding-right: 40px;
 }

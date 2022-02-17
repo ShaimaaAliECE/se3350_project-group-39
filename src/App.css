@@ -3,7 +3,10 @@ h1 {
 }
 
 .App {
-    background-image: url("https://influence.digital/wp-content/uploads/2021/12/algorithm.jpeg");
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ), url('https://influence.digital/wp-content/uploads/2021/12/algorithm.jpeg');
     min-height: 100vh;
     display: flex;
     flex-direction: column;
