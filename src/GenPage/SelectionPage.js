@@ -79,7 +79,7 @@ function SelectionPage() {
     <div className="App">
       <div className="Frame">
         <p align="center" className="sign">
-          Select a Algorithm
+          Select an Algorithm
         </p>
 
         <div className="barDiv">
