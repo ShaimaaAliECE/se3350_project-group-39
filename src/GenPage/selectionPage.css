@@ -108,9 +108,11 @@ h1 {
 }
 
 .expand{
+    color: white;
 }
 
 .expandDiv{
     justify-content: center;
     display: flex;
+    padding-right: 40px;
 }

@@ -170,12 +170,11 @@ function SelectionPage() {
               size={listSize}
               clicked={clicked}
             />
-
-            {clicked ?
+          </div>
+          {clicked ?
               <Timer handleTimeChange={handleTime} />
               : undefined
             }
-          </div>
         </div>
       </div>
     </div>
