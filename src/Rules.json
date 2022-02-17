@@ -1,0 +1,18 @@
+{
+    "Rules" : {
+        "MergeSort" :   {
+            "1" : {
+                "Description" : "Split the given list into two halves (roughly equal halves in case of a list with an odd number of elements).",
+                "Image" : "./imgs/Step1.png"
+            },
+            "2" : {
+                "Description" : "Continue dividing the subarrays in the same manner until you are left with only single element arrays.",
+                "Image" : "./imgs/Step2.png"
+            },
+            "3" : {
+                "Description" : "Starting with the single element arrays, merge the subarrays so that each merged subarray is sorted. Repeat step until you end up with a single sorted array.",
+                "Image" : "./imgs/Step3.png"
+            }
+        }
+    }
+}
