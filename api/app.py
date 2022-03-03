@@ -10,7 +10,7 @@ from random import seed, randint
 from db import get_user, get_statistics, add_statistics
 
 # create the flask app
-api = Flask(__name__)
+api = Flask(__name__, static_folder="../build", static_url_path="")
 
 # jwt configs
 api.config["JWT_SECRET_KEY"] = "Value"
@@ -18,6 +18,11 @@ api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
 
 # connect the flask jwt to the flask app
 jwt = JWTManager(api)
+
+# default route for the webapp
+@api.route('/', defaults={'path': ''})
+def index():
+    return api.send_static_file("index.html")
 
 #Routing function to create an access token with each login
 #need to configure algorithm to search array of available logins
