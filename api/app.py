@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
@@ -21,8 +21,8 @@ jwt = JWTManager(api)
 
 # default route for the webapp
 @api.route('/', defaults={'path': ''})
-def index():
-    return api.send_static_file("index.html")
+def index(path):
+    return send_from_directory(api.static_folder, "index.html")
 
 #Routing function to create an access token with each login
 #need to configure algorithm to search array of available logins
