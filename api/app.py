@@ -19,6 +19,11 @@ api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
 # connect the flask jwt to the flask app
 jwt = JWTManager(api)
 
+# 404 error handling
+@api.errorhandler(404)
+def not_found(e):
+    return send_from_directory(api.static_folder, 'index.html')
+
 # default route for the webapp
 @api.route('/', defaults={'path': ''})
 def index(path):
