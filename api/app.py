@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
                                unset_jwt_cookies, jwt_required, JWTManager
@@ -10,7 +10,7 @@ from random import seed, randint
 from db import get_user, get_statistics, add_statistics
 
 # create the flask app
-api = Flask(__name__)
+api = Flask(__name__, static_folder="../build", static_url_path="")
 
 # jwt configs
 api.config["JWT_SECRET_KEY"] = "Value"
@@ -18,6 +18,16 @@ api.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
 
 # connect the flask jwt to the flask app
 jwt = JWTManager(api)
+
+# 404 error handling
+@api.errorhandler(404)
+def not_found(e):
+    return send_from_directory(api.static_folder, 'index.html')
+
+# default route for the webapp
+@api.route('/', defaults={'path': ''})
+def index(path):
+    return send_from_directory(api.static_folder, "index.html")
 
 #Routing function to create an access token with each login
 #need to configure algorithm to search array of available logins
@@ -107,7 +117,6 @@ def get_stats():
 @api.route('/random', methods=["GET"])
 def random_nums():
     config = request.args
-    print(config)
     results = []
 
     # default values
