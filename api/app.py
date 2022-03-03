@@ -10,7 +10,7 @@ from random import seed, randint
 from db import get_user, get_statistics, add_statistics
 
 # create the flask app
-api = Flask(__name__, static_folder="../build", static_url_path="")
+api = Flask(__name__, static_folder="./build", static_url_path="")
 
 # jwt configs
 api.config["JWT_SECRET_KEY"] = "Value"
