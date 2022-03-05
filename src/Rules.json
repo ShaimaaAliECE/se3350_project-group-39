@@ -6,12 +6,92 @@
                 "Image" : "./imgs/Step1.png"
             },
             "2" : {
-                "Description" : "Continue dividing the subarrays in the same manner until you are left with only single element arrays.",
-                "Image" : "./imgs/Step2.png"
+                "Description": "Split the 5 items in the left half further into roughly  two halves",
+                "array": []
             },
             "3" : {
-                "Description" : "Starting with the single element arrays, merge the subarrays so that each merged subarray is sorted. Repeat step until you end up with a single sorted array.",
+                "Description": "Split the 3 items in the left half further into roughly two halves",
+                "array": []
+            },
+            "4" : {
+                "Description" : "We will now 2 items in the left half further into roughly two halves",
+                "Image" : "./imgs/Step2.png"
+            },
+            "5" : {
+                "Description" : "We will now merge them together",
+                "Image" : "./imgs/Step2.png"
+            },
+            "6" : {
+                "Description" : "Merge the 2 left most items and sort them together into one sorted item",
                 "Image" : "./imgs/Step3.png"
+            },
+            "7" : {
+                "Description": "Merge the next left 2 most items and sort them together into one sorted item",
+                "array": []
+            },
+            "8" : {
+                "Description": "We will now work with the right half of the items we sorted previously",
+                "array": []
+            },
+            "9" : {
+                "Description": "Split the 2 items further into roughly two halves",
+                "array": []
+            },
+            "10" : {
+                "Description": "Sort the 2 items and mege them together to make one sorted item",
+                "array": []
+            },
+            "11" : {
+                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the left half of the whole array",
+                "array": []
+            },
+            "12" : {
+                "Description": "Left us consider the right 5 items of the whole array",
+                "array": []
+            },
+            "13" : {
+                "Description": "Split the 5 items in the right half further into roughly two halves",
+                "array": []
+            },
+            "14" : {
+                "Description": "Split the 3 items in the right half further into roughly two halves",
+                "array": []
+            },
+            "15" : {
+                "Description" : "We will now split 2 items in the right half further into roughly two halves",
+                "Image" : "./imgs/Step2.png"
+            },
+            "16" : {
+                "Description" : "We will now merge them together",
+                "Image" : "./imgs/Step2.png"
+            },
+            "17" : {
+                "Description" : "Merge the 2 right most items and sort them together into one sorted item",
+                "Image" : "./imgs/Step3.png"
+            },
+            "18" : {
+                "Description": "Merge the next right 2 most items and sort them together into one sorted item",
+                "array": []
+            },
+            "19" : {
+                "Description": "We will now work with the left half of the items we sorted previously",
+                "array": []
+            },
+            "20" : {
+                "Description": "Split the 2 items on the left further into roughly two halves",
+                "array": []
+            },
+            "21" : {
+                "Description": "Sort the 2 items and mege them together to make one sorted item",
+                "array": []
+            },
+            "22" : {
+                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the right half of the whole array",
+                "array": []
+            },
+            "23" : {
+                "Description": "Now, merge the 2 of the sorted halves of the whole array to complete sorting the array",
+                "array": []
             }
         }
     }

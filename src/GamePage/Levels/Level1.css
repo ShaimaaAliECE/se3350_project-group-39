@@ -16,3 +16,9 @@
     min-width: 50px;
     font-size: 20px;
 }
+
+.prev-next-container > button:hover {
+    transition-duration: 0.3s !important;
+    background: linear-gradient(to right, #0d043f, #10072e);
+    cursor: pointer;
+}
