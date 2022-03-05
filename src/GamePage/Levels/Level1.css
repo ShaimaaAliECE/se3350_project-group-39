@@ -1,16 +1,5 @@
 .prev-next-container {
     display: flex;
-<<<<<<< HEAD
-}
-
-.list   {
-    display: flex;
-    flex-direction: row;
-}
-
-.block  {
-    border: 1px solid black;
-=======
     width: 100%;
     justify-content: space-around;
     margin: 5px;
@@ -32,5 +21,14 @@
     transition-duration: 0.3s !important;
     background: linear-gradient(to right, #0d043f, #10072e);
     cursor: pointer;
->>>>>>> 69cb9f5f8e803a98ab25c2fff885ab45c8c70591
+}
+
+
+.list   {
+    display: flex;
+    flex-direction: row;
+}
+
+.block  {
+    border: 1px solid black;
 }
