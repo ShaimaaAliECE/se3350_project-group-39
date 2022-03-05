@@ -6,6 +6,7 @@ import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
+import Level1 from "./Levels/Level1";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     //states
@@ -112,6 +113,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     // Displays all the blocks in the array
     return (
         <div id="game-body">
+            { level === 1 ?  <Level1 length={length} blocks={blocks} swap={swap} /> :
             <ListBlocks
                 length={length}
                 blocks={blocks}
@@ -119,7 +121,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 swap={swap}
                 needsSorting={isSorting}
                 sorted={sortedIndex}
-            />
+            />}
         </div>
     );
 }
