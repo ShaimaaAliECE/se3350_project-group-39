@@ -33,19 +33,14 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
 
     setList(items);
   };
-  let dropAllowed = () => {
-    // if (this.status) {
-    //    handleOnDragEnd();
-    // }
-    
-  }
+
 
   console.log(list);
   
  
 
   return (
-    <DragDropContext onDragEnd={dropAllowed} >
+    <DragDropContext onDragEnd={handleOnDragEnd} >
       <Droppable isDropDisabled={true}  droppableId="blocks" direction="horizontal">
         {(provided) => (
           <ul
