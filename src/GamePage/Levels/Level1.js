@@ -10,7 +10,7 @@ export default function Level1({blocks, length, swap, compare, needsSorting, sor
     
     useEffect(() => {
         setWidth(Math.min(20, Math.ceil(window.innerWidth / length) - 8))
-    }, [values]);
+    });
     
     
     return (
