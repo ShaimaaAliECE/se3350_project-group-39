@@ -113,15 +113,25 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     // Displays all the blocks in the array
     return (
         <div id="game-body">
-            { level === 1 ?  <Level1 length={length} blocks={blocks} swap={swap} /> :
-            <ListBlocks
-                length={length}
-                blocks={blocks}
-                compare={isSorting && compare}
-                swap={swap}
-                needsSorting={isSorting}
-                sorted={sortedIndex}
-            />}
+            {
+                level === 1 ?
+                <Level1
+                    length={length}
+                    blocks={blocks}
+                    swap={swap}
+                    compare={isSorting && compare}
+                    needsSorting={isSorting}
+                    sorted={sortedIndex}
+                /> :
+                <ListBlocks
+                    length={length}
+                    blocks={blocks}
+                    compare={isSorting && compare}
+                    swap={swap}
+                    needsSorting={isSorting}
+                    sorted={sortedIndex}
+                />
+            }
         </div>
     );
 }
