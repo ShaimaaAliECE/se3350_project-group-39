@@ -55,6 +55,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     }, [clicked, size]);
 
 
+
     // Sorts the array of numbers
     function handleSort() {
         const sortOrder = (order) => {
@@ -102,7 +103,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         } else if (algo == "quickSort") {
             sortOrder(quickSort(blocks));
 
-        } else if (algo == "bubbleS ort") {
+        } else if (algo == "bubbleSort") {
             sortOrder(bubbleSort(blocks));
       
         }
