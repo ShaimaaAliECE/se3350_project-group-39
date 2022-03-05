@@ -1,3 +1,18 @@
 .prev-next-container {
     display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 5px;
+    padding-left: 30px;
+}
+
+.prev-next-container > button {
+    color: white;
+    background: linear-gradient(to right, #9c27b0, #e040fb);
+    border: none;
+    text-transform: capitalize;
+    padding: 7px;
+    border-radius: 25px;
+    min-width: 50px;
+    font-size: 20px;
 }
