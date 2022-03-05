@@ -9,58 +9,77 @@ import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
 import axios from "axios";
 import Timer from "./Timer";
+import levelData from '../Levels.json';
 
 const { Option } = Select;
-function SelectionPage(props) {
+
+function SelectionPage() {
   const [level, setLevel] = useState(1);
-  const [time, setTime] = useState(0);
-  const [listSize, setListSize] = useState(10);
+  const [time, setTime] = useState(0.0);
+  const [listSize, setListSize] = useState(levelData["levels"][`${level}`]["size"]);
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
-
+  const word = "Start";
+  // Images used when the user is selecting an algo
   const sortImage = {
-    bubbleSort:
-      "./assets/AlgoImages/bubbleSort.png",
-    quickSort:
-      "./assets/AlgoImages/quickSort.png",
-    mergeSort:
-      "./assets/AlgoImages/quickSort.png",
+    bubbleSort: "./assets/AlgoImages/bubbleSort.png",
+    quickSort: "./assets/AlgoImages/quickSort.png",
+    mergeSort: "./assets/AlgoImages/bubbleSort.png",
   };
 
+  useEffect(() => {
+    setListSize(levelData["levels"][`${level}`]["size"]);
+  }, [level]);
+
+  // method to set time from the timer component
   const handleTime = (curTime) => {
-    console.log(curTime);
     setTime(curTime);
-  };
+  }
 
-  // record the score in the backend
-  const handleExit = () => {
+  // method to store the statistics when a level ends
+  const handleCompletion = () => {
     axios({
       method: "POST",
       url: "/add_entry",
-      headers: {
-        Authorization: "Bearer " + props.token,
-      },
       data: {
         algorithm: algo,
         level: level,
-        // time: time
         time: 0,
+        // time: time
+      },
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        throw err;
+        console.log(err);
       });
   };
+
+  // Function to set the difficulty 
+  function getDifficulty() {
+
+    let value = level
+    if (value === 1 || value === 2) {
+      return "./assets/Levels/easy.png"
+    }
+    else if (value === 3 || value === 4) {
+      return "./assets/Levels/medium.png"
+    }
+    else {
+      return "./assets/Levels/hard.png"
+    }
+  }
 
   return (
     <div className="App">
       <div className="Frame">
         <p align="center" className="sign">
-          Select a Algorithm
+          Select an Algorithm
         </p>
 
         <div className="barDiv">
@@ -78,7 +97,7 @@ function SelectionPage(props) {
           <div className="imgDiv">
             <Image
               align="bottom"
-              width={250}
+              width={275}
               height={100}
               src={sortImage[algo]}
               fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
@@ -94,12 +113,21 @@ function SelectionPage(props) {
             style={{ width: "300px" }}
             defaultValue={1}
             disabled={false}
-            max={5}
             min={1}
+            max={5}
             onChange={(value) => {
               setLevel(value);
             }}
           />
+          <div className="imgDiv">
+            <Image
+              align="bottom"
+              width={300}
+              height={130}
+              src={getDifficulty()}
+              fallback="https://cdn.programiz.com/cdn/farfuture/QA-TsXFkcz3cNyJikcbIWxepFVDu8ntl220KzlG8zdw/mtime:1617189492/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+            />
+          </div>
         </div>
 
         {/* <p className="sign" align="center">Select a List Size []</p> */}
@@ -109,17 +137,24 @@ function SelectionPage(props) {
             Size of List: {listSize}
           </p>
           <Slider
-            style={{ width: "300px" }}
-            defaultValue={10}
+            style={{ width: "270px" }}
+            defaultValue={listSize}
+            value={listSize}
             disabled={false}
-            min={10}
-            max={100}
+            max={50}
+            step={10}
             onChange={(value) => {
               setListSize(value);
             }}
+            onAfterChange={() => {
+              console.log("listsize = " + listSize);
+            }}
+
+            disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
           />
         </div>
 
+<<<<<<< HEAD
         <div align="center" style={{ padding: "10px" }}></div>
 
         <div className="barDiv">
@@ -148,6 +183,29 @@ function SelectionPage(props) {
               ) : undefined}
             </div>
           </Expand>
+=======
+        <div align="center" style={{ padding: "10px" }}>
+          <div>
+            <button className="submit" onClick={() => setClicked(!clicked)}>
+              {clicked ? 'Reset' : 'Start'}
+            </button>
+          </div>
+        </div>
+
+        <div className="expand">
+          <div className="expandDiv">
+            <Game
+              algorythm={algo}
+              difficulty={level}
+              size={listSize}
+              clicked={clicked}
+            />
+          </div>
+          {clicked ?
+              <Timer handleTimeChange={handleTime} />
+              : undefined
+            }
+>>>>>>> main
         </div>
       </div>
     </div>

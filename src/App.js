@@ -5,14 +5,12 @@ import Login from "./login/Login";
 import useToken from "./useToken";
 
 function App() {
-  // get the method for props
-  const { setToken } = useToken();
-
-  return (
-    <div className="App">
-      <Login setToken={setToken} />
-    </div>
-  );
+    const { setToken } = useToken();
+    return (
+        <div className="App">
+            <Login setToken={setToken} />
+        </div>
+    );
 }
 
 export default App;
