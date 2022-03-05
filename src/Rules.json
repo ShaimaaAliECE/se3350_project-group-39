@@ -1,5 +1,6 @@
 {
     "Rules" : {
+        "TutorialArray": [7, 6, 2, 8, 4, 3, 9, 2, 6, 4],
         "MergeSort" :   {
             "1" : {
                 "Description" : "Split the given list into two halves (roughly equal halves in case of a list with an odd number of elements).",
