@@ -166,6 +166,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     swap={swap}
                     needsSorting={isSorting}
                     sorted={sortedIndex}
+                    steps={steps}
                 />
                 <button onClick={counter}> Next </button>
             </div>

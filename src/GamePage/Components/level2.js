@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function Level2({ blocks, sorted, swap, needsSorting }) {
+function Level2({ blocks, sorted, swap, needsSorting, steps }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -32,8 +32,20 @@ function Level2({ blocks, sorted, swap, needsSorting }) {
     setList(items);
   };
 
-  const handleSorting = () =>{
-      
+  const handleSteps = () =>{
+    console.log(steps);
+      switch(steps){
+        case 0:
+          setCurrent([0,1]);
+          break;
+        case 1:
+          setCurrent([2,3,4])
+          break;
+        case 2:
+          break;
+        case 3:
+          break;
+      }
   }
 
   return (
@@ -64,6 +76,11 @@ function Level2({ blocks, sorted, swap, needsSorting }) {
                     console.log("penis" + items[i] + "77" + items[i+1])
                     console.log(j)
                     
+                }
+
+                for(let x = 0; x < current.length; x++)
+                {
+                  
                 }
               
 
