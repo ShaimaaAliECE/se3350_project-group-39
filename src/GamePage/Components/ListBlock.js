@@ -76,11 +76,6 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
               //   bg = "#4bc52e";
               // }
 
-
-
-              
-              
-
               const style = {
                 backgroundColor: bg,
                 color: color,
