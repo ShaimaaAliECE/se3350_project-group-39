@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ListBlocks from '../Components/ListBlock';
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import './Level1.css';
 
 export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
@@ -27,8 +28,8 @@ export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
         <div className='tutorial-div'>
             
             <div className='prev-next-container'>
-                <button>prev</button>
-                <button>next</button>
+                <button><FaAngleLeft /></button>
+                <button><FaAngleRight /></button>
             </div>
             
             <div>
