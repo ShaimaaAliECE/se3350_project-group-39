@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
+
+
 function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
@@ -20,6 +22,8 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
   }, [blocks, sorted]);
 
 
+  
+
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
 
@@ -29,14 +33,20 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
 
     setList(items);
   };
+  let dropAllowed = () => {
+    // if (this.status) {
+    //    handleOnDragEnd();
+    // }
+    
+  }
 
   console.log(list);
   
-
+ 
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="blocks" direction="horizontal">
+    <DragDropContext onDragEnd={dropAllowed} >
+      <Droppable isDropDisabled={true}  droppableId="blocks" direction="horizontal">
         {(provided) => (
           <ul
             className="listBlocks"
@@ -107,5 +117,7 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
     </DragDropContext>
   );
 }
+
+
 
 export default ListBlocks;

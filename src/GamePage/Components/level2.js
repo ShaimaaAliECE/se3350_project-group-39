@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function level2({ blocks, current, sorted, swap, needsSorting }) {
+function Level2({ blocks, current, sorted, swap, needsSorting }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -89,4 +89,4 @@ function level2({ blocks, current, sorted, swap, needsSorting }) {
   );
 }
 
-export default level2;
+export default Level2;

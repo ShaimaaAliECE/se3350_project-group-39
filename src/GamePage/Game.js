@@ -4,7 +4,7 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
-import level2 from './Components/level2';
+import Level2 from './Components/Level2';
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -103,7 +103,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         } else if (algo == "quickSort") {
             sortOrder(quickSort(blocks));
 
-        } else if (algo == "bubbleS ort") {
+        } else if (algo == "bubbleSort") {
             sortOrder(bubbleSort(blocks));
       
         }
@@ -133,7 +133,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     {
         return (
             <div id="game-body">
-                <level2
+                <Level2
                     blocks={blocks}
                     current={current}
                     swap={swap}
