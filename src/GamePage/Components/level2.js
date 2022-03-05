@@ -82,11 +82,12 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                 bg = "turquoise";
               }
 
-                for(let x = 0; x < current.length; x++)
-                {
-                  if(i == current[x])
-                    bg="blue";
-                }
+              //Highlights certian blocks blue to let the user know that they can edit them
+              for(let x = 0; x < current.length; x++)
+              {
+                if(i == current[x])
+                  bg="blue";
+              }
               
 
               const style = {
