@@ -4,7 +4,7 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
-import Level2 from './Components/Level2';
+import Level2 from "./Components/level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -15,7 +15,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [blocks, setBlocks] = useState([]);
     const [algo, setAlgo] = useState(algorythm);
     const [isSorting, setIsSorting] = useState(true);
-    const [speed, setSpeed] = useState(200);
+    const [speed, setSpeed] = useState(10);
     const [compare, setCompare] = useState([]);
     const [completed, setCompleted] = useState(true);
     const [sortedIndex, setSortedIndex] = useState([]);
@@ -59,10 +59,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     // Increments steps according to how many steps there are
     function counter(){
         console.log(steps)
-        if(steps == 8)
-            setSteps(0);
-        else
-            setSteps(steps+1);
+        setSteps(steps+1);
     }
 
 
@@ -95,7 +92,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     
 
                     if (j< k) {
-                        speed = 10000000;
+                        speed = 10;
                         
                        
                         setBlocks(arr);
