@@ -47,7 +47,7 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
               const height = ((block * 500) / blocks.length) + 10 ;
               let bg = "turquoise";
 
-              // the array is resetted
+              // the array is reset.
               if (needsSorting){
                 bg = "turquoise";
               }
@@ -75,11 +75,6 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
               // if (sorted && !needsSorting) {
               //   bg = "#4bc52e";
               // }
-
-
-
-              
-              
 
               const style = {
                 backgroundColor: bg,

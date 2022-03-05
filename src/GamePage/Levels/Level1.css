@@ -1,3 +1,12 @@
 .prev-next-container {
     display: flex;
 }
+
+.list   {
+    display: flex;
+    flex-direction: row;
+}
+
+.block  {
+    border: 1px solid black;
+}
