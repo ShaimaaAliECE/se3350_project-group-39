@@ -154,36 +154,6 @@ function SelectionPage() {
           />
         </div>
 
-<<<<<<< HEAD
-        <div align="center" style={{ padding: "10px" }}></div>
-
-        <div className="barDiv">
-          {!clicked ? (
-            <button className="submit" onClick={() => setClicked(true)}>
-              Start
-            </button>
-          ) : (
-              <button
-                className="submit"
-                onClick={() => {
-                  setClicked(false);
-                  handleExit();
-                }}
-              >
-                Exit
-              </button>
-            )}
-          <Expand className="expand" open={clicked}>
-            <div className="expandDiv">
-              {clicked ? (
-                <>
-                  <Game algorythm={algo} difficulty={level} size={listSize} />
-                  <Timer handleTimeChange={handleTime} />
-                </>
-              ) : undefined}
-            </div>
-          </Expand>
-=======
         <div align="center" style={{ padding: "10px" }}>
           <div>
             <button className="submit" onClick={() => setClicked(!clicked)}>
@@ -205,7 +175,6 @@ function SelectionPage() {
               <Timer handleTimeChange={handleTime} />
               : undefined
             }
->>>>>>> main
         </div>
       </div>
     </div>
