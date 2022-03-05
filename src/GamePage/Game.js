@@ -57,10 +57,11 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     }, [clicked, size]);
 
     function counter(){
+        console.log(steps)
         if(steps == 8)
             setSteps(0);
         else
-            setSteps(steps++);
+            setSteps(steps+1);
     }
 
 

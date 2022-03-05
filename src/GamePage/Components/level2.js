@@ -11,12 +11,13 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
 
   useEffect(() => {
+    handleSteps();
     setWidth(
       Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
     );
       setList(blocks);  
   
-  }, [blocks, sorted]);
+  }, [blocks, sorted, steps]);
 
 
   const handleOnDragEnd = (result) => {
@@ -80,18 +81,10 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                 bg = "turquoise";
               }
 
-              
-                if((i===j || i===(j+1)) && (items[0] > items[1]))
-                {
-                    bg = "blue";
-                    console.log("penis" + items[i] + "77" + items[i+1])
-                    console.log(j)
-                    
-                }
-
                 for(let x = 0; x < current.length; x++)
                 {
-                  
+                  if(i == current[x])
+                    bg="blue";
                 }
               
 
