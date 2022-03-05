@@ -21,6 +21,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [sortedIndex, setSortedIndex] = useState([]);
     const [swap, setSwap] = useState([]);
     const [current, setCurrent] = useState([0,1,2]);
+    const [steps, setSteps] = useState(0);
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
@@ -54,6 +55,13 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         setLength(size);
         
     }, [clicked, size]);
+
+    function counter(){
+        if(steps == 8)
+            setSteps(0);
+        else
+            setSteps(steps++);
+    }
 
 
     // Sorts the array of numbers
@@ -128,8 +136,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             sortOrder(bubbleSort(blocks));
       
         }
-
-        
     }
 
     // Displays all the blocks in the array
@@ -161,6 +167,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                 />
+                <button onClick={counter}> Next </button>
             </div>
         );
     }
