@@ -42,8 +42,19 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
           setCurrent([2,3,4])
           break;
         case 2:
+          setCurrent([0,1,2,3,4])
           break;
         case 3:
+          setCurrent([5,6])
+          break;
+        case 4:
+          setCurrent([7,8,9])
+          break;
+        case 5:
+          setCurrent([5,6,7,8,9])
+          break;
+        case 6:
+          setCurrent([0,1,2,3,4,5,6,7,8,9])
           break;
       }
   }
