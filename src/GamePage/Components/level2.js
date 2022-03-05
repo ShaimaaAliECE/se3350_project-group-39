@@ -35,7 +35,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
   };
 
   // Switches what is being stored in the current array
-  const handleSteps = () =>{
+  function handleSteps() {
     console.log(steps);
       switch(steps){
         case 0:
@@ -85,7 +85,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
 
                 for(let x = 0; x < current.length; x++)
                 {
-                  if(i == current[x]) {
+                  if(i === current[x]) {
                     bg="blue";
                     dropOrNotToDrop = false;
                   }
@@ -97,11 +97,11 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                   {
                     if(arr[i] > arr[i+1])
                       return false;
-                    return true;
                   }
+                  return true;
                 }
 
-                if(steps == 7)
+                if(steps === 7)
                 {
                   if(checkSort(list))
                     bg = "#4bc52e"
