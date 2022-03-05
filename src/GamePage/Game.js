@@ -34,7 +34,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             setBlocks(data);
             
         });
-        if(clicked){
+        if(clicked && difficulty == 1){
             setIsSorting(true);
             handleSort();
         }
