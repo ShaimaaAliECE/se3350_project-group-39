@@ -4,6 +4,7 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
+import level2 from './Components/level2';
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 
@@ -19,6 +20,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [completed, setCompleted] = useState(true);
     const [sortedIndex, setSortedIndex] = useState([]);
     const [swap, setSwap] = useState([]);
+    const [current, setCurrent] = useState([]);
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
@@ -110,16 +112,35 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     }
 
     // Displays all the blocks in the array
-    return (
-        <div id="game-body">
-            <ListBlocks
-                length={length}
-                blocks={blocks}
-                compare={isSorting && compare}
-                swap={swap}
-                needsSorting={isSorting}
-                sorted={sortedIndex}
-            />
-        </div>
-    );
+    if(difficulty == 1)
+    {
+        return (
+            <div id="game-body">
+                <ListBlocks
+                    length={length}
+                    blocks={blocks}
+                    compare={isSorting && compare}
+                    swap={swap}
+                    needsSorting={isSorting}
+                    sorted={sortedIndex}
+                />
+            </div>
+        );
+    }
+
+
+    if(difficulty == 2)
+    {
+        return (
+            <div id="game-body">
+                <level2
+                    blocks={blocks}
+                    current={current}
+                    swap={swap}
+                    needsSorting={isSorting}
+                    sorted={sortedIndex}
+                />
+            </div>
+        );
+    }
 }
