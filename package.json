@@ -59,5 +59,6 @@
         "trailingComma": "es5",
         "tabWidth": 2,
         "vueIndentScriptAndStyle": false
-    }
+    },
+    "proxy": "http://0.0.0.0:5000"
 }
