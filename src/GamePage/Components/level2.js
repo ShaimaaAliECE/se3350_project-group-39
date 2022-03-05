@@ -22,6 +22,7 @@ function Level2({ blocks, current, sorted, swap, needsSorting }) {
     if (!result.destination) return;
 
     const items = Array.from(list);
+    console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
@@ -31,6 +32,9 @@ function Level2({ blocks, current, sorted, swap, needsSorting }) {
   const handleSorting = () =>{
       
   }
+
+  
+  
   
 
 
