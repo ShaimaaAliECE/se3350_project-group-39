@@ -46,6 +46,8 @@ function Level2({ blocks, sorted, swap, needsSorting }) {
             ref={provided.innerRef}
           >
             {list.map((block, i) => {
+              const items = Array.from(list);
+
               const height = ((block * 500) / blocks.length) + 10 ;
               let bg = "turquoise";
 
@@ -54,10 +56,10 @@ function Level2({ blocks, sorted, swap, needsSorting }) {
                 bg = "turquoise";
               }
 
-              if((i===0))
+              if((i===0 || i===1) && (items[0] > items[1]))
               {
                   bg = "blue";
-                  console.log("penis" + blocks[1] + " " + block)
+                  console.log("penis" + items[i] + " " + items[i+1])
               }
 
               const style = {
