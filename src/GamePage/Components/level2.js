@@ -2,46 +2,43 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-
-
-function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
+function Level2({ blocks, sorted, swap, needsSorting }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
+  const [current, setCurrent] = useState([]);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
 
   useEffect(() => {
-
     setWidth(
       Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
     );
- 
       setList(blocks);
   
   }, [blocks, sorted]);
 
 
-  
-
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
 
     const items = Array.from(list);
+    console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
+
+    console.log("fuck is this" + items[1])
 
     setList(items);
   };
 
-
-  console.log(list);
-  
- 
+  const handleSorting = () =>{
+      
+  }
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd} >
-      <Droppable isDropDisabled={false}  droppableId="blocks" direction="horizontal">
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      <Droppable droppableId="blocks" direction="horizontal">
         {(provided) => (
           <ul
             className="listBlocks"
@@ -49,6 +46,9 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
             ref={provided.innerRef}
           >
             {list.map((block, i) => {
+              const items = Array.from(list);
+              let j = 0;
+
               const height = ((block * 500) / blocks.length) + 10 ;
               let bg = "turquoise";
 
@@ -57,29 +57,14 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
                 bg = "turquoise";
               }
 
-              // i th element is being compared with some other element
-              if (
-                compare &&
-                (i === compare[0] || i === compare[1])
-              ) {
-                bg = "#ffff50";
-              }
-
-              // while swaping blokcks
-              if (swap && (i === swap[0] || i === swap[1])) {
-                bg = "red";
-              }
-
-              //while its being sorted and until it resets
-              if (sorted && sorted.includes(i)) {
-                bg = "#4bc52e";
-              }
               
-
-              // // i th element is in its correct position
-              // if (sorted && !needsSorting) {
-              //   bg = "#4bc52e";
-              // }
+                if((i===j || i===(j+1)) && (items[0] > items[1]))
+                {
+                    bg = "blue";
+                    console.log("penis" + items[i] + " " + items[i+1])
+                    console.log(j)
+                }
+              
 
               const style = {
                 backgroundColor: bg,
@@ -113,6 +98,4 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
   );
 }
 
-
-
-export default ListBlocks;
+export default Level2;
