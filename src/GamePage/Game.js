@@ -7,6 +7,7 @@ import ListBlocks from "./Components/ListBlock";
 import Level2 from "./Components/level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
+import Level1 from "./Levels/Level1";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     //states
@@ -61,6 +62,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         console.log(steps)
         setSteps(steps+1);
     }
+
 
 
     // Sorts the array of numbers
@@ -142,7 +144,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     {
         return (
             <div id="game-body">
-                <ListBlocks
+                <Level1
                     length={length}
                     blocks={blocks}
                     compare={isSorting && compare}

@@ -60,7 +60,7 @@ function SelectionPage() {
       });
   };
 
-  // Function to set the difficulty 
+  // Function to set the difficulty
   function getDifficulty() {
 
     let value = level
@@ -129,8 +129,6 @@ function SelectionPage() {
             />
           </div>
         </div>
-
-        {/* <p className="sign" align="center">Select a List Size []</p> */}
 
         <div className="barDiv">
           <p className="sign" align="center">
