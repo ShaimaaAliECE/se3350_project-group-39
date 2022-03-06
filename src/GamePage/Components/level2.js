@@ -9,6 +9,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
+  let dropOrNotToDrop = true;
 
   useEffect(() => {
     handleSteps();
@@ -62,18 +63,16 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="blocks" direction="horizontal">
+      <Droppable droppableId="items" direction="horizontal">
         {(provided) => (
           <ul
             className="listBlocks"
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {list.map((block, i) => {
-              const items = Array.from(list);
-              let j = 0;
-
-              const height = ((block * 500) / blocks.length) + 10 ;
+            {list.map((items, i) => {
+              
+              const height = ((items * 500) / items.length) + 10 ;
               let bg = "turquoise";
 
               // the array is resetted
@@ -83,11 +82,13 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
 
                 for(let x = 0; x < current.length; x++)
                 {
-                  if(i == current[x])
+                  if(i == current[x]) {
                     bg="blue";
+                    dropOrNotToDrop = false;
+                  }
+                    
                 }
               
-
               const style = {
                 backgroundColor: bg,
                 color: color,
@@ -99,16 +100,20 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                   key={i}
                   draggableId={"" + i}
                   index={i}
+                  isDragDisabled={dropOrNotToDrop} 
                 >
-                  {(provided) => (
+                
+                  {(provided) => {
+                      
+                      return (
                     <li
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <div style={style}>{block}</div>
+                      <div style={style}>{items}</div>
                     </li>
-                  )}
+                  )}}
                 </Draggable>
               );
             })}
