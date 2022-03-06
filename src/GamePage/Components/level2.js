@@ -31,8 +31,6 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    console.log("fuck is this" + items[1])
-
     setList(items);
   };
 
@@ -66,16 +64,16 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="items" direction="horizontal">
+      <Droppable droppableId="blocks" direction="horizontal">
         {(provided) => (
           <ul
             className="listBlocks"
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {list.map((items, i) => {
+            {list.map((block, i) => {
               
-              const height = ((items * 500) / items.length) + 10 ;
+              const height = ((block * 500) / list.length) + 10 ;
               let bg = "turquoise";
 
               // the array is resetted
@@ -114,7 +112,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <div style={style}>{items}</div>
+                      <div style={style}>{block}</div>
                     </li>
                   )}}
                 </Draggable>
