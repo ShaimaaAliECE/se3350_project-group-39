@@ -61,7 +61,7 @@ function Level2({ blocks, sorted, swap, needsSorting }) {
                 if((i===j || i===(j+1)) && (items[0] > items[1]))
                 {
                     bg = "blue";
-                    console.log("penis" + items[i] + "gang " + items[i+1])
+                    console.log("penis" + items[i] + "77" + items[i+1])
                     console.log(j)
                     
                 }
