@@ -7,6 +7,7 @@ import ListBlocks from "./Components/ListBlock";
 import Level2 from "./Components/level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import Level1 from "./Levels/Level1";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
@@ -104,7 +105,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     if (arr) {
                         //Set blocks to arr to update
                         setBlocks(arr);
-                        if (j !== null || k != null) setSwap([j, k]);
+                        if (j !== null || k !== null) setSwap([j, k]);
                     }
 
                     if (++i < order.length) {
@@ -127,20 +128,20 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
 
         };
-        if (algo == "mergeSort") {
+        if (algo === "mergeSort") {
             sortOrder(mergeSort(blocks));
 
-        } else if (algo == "quickSort") {
+        } else if (algo === "quickSort") {
             sortOrder(quickSort(blocks));
 
-        } else if (algo == "bubbleSort") {
+        } else if (algo === "bubbleSort") {
             sortOrder(bubbleSort(blocks));
       
         }
     }
 
     // Displays all the blocks in the array
-    if(difficulty == 1)
+    if(difficulty === 1)
     {
         return (
             <div id="game-body">
@@ -158,10 +159,14 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
 
     // Displays level 2
-    if(difficulty == 2)
+    if(difficulty === 2)
     {
         return (
             <div id="game-body">
+                <div className='prev-next-container'>
+                    <button><FaAngleLeft /></button>
+                    <button onClick={counter}><FaAngleRight /></button>
+                </div>
                 <Level2
                     blocks={blocks}
                     current={true}
@@ -170,7 +175,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     sorted={sortedIndex}
                     steps={steps}
                 />
-                <button onClick={counter}> Next </button>
             </div>
         );
     }
