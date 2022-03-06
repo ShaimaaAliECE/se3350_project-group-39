@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function Level2({ blocks, current, sorted, swap, needsSorting }) {
+function Level2({ blocks, current, sorted, swap, needsSorting, needsSwapping }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -24,6 +24,8 @@ function Level2({ blocks, current, sorted, swap, needsSorting }) {
     const items = Array.from(list);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
+
+    console.log("fuck is this" + items[1])
 
     setList(items);
   };
@@ -52,9 +54,10 @@ function Level2({ blocks, current, sorted, swap, needsSorting }) {
                 bg = "turquoise";
               }
 
-              if(current)
+              if((i===0))
               {
                   bg = "blue";
+                  console.log("penis" + blocks[1] + " " + block)
               }
 
               const style = {
