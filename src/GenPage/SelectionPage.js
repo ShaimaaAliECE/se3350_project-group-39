@@ -155,7 +155,7 @@ function SelectionPage() {
         <div align="center" style={{ padding: "10px" }}>
           <div>
             <button className="submit" onClick={() => setClicked(!clicked)}>
-              {clicked ? 'Reset' : 'Start'}
+              {clicked ? 'Reset' : 'Sort'}
             </button>
           </div>
         </div>

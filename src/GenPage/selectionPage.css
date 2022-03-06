@@ -54,6 +54,7 @@
 }
 
 .submit:hover {
+    transition-duration: 1s;
     background: linear-gradient(to right, #0d043f, #10072e);
     cursor: pointer;
 }
