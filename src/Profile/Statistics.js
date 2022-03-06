@@ -34,7 +34,6 @@ export default class Statistics extends Component {
     }
 
     render() {
-      const { statistics } = this.state;
         return (
             <div className="stats-container">
                 <div className="stat-header-container">
@@ -44,7 +43,7 @@ export default class Statistics extends Component {
                   <label>TIME</label>
                 </div>
             {
-                statistics.map((item, index) => {
+                this.state.statistics.map((item, index) => {
                     return <StatView key={index} statID={index + 1} level={item.level} algorithm={item.algorithm} time={item.time} />
                 })
             }
