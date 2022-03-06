@@ -60,6 +60,9 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     function counter(){
         console.log(steps)
         setSteps(steps+1);
+        if(steps >= 7){
+            setSteps(0);
+        }
     }
 
 

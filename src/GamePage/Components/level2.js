@@ -109,7 +109,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                     bg = "#4bc52e"
                   else
                     bg = "red"
-                  
+                  console.log(steps)
                 }
               
               const style = {
