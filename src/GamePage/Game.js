@@ -56,6 +56,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         
     }, [clicked, size]);
 
+    // Increments steps according to how many steps there are
     function counter(){
         console.log(steps)
         if(steps == 8)
@@ -157,6 +158,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     }
 
 
+    // Displays level 2
     if(difficulty == 2)
     {
         return (

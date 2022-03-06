@@ -7,7 +7,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
-  const [current, setCurrent] = useState([]);
+  const [current, setCurrent] = useState([]); //Currently highlighted blue blocks
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = true;
 
@@ -34,6 +34,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
     setList(items);
   };
 
+  // Switches what is being stored in the current array
   const handleSteps = () =>{
     console.log(steps);
       switch(steps){
