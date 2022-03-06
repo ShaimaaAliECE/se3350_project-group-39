@@ -14,7 +14,7 @@ function Level2({ blocks, sorted, swap, needsSorting }) {
     setWidth(
       Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
     );
-      setList(blocks);
+      setList(blocks);  
   
   }, [blocks, sorted]);
 
