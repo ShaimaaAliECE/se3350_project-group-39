@@ -13,12 +13,14 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
 
   useEffect(() => {
     handleSteps();
+  }, [steps]);
+
+  useEffect(() => {
     setWidth(
-      Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
-    );
-      setList(blocks);  
-  
-  }, [blocks, sorted, steps]);
+        Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
+      );
+        setList(blocks);
+  }, [blocks])
 
 
   const handleOnDragEnd = (result) => {
