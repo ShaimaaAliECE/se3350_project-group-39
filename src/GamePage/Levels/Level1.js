@@ -5,9 +5,9 @@ import './Level1.css';
 import Steps from './Steps.json'
 
 export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
-    
-    const [ list, setList ] = useState();
-    const [ index, setIndex ] = useState(0);
+
+    let index = 1;
+    const [ list, setList ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
     const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
     const [ step, setStep ] = useState(steps[index]);
     const [ nextDisable, setNextDisable ] = useState(false);
@@ -26,16 +26,17 @@ export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
             Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
         );
 
+        setStep(index)
 
     }, [index])
 
 
     function handleNext()  {
-        setIndex(index+1);
+        index++;
     }
 
     function handlePrev()   {
-        setIndex(index-1);
+        index--;
     }
 
     function handleDisable()    {
@@ -47,7 +48,8 @@ export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
             setPrevDisable(true);
         }
     }
-    
+    console.log(step)
+
     return (
         <div className='tutorial-div'>
             

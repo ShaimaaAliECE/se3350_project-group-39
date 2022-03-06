@@ -5,122 +5,112 @@
             "1" : {
                 "Description" : "Split the given list into two halves (roughly equal halves in case of a list with an odd number of elements).",
                 "array" : [ 7, 6, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 5]]
+                "range": [[0, 4], [5, 9] ]
             },
             "2" : {
-                "Description": "Split the 5 items in the left half further roughly into two halves",
+                "Description": "Split the 5 items in the left half further roughly into two halves.",
                 "array": [ 7, 6, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 3], [3, 5]]
+                "range": [[0, 2], [3, 4]]
             },
             "3" : {
-                "Description": "Split the 3 items in the left half further roughly into two halves",
+                "Description": "Split the 3 items in the left half further roughly into two halves.",
                 "array": [ 7, 6, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 2], [2, 3]]
+                "range": [[0, 1], [2]]
             },
             "4" : {
-                "Description" : "Split the 2 items in the left half further roughly into two halves",
+                "Description" : "Different Sections for this array.",
                 "array": [ 7, 6, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 1], [1, 2]]
+                "range": [[0, 1], [2],[3, 4]]
             },
             "5" : {
-                "Description" : "Now merge them together",
+                "Description" : "Identify and sort the left most sections and sort the group.",
                 "array": [ 7, 6, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 1], [1, 2]]
+                "range": [[0, 1]]
             },
             "6" : {
-                "Description" : "Merge the 2 left most items and sort them together into one sorted item",
+                "Description" : "Merge Complete.",
                 "array": [ 6, 7, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 2]]
+                "range": [[0, 1]]
             },
             "7" : {
-                "Description": "Merge the next left 2 most items and sort them together into one sorted item",
+                "Description": "Merge and sort the 2 left most sections and sort them together into one group.",
                 "array": [ 6, 7, 2, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 2], [2, 3]]
+                "range": [[0, 1], [2]]
             },
             "8" : {
-                "Description": "Merge Complete",
+                "Description": "Merge Complete.",
                 "array": [ 2, 6, 7, 8, 4, 3, 9, 2, 6, 4 ],
                 "range": [[0, 3]]
             },
             "9" : {
-                "Description": "We will now work with the right half of the items we sorted previously",
+                "Description": "Merge and sort with the remaining item we sorted previously.",
                 "array": [ 2, 6, 7, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[3, 5]]
+                "range": [[3, 4]]
             },
             "10" : {
-                "Description": "Split the 2 items further into roughly two halves",
-                "array": [ 2, 6, 7, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[3, 4], [4, 5]]
+                "Description": "Merge Complete!",
+                "array": [ 2, 6, 7, 4, 8, 3, 9, 2, 6, 4 ],
+                "range": [[3, 4]]
             },
             "11" : {
-                "Description": "Sort the 2 items and merge them together to make one sorted item",
+                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the left half of the whole array.",
                 "array": [ 2, 6, 7, 4, 8, 3, 9, 2, 6, 4 ],
-                "range": [[3, 5]]
+                "range": [[0, 2], [3, 4]]
             },
             "12" : {
-                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the left half of the whole array",
-                "array": [ 2, 6, 7, 4, 8, 3, 9, 2, 6, 4 ],
-                "range": [[0, 3], [3, 5]]
+                "Description": "Merge Complete!",
+                "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
+                "range": [[0, 4]]
             },
             "13" : {
-                "Description": "Merge Complete",
+                "Description": "Let us consider the right 5 items of the whole array.",
                 "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
-                "range": [[0, 5]]
+                "range": [[5, 9]]
             },
             "14" : {
-                "Description": "Let us consider the right 5 items of the whole array",
+                "Description": "Split the 5 items in the right half further into roughly two halves.",
                 "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
-                "range": [[5, 10]]
+                "range": [[5, 7], [8, 9]]
             },
             "15" : {
-                "Description": "Split the 5 items in the right half further into roughly two halves",
+                "Description": "Split the 3 items in the left side further into roughly two halves.",
                 "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
-                "range": [[5, 7], [7, 10]]
+                "range": [[5, 6], [7], [8, 9]]
             },
             "16" : {
-                "Description": "Split the 3 items in the right half further into roughly two halves",
+                "Description" : "Now merge and sort the two left most sections together.",
                 "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
-                "range": [[7, 8], [8, 10]]
+                "range": [[5, 6], [7]]
             },
             "17" : {
-                "Description" : "Split 2 items in the right half further into roughly two halves",
-                "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
-                "range": [[8, 9], [9, 10]]
+                "Description" : "Merge Complete!",
+                "array": [ 2, 4, 6, 7, 8, 2, 3, 9, 6, 4 ],
+                "range": [[5, 7]]
             },
             "18" : {
-                "Description" : "Now merge them together",
-                "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
-                "range": [[8, 9], [9, 10]]
-            },
-            "19" : {
-                "Description" : "Merge the 2 right most items and sort them together into one sorted item",
-                "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 4, 6 ],
-                "range": [[8, 10]]
+                "Description": "Sort the remaining item.",
+                "array": [ 2, 4, 6, 7, 8, 2, 3, 9, 4, 6 ],
+                "range": [[8, 9]]
             },
             "20" : {
-                "Description": "Merge the next right 2 most items and sort them together into one sorted item",
-                "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 4, 6 ],
-                "range": [[7, 8], [8, 10]]
-            },
-            "19" : {
-                "Description": "We will now work with the left half of the items we sorted previously",
-                "array": []
-            },
-            "20" : {
-                "Description": "Split the 2 items on the left further into roughly two halves",
-                "array": []
+                "Description": "Merge and sort the subsections.",
+                "array": [ 2, 4, 6, 7, 8,  2, 3, 9, 4, 6 ],
+                "range": [[5, 7], [8,9]]
             },
             "21" : {
-                "Description": "Sort the 2 items and mege them together to make one sorted item",
-                "array": []
+                "Description": "Merge Completed!",
+                "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
+                "range": [[5, 9]]
             },
             "22" : {
-                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the right half of the whole array",
-                "array": []
+                "Description": "Now We have to sorted Halves. Sort the 2 halves and mege them together to make one sorted array!",
+                "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
+                "range": [[0, 4],[5, 9]]
             },
             "23" : {
-                "Description": "Now, merge the 2 of the sorted halves of the whole array to complete sorting the array",
-                "array": []
+                "Description": "MergeSort Algorythm Completed!",
+                "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
+                "range": [[0, 4],[5, 9]]
             }
         }
     }
