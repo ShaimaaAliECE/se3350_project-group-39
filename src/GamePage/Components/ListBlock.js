@@ -41,7 +41,7 @@ function ListBlocks({ blocks, compare, sorted, swap, needsSorting }) {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd} >
-      <Droppable isDropDisabled={true}  droppableId="blocks" direction="horizontal">
+      <Droppable isDropDisabled={false}  droppableId="blocks" direction="horizontal">
         {(provided) => (
           <ul
             className="listBlocks"

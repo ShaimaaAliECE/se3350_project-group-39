@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function Level2({ blocks, current, sorted, swap, needsSorting, needsSwapping }) {
+function Level2({ blocks, sorted, swap, needsSorting }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
+  const [current, setCurrent] = useState([]);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function Level2({ blocks, current, sorted, swap, needsSorting, needsSwapping }) 
     if (!result.destination) return;
 
     const items = Array.from(list);
+    console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
@@ -33,8 +35,6 @@ function Level2({ blocks, current, sorted, swap, needsSorting, needsSwapping }) 
   const handleSorting = () =>{
       
   }
-  
-
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>

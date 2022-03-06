@@ -20,7 +20,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [completed, setCompleted] = useState(true);
     const [sortedIndex, setSortedIndex] = useState([]);
     const [swap, setSwap] = useState([]);
-    const [current, setCurrent] = useState([]);
+    const [current, setCurrent] = useState([0,1,2]);
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
@@ -64,15 +64,36 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
             (function loop(i) { 
                 setTimeout(function () {
+
+                    //Timer, each step over time exectued 
+                    console.log(order[i])
+
+                    //
                     const [j, k, arr, index] = order[i];
+
+                    //cOMPARE of two values to  j and lk
                     setCompare([j, k]);
+
+                    //Empty swap
                     setSwap([]);
 
+                    //
                     if (index !== null) {
                         setSortedIndex((prevState) => [...prevState, index]);
+          
+                    }
+                    
+
+                    if (j< k) {
+                        speed = 10000000;
+                        
+                       
+                        setBlocks(arr);
                     }
 
+                    //If arr has array 
                     if (arr) {
+                        //Set blocks to arr to update
                         setBlocks(arr);
                         if (j !== null || k != null) setSwap([j, k]);
                     }
@@ -135,7 +156,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             <div id="game-body">
                 <Level2
                     blocks={blocks}
-                    current={current}
+                    current={true}
                     swap={swap}
                     needsSorting={isSorting}
                     sorted={sortedIndex}
