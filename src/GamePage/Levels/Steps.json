@@ -92,25 +92,25 @@
                 "array": [ 2, 4, 6, 7, 8, 2, 3, 9, 4, 6 ],
                 "range": [[8, 9]]
             },
-            "20" : {
+            "19" : {
                 "Description": "Merge and sort the subsections.",
                 "array": [ 2, 4, 6, 7, 8,  2, 3, 9, 4, 6 ],
                 "range": [[5, 7], [8,9]]
             },
-            "21" : {
+            "20" : {
                 "Description": "Merge Completed!",
                 "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
                 "range": [[5, 9]]
             },
-            "22" : {
+            "21" : {
                 "Description": "Now We have to sorted Halves. Sort the 2 halves and mege them together to make one sorted array!",
                 "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
                 "range": [[0, 4],[5, 9]]
             },
-            "23" : {
+            "22" : {
                 "Description": "MergeSort Algorythm Completed!",
-                "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
-                "range": [[0, 4],[5, 9]]
+                "array": [ 2, 2, 3, 4, 4, 6, 6, 7, 8, 9 ],
+                "range": [[0, 9]]
             }
         }
     }

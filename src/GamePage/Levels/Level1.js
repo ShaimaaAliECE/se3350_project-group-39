@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import ListBlocks from '../Components/ListBlock';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import './Level1.css';
 import Steps from './Steps.json'
 
-export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
+export default function Level1() {
 
-    let index = 1;
-    const [ list, setList ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
+    const colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
+
+    
+    const [ index, setIndex ] = useState(1);
+    const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
     const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
-    const [ step, setStep ] = useState(steps[index]);
+    const [ step, setStep ] = useState(steps[`${index}`]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
 
@@ -20,42 +22,55 @@ export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
     const color = blocks.length <= 50 && width > 14 ? 'black' : 'transparent'
 
     useEffect(() => {
-        setList(blocks);
+
+        //setting displayed step as the initial step from the json file
+        setStep(steps[index]);
 
         setWidth(
             Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
         );
 
-        setStep(index)
+        setStep(steps[`${index}`])
+
+        if (step.array) {
+            setBlocks(step.array);
+        }
+
+        console.log(index, step.array)
+        handleDisable();
 
     }, [index])
 
-
     function handleNext()  {
-        index++;
+        setIndex(index+1);
+        
     }
 
     function handlePrev()   {
-        index--;
+        setIndex(index-1);
     }
 
     function handleDisable()    {
         if (index === 22)   {
             setNextDisable(true);
+        } else {
+            setNextDisable(false);
         }
 
-        if (index === 0)    {
+        if (index === 1)    {
             setPrevDisable(true);
+        } else {
+            setPrevDisable(false);
         }
     }
-    console.log(step)
+    
 
     return (
         <div className='tutorial-div'>
             
             <div className='prev-next-container'>
-                <button handleClick={handlePrev} class="next-bttn"><FaAngleLeft /></button>
-                <button handleClick={handleNext} class="prev-bttn"><FaAngleRight /></button>
+                <button disabled={prevDisable} onClick={handlePrev} className="next-bttn"><FaAngleLeft /></button>
+                <button disabled={nextDisable} onClick={handleNext} className="prev-bttn"><FaAngleRight /></button>
             </div>
             
             <div>
@@ -64,7 +79,7 @@ export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
                 </div>
 
                 <ul className="list">
-                    {list.map((block, i) => {
+                     {blocks.map((block, i) => {
                         const height = ((block * 500) / blocks.length) + 10;
                         let bg = "turquoise"
 
