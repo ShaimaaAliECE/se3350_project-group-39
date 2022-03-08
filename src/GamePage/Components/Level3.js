@@ -51,19 +51,29 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
           setRight([ list[5], list[6], list[7], list[8], list[9]]);
           break;
         case 2:
-          setCurrent([0,1,2,3,4])
+          setCurrent([list[0], list[1], list[2], list[3], list[4]])
+          setLeft([]);
+          setRight([ list[5], list[6], list[7], list[8], list[9]]);
           break;
         case 3:
-          setCurrent([5,6])
+          setCurrent([list[5], list[6]])
+          setLeft([list[0], list[1], list[2], list[3], list[4]]);
+          setRight([list[7], list[8], list[9]]);
           break;
         case 4:
-          setCurrent([7,8,9])
+          setCurrent([list[7], list[8],list[9]])
+          setLeft([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
+          setRight([]);
           break;
         case 5:
-          setCurrent([5,6,7,8,9])
+          setCurrent([list[5],list[6],list[7], list[8],list[9]])
+          setLeft([list[0], list[1],list[2], list[3], list[4]]);
+          setRight([]);
           break;
         case 6:
-          setCurrent([0,1,2,3,4,5,6,7,8,9])
+          setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
+          setLeft([]);
+          setRight([]);
           break;
         default:
           break;
