@@ -162,7 +162,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                     steps={steps}
-                    counter={counter}
+                    countUp={counter}
                 />
             : <></>}
         </div>

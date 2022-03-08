@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable, resetServerContext } from "react
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
 
-function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
+function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -71,7 +71,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
     <div>
       <div className='prev-next-container'>
           <button><FaAngleLeft /></button>
-          <button onClick={counter}><FaAngleRight /></button>
+          <button onClick={countUp}><FaAngleRight /></button>
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
