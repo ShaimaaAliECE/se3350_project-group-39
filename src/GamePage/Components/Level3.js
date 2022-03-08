@@ -32,9 +32,11 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
     if (!result.destination) return;
     
     console.log(JSON.stringify(result) + "Dasdasd")
+    
     // FOR EACH CHANGE then check validity, if the des
     //Check if block can be changed, if not 
-
+    
+    checkChange(result);
     
     const items = Array.from(list);
     console.log(items)
@@ -44,13 +46,27 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
     setList(items);
   };
 
+  const checkChange = (move) => {
+
+    let arr = outOfPlace;
+    console.log(JSON.stringify(move.source.index) + "Dasdasd")
+    let start = move.source.index;
+    let end = move.destination.index;
+    arr.push(start)
+    arr.push(end)
+
+    if (!current.includes(end) || !current.includes(end)) {
+     setOutOfPlace(arr)
+    }
+  };
+
   // Switches what is being stored in the current array
   function handleSteps() {
     console.log(steps);
       switch(steps){
         case 0:
-          setCurrent([list[0], list[1]]);
-          setOutside([list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9]])
+          setCurrent([0, 1]);
+          setOutside([2, 3, 4, 5, 6, 7, 8, 9])
           checkArr();
           break;
         case 1:
@@ -95,6 +111,8 @@ function checkArr()
 {
     let arr = []; //holding array
     let leftOffset = 0;
+
+
 
     //Checks the left array
     //Loop thtough left from 0 to length
