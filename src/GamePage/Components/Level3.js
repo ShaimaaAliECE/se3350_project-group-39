@@ -46,54 +46,65 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
         case 0:
           setCurrent([list[0], list[1]]);
           setRight([list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9]])
+          checkArr();
           break;
         case 1:
           setCurrent([list[2], list[3], list[4]])
           setLeft([list[0], list[1]]);
           setRight([ list[5], list[6], list[7], list[8], list[9]]);
+          checkArr();
           break;
         case 2:
           setCurrent([list[0], list[1], list[2], list[3], list[4]])
           setLeft([]);
           setRight([ list[5], list[6], list[7], list[8], list[9]]);
+          checkArr();
           break;
         case 3:
           setCurrent([list[5], list[6]])
           setLeft([list[0], list[1], list[2], list[3], list[4]]);
           setRight([list[7], list[8], list[9]]);
+          checkArr();
           break;
         case 4:
           setCurrent([list[7], list[8],list[9]])
           setLeft([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
           setRight([]);
+          checkArr();
           break;
         case 5:
           setCurrent([list[5],list[6],list[7], list[8],list[9]])
           setLeft([list[0], list[1],list[2], list[3], list[4]]);
           setRight([]);
+          checkArr();
           break;
         case 6:
           setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
           setLeft([]);
           setRight([]);
+          checkArr();
           break;
         default:
           break;
       }
-      checkArr();
   }
 
 // This checks if any blocks are out of array
 function checkArr()
 {
-    let arr = []; //holding array 
+    let arr = []; //holding array
+    let leftOffset = 0;
 
     //Checks the left array
-    for(let i = 0; i < left.length; i++)
+    for(let i = 0 + leftOffset; i < left.length; i++)
     {
         if(list[i] !== left[i])
+        {
             arr.push(i);
+            leftOffset += whichMoved(list, left);
+        }
     }
+    console.log('left: ' + left);
     
     //Checks the right array
     for(let i = left.length + current.length; i < list.length; i++)
@@ -101,6 +112,7 @@ function checkArr()
         if(list[i] !== right[i])
             arr.push(i)
     }
+    console.log('right: ' + right);
 
     //Checks the current array to see if its in order
     for(let i = current.length; i < list.length - left.length; i++)
@@ -108,9 +120,24 @@ function checkArr()
         if(list[i+1] < list[i])
             arr.push(i);
     }
+    console.log('current: ' + current)
 
+    console.log(arr)
     setOutOfPlace(arr);
 }
+
+function whichMoved(a, b) {
+    for(var i=0; i < a.length; i++) {
+        if (a[i] != b[i]) {
+            if(a[i+1] == b[i]) {
+                return 1;
+            } else {
+                return -1;
+            }
+          }
+        }
+      }
+
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
