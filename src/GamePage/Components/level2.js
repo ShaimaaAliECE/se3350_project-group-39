@@ -9,29 +9,31 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   );
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //Currently highlighted blue blocks
-  const [currestStepValid, setCurrentStepValid] = useState(false);
+  const [currentStepValid, setCurrentStepValid] = useState(false);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
-  let dropOrNotToDrop = true;
+  let isDraggable = true;
 
   useEffect(() => {
     setCurrentStepValid(false);
+  }, [steps]);
+
+  useEffect(() => {
     handleSteps();
     checkCurrentStep(list);
-  }, [steps]);
+  }, [currentStepValid])
 
   useEffect(() => {
     setWidth(
         Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
       );
-      setList(blocks);
     setCurrentStepValid(false);
+    setList(blocks);
     checkCurrentStep(blocks);
   }, [blocks]);
 
   const handleOnDragEnd = (result) => {
-    if (!result.destination) return;
-
-    if (!current.includes(result.destination.index)) return;
+    // accomodate invalid dragging of items
+    if (!result.destination || !current.includes(result.destination.index)) return;
 
     const items = Array.from(list);
     console.log(items)
@@ -80,9 +82,6 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     sortedArray.sort((first, second) => first - second);
     let isEqual = true;
 
-    console.log(array);
-    console.log(sortedArray);
-    
     array.forEach((item, index) => {
       if (!(sortedArray[index] === item)) {
         isEqual = false;
@@ -121,13 +120,13 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   bg = "turquoise";
                 }
 
-                  if(current.includes(index)) {
-                    bg = ( currestStepValid ? "#4bc52e" : "yellow" );
-                    dropOrNotToDrop = false;
-                  } else {
-                    bg = "black";
-                    dropOrNotToDrop = true;
-                  }
+                if(current.includes(index)) {
+                  bg = ( currentStepValid ? "#4bc52e" : "yellow" );
+                  isDraggable = true;
+                } else {
+                  bg = "black";
+                  isDraggable = false;
+                }
 
                 // Checking if the final array is sorted
                 const checkSort = (arr) => {
@@ -142,7 +141,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   {
                     if(checkSort(list)) {
                       bg = "#4bc52e"
-                      dropOrNotToDrop = true;
+                      isDraggable = true;
                     } else {
                       bg = "red"
                     }
@@ -160,7 +159,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                     key={index}
                     draggableId={"" + index}
                     index={index}
-                    isDragDisabled={dropOrNotToDrop} 
+                    isDragDisabled={!isDraggable} 
                   >
                   
                     {(provided) => {
@@ -172,7 +171,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                         {...provided.dragHandleProps}
                       >
                         <div
-                          style={{ backgroundColor: current.includes(index) ? currestStepValid ? "#4bc52e" : "yellow" : bg || "black", ...style }}
+                          style={{ backgroundColor: current.includes(index) ? currentStepValid ? "#4bc52e" : "yellow" : bg || "black", ...style }}
                         >
                           {block}
                         </div>
