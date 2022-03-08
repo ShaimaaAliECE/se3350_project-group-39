@@ -14,7 +14,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
-  let dropOrNotToDrop = true;
+  let dropOrNotToDrop = false;
 
   useEffect(() => {
     handleSteps();
@@ -80,6 +80,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
         default:
           break;
       }
+      checkArr();
   }
 
 function checkArr()
@@ -125,14 +126,19 @@ function checkArr()
                 bg = "turquoise";
               }
 
-                for(let x = 0; x < current.length; x++)
-                {
-                  if(i === current[x]) {
-                    bg="blue";
-                    dropOrNotToDrop = false;
-                  }
+                // for(let x = 0; x < outOfPlace.length; x++)
+                // {
+                //   if(i === outOfPlace[x]) {
+                //     console.log(i)
+                //     bg="red";
+                //     //dropOrNotToDrop = false;
+                //   }
                     
+                // }
+                if (outOfPlace.includes(i)) {
+                  bg="red";
                 }
+                console.log(steps +"step")
 
                 const checkSort = (arr) =>{
                   for(let i = 0; i < arr.length; i++)
@@ -143,14 +149,14 @@ function checkArr()
                   return true;
                 }
 
-                if(steps === 7)
-                {
-                  if(checkSort(list))
-                    bg = "#4bc52e"
-                  else
-                    bg = "red"
-                  console.log(steps)
-                }
+                // if(steps === 7)
+                // {
+                //   if(checkSort(list))
+                //     bg = "#4bc52e"
+                //   else
+                //     bg = "red"
+                //   console.log(steps)
+                // }
               
               const style = {
                 backgroundColor: bg,
