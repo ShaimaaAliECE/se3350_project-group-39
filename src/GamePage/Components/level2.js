@@ -85,6 +85,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                 bg = "turquoise";
               }
 
+                // Setting the current steps blue
                 for(let x = 0; x < current.length; x++)
                 {
                   if(i === current[x]) {
@@ -94,6 +95,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps }) {
                     
                 }
 
+                // Checking if the final array is sorted
                 const checkSort = (arr) =>{
                   for(let i = 0; i < arr.length; i++)
                   {
