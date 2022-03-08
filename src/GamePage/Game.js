@@ -12,7 +12,7 @@ import Level1 from "./Levels/Level1";
 import Level3 from "./Components/Level3";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
-    //states
+    // states
     const [length, setLength] = useState(size);
     const [level, setLevel] = useState(difficulty);
     const [blocks, setBlocks] = useState([]);
@@ -144,11 +144,9 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         }
     }
 
-    // Displays all the blocks in the array
-    if(difficulty === 1)
-    {
-        return (
-            <div id="game-body">
+    return (
+        <div id="game-body">
+            { difficulty === 1 ? 
                 <Level1
                     length={length}
                     blocks={blocks}
@@ -157,20 +155,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                 />
-            </div>
-        );
-    }
-
-
-    // Displays level 2
-    if(difficulty === 2)
-    {
-        return (
-            <div id="game-body">
-                <div className='prev-next-container'>
-                    <button><FaAngleLeft /></button>
-                    <button onClick={counter}><FaAngleRight /></button>
-                </div>
+            : difficulty === 2 ? 
                 <Level2
                     blocks={blocks}
                     current={true}
@@ -178,16 +163,10 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                     steps={steps}
+                    countUp={counter}
                 />
-            </div>
-        );
-    }
-
-        // Displays level 3
-        if(difficulty === 3)
-        {
-            return (
-                <div id="game-body">
+            : difficulty === 3 ? 
+                <>
                     <div className='prev-next-container'>
                         <button><FaAngleLeft /></button>
                         <button onClick={counter}><FaAngleRight /></button>
@@ -200,7 +179,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                         sorted={sortedIndex}
                         steps={steps}
                     />
-                </div>
-            );
-        }
+                </>
+            : <></>}
+        </div>
+    );
 }
