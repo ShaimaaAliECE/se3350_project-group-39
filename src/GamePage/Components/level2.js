@@ -81,7 +81,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {list.map((block, i) => {
+              {list.map((block, index) => {
                 
                 const height = ((block * 500) / list.length) + 10 ;
                 let bg = "turquoise";
@@ -91,13 +91,12 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
                   bg = "turquoise";
                 }
 
-                  for(let x = 0; x < current.length; x++)
-                  {
-                    if(i === current[x]) {
-                      bg="blue";
-                      dropOrNotToDrop = false;
-                    }
-                      
+                  if(current.includes(index)) {
+                    bg="yellow";
+                    dropOrNotToDrop = false;
+                  } else {
+                    bg="black";
+                    dropOrNotToDrop = true;
                   }
 
                   const checkSort = (arr) =>{
@@ -111,8 +110,10 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
 
                   if(steps === 7)
                   {
-                    if(checkSort(list))
+                    if(checkSort(list)) {
                       bg = "#4bc52e"
+                      dropOrNotToDrop = false;
+                    }
                     else
                       bg = "red"
                     console.log(steps)
@@ -126,9 +127,9 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
                 };
                 return (
                   <Draggable
-                    key={i}
-                    draggableId={"" + i}
-                    index={i}
+                    key={index}
+                    draggableId={"" + index}
+                    index={index}
                     isDragDisabled={dropOrNotToDrop} 
                   >
                   
