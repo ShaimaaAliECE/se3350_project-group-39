@@ -7,7 +7,10 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
-  const [current, setCurrent] = useState([]); //Currently highlighted blue blocks
+  const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
+  const [left, setLeft] = useState([]); //The blocks left of the current array
+  const [right, setRight] = useState([]); //The blocks right of the current array
+
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = true;
 
@@ -39,10 +42,13 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
     console.log(steps);
       switch(steps){
         case 0:
-          setCurrent([0,1]);
+          setCurrent([list[0], list[1]]);
+          setRight([list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9]])
           break;
         case 1:
-          setCurrent([2,3,4])
+          setCurrent([list[2], list[3], list[4]])
+          setLeft([list[0], list[1]]);
+          setRight([ list[5], list[6], list[7], list[8], list[9]]);
           break;
         case 2:
           setCurrent([0,1,2,3,4])
