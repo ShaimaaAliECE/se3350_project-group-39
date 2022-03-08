@@ -9,9 +9,9 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
   );
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
-  const [left, setLeft] = useState([]); //The blocks left of the current array
-  const [right, setRight] = useState([]); //The blocks right of the current array
+  const [outside, setOutside] = useState([]); //The blocks left of the current array
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
+  const [changes,setChanges] = useState([]);
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -30,7 +30,12 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
+    
+    console.log(JSON.stringify(result) + "Dasdasd")
+    // FOR EACH CHANGE then check validity, if the des
+    //Check if block can be changed, if not 
 
+    
     const items = Array.from(list);
     console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
@@ -45,44 +50,40 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
       switch(steps){
         case 0:
           setCurrent([list[0], list[1]]);
-          setRight([list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9]])
+          setOutside([list[2], list[3], list[4], list[5], list[6], list[7], list[8], list[9]])
           checkArr();
           break;
         case 1:
           setCurrent([list[2], list[3], list[4]])
-          setLeft([list[0], list[1]]);
-          setRight([ list[5], list[6], list[7], list[8], list[9]]);
+          setOutside([list[0], list[1],list[5], list[6], list[7], list[8], list[9]]);
           checkArr();
           break;
         case 2:
-          setCurrent([list[0], list[1], list[2], list[3], list[4]])
-          setLeft([]);
-          setRight([ list[5], list[6], list[7], list[8], list[9]]);
           checkArr();
+          setCurrent([list[0], list[1], list[2], list[3], list[4]])
+          setOutside([ list[5], list[6], list[7], list[8], list[9]]);
+          
           break;
         case 3:
-          setCurrent([list[5], list[6]])
-          setLeft([list[0], list[1], list[2], list[3], list[4]]);
-          setRight([list[7], list[8], list[9]]);
           checkArr();
+          setCurrent([list[5], list[6]])
+          setOutside([list[0], list[1], list[2], list[3], list[4],list[7], list[8], list[9]]);
+          
           break;
         case 4:
-          setCurrent([list[7], list[8],list[9]])
-          setLeft([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
-          setRight([]);
           checkArr();
+          setCurrent([list[7], list[8],list[9]])
+          setOutside([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
           break;
         case 5:
-          setCurrent([list[5],list[6],list[7], list[8],list[9]])
-          setLeft([list[0], list[1],list[2], list[3], list[4]]);
-          setRight([]);
           checkArr();
+          setCurrent([list[5],list[6],list[7], list[8],list[9]])
+          setOutside([list[0], list[1],list[2], list[3], list[4]]);  
           break;
         case 6:
-          setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
-          setLeft([]);
-          setRight([]);
           checkArr();
+          setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
+          setOutside([]);
           break;
         default:
           break;
@@ -96,36 +97,43 @@ function checkArr()
     let leftOffset = 0;
 
     //Checks the left array
-    for(let i = 0 + leftOffset; i < left.length; i++)
-    {
-        if(list[i] !== left[i])
-        {
-            arr.push(i);
-            leftOffset += whichMoved(list, left);
-        }
-    }
-    console.log('left: ' + left);
+    //Loop thtough left from 0 to length
+    // for(let i = 0 + leftOffset; i < left.length; i++)
+    // {
+    //     //Check the index of list see if corresponding values match
+    //     if(list[i] !== left[i])
+    //     {
+    //         arr.push(i);
+
+    //         leftOffset += whichMoved(list, left);
+    //     }
+    // }
+    // console.log('left: ' + left);
     
-    //Checks the right array
-    for(let i = left.length + current.length; i < list.length; i++)
-    {
-        if(list[i] !== right[i])
-            arr.push(i)
-    }
-    console.log('right: ' + right);
+    // //Checks the right array
+    // for(let i = left.length + current.length; i < list.length; i++)
+    // {
+    //     if(list[i] !== right[i] && (right.length!=0))
+    //     {
+    //       arr.push(i)
+    //     }
+           
+    // }
+    // console.log('right: ' + right);
 
-    //Checks the current array to see if its in order
-    for(let i = current.length; i < list.length - left.length; i++)
-    {
-        if(list[i+1] < list[i])
-            arr.push(i);
-    }
-    console.log('current: ' + current)
+    // //Checks the current array to see if its in order
+    // for(let i = current.length; i < list.length - left.length; i++)
+    // {
+    //     if(list[i+1] < list[i])
+    //         arr.push(i);
+    // }
+    // console.log('current: ' + current)
 
-    console.log(arr)
+    console.log(arr + "dsa")
     setOutOfPlace(arr);
 }
 
+//a,b
 function whichMoved(a, b) {
     for(var i=0; i < a.length; i++) {
         if (a[i] != b[i]) {
