@@ -1,3 +1,4 @@
+import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
@@ -10,6 +11,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
   const [left, setLeft] = useState([]); //The blocks left of the current array
   const [right, setRight] = useState([]); //The blocks right of the current array
+  const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = true;
@@ -68,9 +70,31 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
         default:
           break;
       }
-
-
   }
+
+function checkArr()
+{
+    let arr = [];
+    for(let i = 0; i < left.length; i++)
+    {
+        if(list[i] !== left[i])
+            arr.push(i);
+    }
+    
+    for(let i = left.length + current.length; i < list.length; i++)
+    {
+        if(list[i] !== right[i])
+            arr.push(i)
+    }
+
+    for(let i = current.length; i < list.length - left.length; i++)
+    {
+        if(list[i+1] < list[i])
+            arr.push(i);
+    }
+
+    setOutOfPlace(arr);
+}
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
