@@ -99,13 +99,12 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
                     dropOrNotToDrop = true;
                   }
 
-                  const checkSort = (arr) =>{
-                    for(let i = 0; i < arr.length; i++)
-                    {
-                      if(arr[i] > arr[i+1])
-                        return false;
-                    }
-                    return true;
+                // Checking if the final array is sorted
+                const checkSort = (arr) =>{
+                  for(let i = 0; i < arr.length; i++)
+                  {
+                    if(arr[i] > arr[i+1])
+                      return false;
                   }
 
                   if(steps === 7)
@@ -118,6 +117,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp }) {
                       bg = "red"
                     console.log(steps)
                   }
+                }
                 
                 const style = {
                   backgroundColor: bg,

@@ -9,6 +9,7 @@ import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import Level1 from "./Levels/Level1";
+import Level3 from "./Components/Level3";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     // states
@@ -164,6 +165,21 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     steps={steps}
                     countUp={counter}
                 />
+            : difficulty === 3 ? 
+                <>
+                    <div className='prev-next-container'>
+                        <button><FaAngleLeft /></button>
+                        <button onClick={counter}><FaAngleRight /></button>
+                    </div>
+                    <Level3
+                        blocks={blocks}
+                        current={true}
+                        swap={swap}
+                        needsSorting={isSorting}
+                        sorted={sortedIndex}
+                        steps={steps}
+                    />
+                </>
             : <></>}
         </div>
     );
