@@ -11,7 +11,7 @@ import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import Level1 from "./Levels/Level1";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
-    //states
+    // states
     const [length, setLength] = useState(size);
     const [level, setLevel] = useState(difficulty);
     const [blocks, setBlocks] = useState([]);
