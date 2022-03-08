@@ -82,21 +82,26 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
       }
   }
 
+// This checks if any blocks are out of array
 function checkArr()
 {
-    let arr = [];
+    let arr = []; //holding array 
+
+    //Checks the left array
     for(let i = 0; i < left.length; i++)
     {
         if(list[i] !== left[i])
             arr.push(i);
     }
     
+    //Checks the right array
     for(let i = left.length + current.length; i < list.length; i++)
     {
         if(list[i] !== right[i])
             arr.push(i)
     }
 
+    //Checks the current array to see if its in order
     for(let i = current.length; i < list.length - left.length; i++)
     {
         if(list[i+1] < list[i])
