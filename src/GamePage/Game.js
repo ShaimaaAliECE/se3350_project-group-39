@@ -145,7 +145,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
 
     return (
         <div id="game-body">
-        { difficulty === 1 ? 
+            { difficulty === 1 ? 
                 <Level1
                     length={length}
                     blocks={blocks}
@@ -154,12 +154,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                 />
-        : difficulty === 2 ? 
-            <>
-                <div className='prev-next-container'>
-                    <button><FaAngleLeft /></button>
-                    <button onClick={counter}><FaAngleRight /></button>
-                </div>
+            : difficulty === 2 ? 
                 <Level2
                     blocks={blocks}
                     current={true}
@@ -169,8 +164,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     steps={steps}
                     counter={counter}
                 />
-            </>
-        : <></>}
+            : <></>}
         </div>
     );
 }
