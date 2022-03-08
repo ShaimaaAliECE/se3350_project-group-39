@@ -28,7 +28,7 @@ export default function Level1({blocks, swap, compare, needsSorting, sorted}) {
 
         setStep(index)
 
-    }, [index])
+    }, [index, blocks])
 
 
     function handleNext()  {

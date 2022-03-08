@@ -143,11 +143,9 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         }
     }
 
-    // Displays all the blocks in the array
-    if(difficulty === 1)
-    {
-        return (
-            <div id="game-body">
+    return (
+        <div id="game-body">
+        { difficulty === 1 ? 
                 <Level1
                     length={length}
                     blocks={blocks}
@@ -156,16 +154,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                 />
-            </div>
-        );
-    }
-
-
-    // Displays level 2
-    if(difficulty === 2)
-    {
-        return (
-            <div id="game-body">
+        : difficulty === 2 ? 
+            <>
                 <div className='prev-next-container'>
                     <button><FaAngleLeft /></button>
                     <button onClick={counter}><FaAngleRight /></button>
@@ -178,7 +168,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     sorted={sortedIndex}
                     steps={steps}
                 />
-            </div>
-        );
-    }
+            </>
+        : <></>}
+        </div>
+    );
 }
