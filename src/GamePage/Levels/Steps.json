@@ -40,7 +40,7 @@
             "8" : {
                 "Description": "Merge Complete.",
                 "array": [ 2, 6, 7, 8, 4, 3, 9, 2, 6, 4 ],
-                "range": [[0, 3]]
+                "range": [[0, 2]]
             },
             "9" : {
                 "Description": "Merge and sort with the remaining item we sorted previously.",
@@ -53,12 +53,12 @@
                 "range": [[3, 4]]
             },
             "11" : {
-                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the left half of the whole array.",
+                "Description": "Merge the 2 sorted items to make one larger sorted.",
                 "array": [ 2, 6, 7, 4, 8, 3, 9, 2, 6, 4 ],
                 "range": [[0, 2], [3, 4]]
             },
             "12" : {
-                "Description": "Merge Complete!",
+                "Description": "Merge Complete! Half of the array is done!!",
                 "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
                 "range": [[0, 4]]
             },
@@ -92,25 +92,25 @@
                 "array": [ 2, 4, 6, 7, 8, 2, 3, 9, 4, 6 ],
                 "range": [[8, 9]]
             },
-            "20" : {
+            "19" : {
                 "Description": "Merge and sort the subsections.",
                 "array": [ 2, 4, 6, 7, 8,  2, 3, 9, 4, 6 ],
                 "range": [[5, 7], [8,9]]
             },
-            "21" : {
+            "20" : {
                 "Description": "Merge Completed!",
                 "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
                 "range": [[5, 9]]
             },
-            "22" : {
+            "21" : {
                 "Description": "Now We have to sorted Halves. Sort the 2 halves and mege them together to make one sorted array!",
                 "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
                 "range": [[0, 4],[5, 9]]
             },
-            "23" : {
+            "22" : {
                 "Description": "MergeSort Algorythm Completed!",
-                "array": [ 2, 4, 6, 7, 8, 2, 3, 4, 6, 9 ],
-                "range": [[0, 4],[5, 9]]
+                "array": [ 2, 2, 3, 4, 4, 6, 6, 7, 8, 9 ],
+                "range": [[0, 9]]
             }
         }
     }
