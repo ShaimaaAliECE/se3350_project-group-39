@@ -2,6 +2,10 @@ import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+<<<<<<< HEAD
+=======
+import { AngleRight,AngleLeft } from 'react-icons/fa';
+>>>>>>> 936ebd0452be1650613b18a2cccb8a89b521652f
 import "./listBlock.css";
 
 function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
@@ -10,7 +14,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   );
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
-  const [outside, setOutside] = useState([]); //The blocks left of the current array
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [changes,setChanges] = useState([]);
 
@@ -53,7 +56,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     console.log(JSON.stringify(move.source.index) + "Dasdasd")
     let start = move.source.index;
     let end = move.destination.index;
-   
 
     
     if ((!current.includes(end) || !current.includes(end)) && end!=start) {
@@ -61,12 +63,14 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       arr.push(end)
      
     }
+
     if (current.includes(end)) {
-      const index = arr.indexOf(current[end]);
-      const indexa = arr.indexOf(current[start]);
-      arr.splice(index, 1);
-      arr.splice(indexa, 1);
+      const endIndex = arr.indexOf(current[end]);
+      const startIndex = arr.indexOf(current[start]);
+      arr.splice(endIndex, 1);
+      arr.splice(startIndex, 1);
     }
+
     setOutOfPlace(arr)
 
     
@@ -78,39 +82,31 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       switch(steps){
         case 0:
           setCurrent([0, 1]);
-          setOutside([2, 3, 4, 5, 6, 7, 8, 9])
           checkArr();
           break;
         case 1:
           setCurrent([2,3,4])
-          setOutside([0,1,5,6,7,8,9]);
           checkArr();
           break;
         case 2:
           setCurrent([0,1,2,3,4])
-          setOutside([5,6,7,8,9]);
           checkArr();
           break;
         case 3:
-          checkArr();
-          setCurrent([5,6])
-          setOutside([0,1,2,3,4,7,8,9]);
-          
+          setCurrent([5,6])     
+          checkArr();   
           break;
-        case 4:
+        case 4:         
+          setCurrent([7,8,9])
           checkArr();
-          setCurrent([list[7], list[8],list[9]])
-          setOutside([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
           break;
-        case 5:
+        case 5:          
+          setCurrent([5,6,7,8,9])
           checkArr();
-          setCurrent([list[5],list[6],list[7], list[8],list[9]])
-          setOutside([list[0], list[1],list[2], list[3], list[4]]);  
           break;
-        case 6:
+        case 6:         
+          setCurrent([0,1,2,3,4,5,6,7,8,9])
           checkArr();
-          setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
-          setOutside([]);
           break;
         default:
           break;
