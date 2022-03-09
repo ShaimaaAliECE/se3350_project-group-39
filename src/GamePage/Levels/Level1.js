@@ -6,7 +6,7 @@ import Steps from './Steps.json'
 export default function Level1() {
     
 
-    const colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
+    const colours = ["#ff4444", "#00c851", "#ffbb33", "#33b5e5"] //red, green, yellow, light blue
 
     const [ index, setIndex ] = useState(1);
     const [ blocks, setBlocks ] = useState(Steps["Rules"]["TutorialArray"]);
@@ -28,10 +28,13 @@ export default function Level1() {
 
     useEffect(() => {
 
-        setRange(step.range);
-
         //setting displayed step as the initial step from the json file
         setStep(steps[`${index}`]);
+
+        if (!step)
+            setStep(steps['0']);
+
+        setRange(step.range);
 
         setWidth(
             Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
@@ -48,7 +51,7 @@ export default function Level1() {
         console.log(index, step.array, step.Description);
         
 
-    }, [index])
+    }, [index, []])
 
     function renderRanges()   {
         range.forEach((item, index) => {
@@ -59,7 +62,7 @@ export default function Level1() {
 
             blocks.map((block, j)  =>  {
                 if (min <= j && j <= max) {
-                    document.getElementById(j).style.backgroundColor = `${colours[index % colours.length]}`
+                    document.getElementById('block-' + j).style.backgroundColor = `${colours[index]}`
                 }
             });
         });
@@ -77,7 +80,7 @@ export default function Level1() {
     }
 
     function handleDisable()    {
-        if (index > 22)   {
+        if (index === 23)   {
             setNextDisable(true);
         } else {
             setNextDisable(false);
@@ -101,7 +104,7 @@ export default function Level1() {
             
             <div>
                 <div className="steps-div">
-                    <label>hello</label>
+                    <label>{step ? step.Description ? step.Description : undefined : undefined}</label>
                 </div>
 
                 <ul className="list">
@@ -114,7 +117,7 @@ export default function Level1() {
                             'width': width
                         }
 
-                        return (<div key={i} id={i} className='block' style={style}>{block}</div>);
+                        return (<div key={i} id={'block-' + i} className='block' style={style}>{block}</div>);
 
                     })}
                 </ul>
