@@ -10,10 +10,8 @@ export default function Level1() {
 
     const [ index, setIndex ] = useState(1);
     const [ blocks, setBlocks ] = useState(Steps["Rules"]["TutorialArray"]);
-    // const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
     const steps = Steps["Rules"]["MergeSort"];
     const [ step, setStep ] = useState(steps[`${index}`]);
-    console.log(step);
     const [ range, setRange ] = useState([]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
@@ -30,6 +28,7 @@ export default function Level1() {
 
         //setting displayed step as the initial step from the json file
         setStep(steps[`${index}`]);
+        console.log(steps[`${index}`]);
 
         if (!step)
             setStep(steps['0']);
@@ -80,7 +79,7 @@ export default function Level1() {
     }
 
     function handleDisable()    {
-        if (index === 23)   {
+        if (index === 22)   {
             setNextDisable(true);
         } else {
             setNextDisable(false);
