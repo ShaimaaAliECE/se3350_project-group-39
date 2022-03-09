@@ -174,16 +174,19 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     countDown={countDown}
                 />
             : difficulty === 3 ? 
-                <Level3
-                    blocks={blocks}
-                    current={true}
-                    swap={swap}
-                    needsSorting={isSorting}
-                    sorted={sortedIndex}
-                    steps={steps}
-                    countUp={counter}
-                    countDown={countDown}
-                />
+                <>
+                    <div> Step {steps}</div>
+                    <Level3
+                        blocks={blocks}
+                        current={true}
+                        swap={swap}
+                        needsSorting={isSorting}
+                        sorted={sortedIndex}
+                        steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
+                    />
+                </>
             : <></>}
         </div>
     );
