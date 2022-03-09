@@ -64,10 +64,7 @@ export default function Level1() {
     }
 
     function handlePrev()   {
-        if (index === 23)
-            setIndex(index - 2);
-        else    
-            setIndex(index - 1);
+        setIndex(index - 1);
     }
 
     function handleDisable()    {
