@@ -1,9 +1,11 @@
 import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import "./listBlock.css";
 
-function Level3({ blocks, sorted, swap, needsSorting, steps }) {
+function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -154,103 +156,109 @@ function checkArr()
 }
 
 //a,b
-function whichMoved(a, b) {
-    for(var i=0; i < a.length; i++) {
-        if (a[i] != b[i]) {
-            if(a[i+1] == b[i]) {
+  function whichMoved(a, b) {
+    for(var i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+            if(a[i+1] === b[i]) {
                 return 1;
             } else {
                 return -1;
             }
           }
         }
-      }
+  }
 
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="blocks" direction="horizontal">
-        {(provided) => (
-          <ul
-            className="listBlocks"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {list.map((block, i) => {
-              
-              const height = ((block * 500) / list.length) + 10 ;
-              let bg = "turquoise";
-
-              // the array is resetted
-              if (needsSorting){
-                bg = "turquoise";
-              }
-
-                // for(let x = 0; x < outOfPlace.length; x++)
-                // {
-                //   if(i === outOfPlace[x]) {
-                //     console.log(i)
-                //     bg="red";
-                //     //dropOrNotToDrop = false;
-                //   }
-                    
-                // }
-                if (outOfPlace.includes(i)) {
-                  bg="red";
-                }
-                console.log(steps +"step")
-
-                const checkSort = (arr) =>{
-                  for(let i = 0; i < arr.length; i++)
-                  {
-                    if(arr[i] > arr[i+1])
-                      return false;
-                  }
-                  return true;
-                }
-
-                // if(steps === 7)
-                // {
-                //   if(checkSort(list))
-                //     bg = "#4bc52e"
-                //   else
-                //     bg = "red"
-                //   console.log(steps)
-                // }
-              
-              const style = {
-                backgroundColor: bg,
-                color: color,
-                height: height,
-                width: width,
-              };
-              return (
-                <Draggable
-                  key={i}
-                  draggableId={"" + i}
-                  index={i}
-                  isDragDisabled={dropOrNotToDrop} 
-                >
+    <div>
+      <div className='prev-next-container'>
+          <button onClick={countDown}><FaAngleLeft /></button>
+          <button onClick={countUp}><FaAngleRight /></button>
+      </div>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="blocks" direction="horizontal">
+          {(provided) => (
+            <ul
+              className="listBlocks"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {list.map((block, i) => {
                 
-                  {(provided) => {
+                const height = ((block * 500) / list.length) + 10 ;
+                let bg = "turquoise";
+
+                // the array is resetted
+                if (needsSorting){
+                  bg = "turquoise";
+                }
+
+                  // for(let x = 0; x < outOfPlace.length; x++)
+                  // {
+                  //   if(i === outOfPlace[x]) {
+                  //     console.log(i)
+                  //     bg="red";
+                  //     //dropOrNotToDrop = false;
+                  //   }
                       
-                      return (
-                    <li
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <div style={style}>{block}</div>
-                    </li>
-                  )}}
-                </Draggable>
-              );
-            })}
-            {provided.placeholder}
-          </ul>
-        )}
-      </Droppable>
-    </DragDropContext>
+                  // }
+                  if (outOfPlace.includes(i)) {
+                    bg="red";
+                  }
+                  console.log(steps +"step")
+
+                  const checkSort = (arr) =>{
+                    for(let i = 0; i < arr.length; i++)
+                    {
+                      if(arr[i] > arr[i+1])
+                        return false;
+                    }
+                    return true;
+                  }
+
+                  // if(steps === 7)
+                  // {
+                  //   if(checkSort(list))
+                  //     bg = "#4bc52e"
+                  //   else
+                  //     bg = "red"
+                  //   console.log(steps)
+                  // }
+                
+                const style = {
+                  backgroundColor: bg,
+                  color: color,
+                  height: height,
+                  width: width,
+                };
+                return (
+                  <Draggable
+                    key={i}
+                    draggableId={"" + i}
+                    index={i}
+                    isDragDisabled={dropOrNotToDrop} 
+                  >
+                  
+                    {(provided) => {
+                        
+                        return (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <div style={style}>{block}</div>
+                      </li>
+                    )}}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </div>
   );
 }
 
