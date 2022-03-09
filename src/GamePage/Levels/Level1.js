@@ -53,12 +53,8 @@ export default function Level1() {
     function renderRanges()   {
         range.forEach((item, index) => {
             let min = item[0];
-            let max = item[1];
+            let max = item[1] ? item[1] : min;
 
-            if (!max) {
-                max = min;
-            }
-            
             console.log(min, max);
 
             blocks.map((block, j)  =>  {
@@ -71,6 +67,7 @@ export default function Level1() {
 
     function handleNext()  {
         setIndex(index+1);
+        console.log(index);
         
     }
 
