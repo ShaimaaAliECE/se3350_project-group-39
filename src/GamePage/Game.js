@@ -7,7 +7,6 @@ import ListBlocks from "./Components/ListBlock";
 import Level2 from "./Components/Level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
-import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import Level1 from "./Levels/Level1";
 import Level3 from "./Components/Level3";
 
@@ -40,7 +39,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             setBlocks(data);
             
         });
-        if(clicked && difficulty == 1){
+        if(clicked && difficulty === 1){
             setIsSorting(true);
             handleSort();
         }
@@ -107,7 +106,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     
 
                     if (j< k) {
-                        speed = 10;
+                        setSpeed(10);
                         
                        
                         setBlocks(arr);
