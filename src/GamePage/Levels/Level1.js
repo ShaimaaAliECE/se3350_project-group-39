@@ -14,7 +14,7 @@ export default function Level1() {
     const steps = Steps["Rules"]["MergeSort"];
     const [ step, setStep ] = useState(steps[`${index}`]);
     console.log(step);
-    const [ range, setRange ] = useState();
+    const [ range, setRange ] = useState([]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
 
@@ -51,11 +51,11 @@ export default function Level1() {
     }, [index])
 
     function renderRanges()   {
-        for (let i in range)    {
-            let min = range[i][0];
-            let max = range[i][1];
+        range.forEach((item, index) => {
+            let min = item[0];
+            let max = item[1];
 
-            if (max === undefined)  {
+            if (!max) {
                 max = min;
             }
             
@@ -63,10 +63,19 @@ export default function Level1() {
 
             blocks.map((block, j)  =>  {
                 if (min <= block[j] && block[j] <= max) {
-                    document.getElementById("block").style.backgroundColor = `${colours[i]}`
+                    document.getElementById("block").style.backgroundColor = `${colours[index]}`
                 }
             });
-        }
+        });
+        // for (let i in range)    {
+        //     let min = range[i][0];
+        //     let max = range[i][1];
+
+        //     if (max === undefined)  {
+        //         max = min;
+        //     }
+        //     });
+        // }
             
     }
 
@@ -76,6 +85,7 @@ export default function Level1() {
     }
 
     function handlePrev()   {
+        console.log(index);
         setIndex(index - 1);
     }
 
