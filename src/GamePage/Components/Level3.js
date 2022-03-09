@@ -99,17 +99,17 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
           break;
         case 4:
           checkArr();
-          setCurrent([list[7], list[8],list[9]])
-          setOutside([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
+          setCurrent([7,8,9])
+          setOutside([0,1,2,3,4,5,6]);
           break;
         case 5:
           checkArr();
-          setCurrent([list[5],list[6],list[7], list[8],list[9]])
-          setOutside([list[0], list[1],list[2], list[3], list[4]]);  
+          setCurrent([5,6,7,8,9])
+          setOutside([0,1,2,3,4]);  
           break;
         case 6:
           checkArr();
-          setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
+          setCurrent([0,1,2,3,4,5,6,7,8,9]);
           setOutside([]);
           break;
         default:
