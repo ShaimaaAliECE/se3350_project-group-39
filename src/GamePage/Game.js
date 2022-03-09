@@ -8,7 +8,12 @@ import Level2 from "./Components/level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+<<<<<<< HEAD
 import Level1 from "./Levels/Level1/Level1.js";
+=======
+import Level1 from "./Levels/Level1";
+import Level3 from "./Components/Level3";
+>>>>>>> origin/main
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     // states
@@ -65,6 +70,14 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         if(steps >= 7){
             setSteps(0);
         }
+    }
+
+    function countDown() {
+        setSteps(steps-1);
+        if(steps <= 0){
+            setSteps(0);
+        }
+ 
     }
 
 
@@ -162,8 +175,24 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     needsSorting={isSorting}
                     sorted={sortedIndex}
                     steps={steps}
-                    counter={counter}
+                    countUp={counter}
+                    countDown={countDown}
                 />
+            : difficulty === 3 ? 
+                <>
+                    <div className='prev-next-container'>
+                        <button><FaAngleLeft /></button>
+                        <button onClick={counter}><FaAngleRight /></button>
+                    </div>
+                    <Level3
+                        blocks={blocks}
+                        current={true}
+                        swap={swap}
+                        needsSorting={isSorting}
+                        sorted={sortedIndex}
+                        steps={steps}
+                    />
+                </>
             : <></>}
         </div>
     );

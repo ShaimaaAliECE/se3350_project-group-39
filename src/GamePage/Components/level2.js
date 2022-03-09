@@ -3,29 +3,37 @@ import { DragDropContext, Droppable, Draggable, resetServerContext } from "react
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
 
-function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
+function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //Currently highlighted blue blocks
+  const [currentStepValid, setCurrentStepValid] = useState(false);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
-  let dropOrNotToDrop = true;
+  let isDraggable = true;
+
+  useEffect(() => {
+    setCurrentStepValid(false);
+  }, [steps]);
 
   useEffect(() => {
     handleSteps();
-  }, [steps]);
+    checkCurrentStep(list);
+  }, [currentStepValid])
 
   useEffect(() => {
     setWidth(
         Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
       );
-        setList(blocks);
-  }, [blocks])
-
+    setCurrentStepValid(false);
+    setList(blocks);
+    checkCurrentStep(blocks);
+  }, [blocks]);
 
   const handleOnDragEnd = (result) => {
-    if (!result.destination) return;
+    // accomodate invalid dragging of items
+    if (!result.destination || !current.includes(result.destination.index)) return;
 
     const items = Array.from(list);
     console.log(items)
@@ -33,6 +41,8 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
+
+    checkCurrentStep(items);
   };
 
   // Switches what is being stored in the current array
@@ -63,15 +73,34 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
         default:
           break;
       }
+  }
 
+  function checkCurrentStep(items) {
+    let array = items.slice(current[0], current[current.length - 1] + 1);
 
+    let sortedArray = JSON.parse(JSON.stringify(array));
+    sortedArray.sort((first, second) => first - second);
+    let isEqual = true;
+
+    array.forEach((item, index) => {
+      if (!(sortedArray[index] === item)) {
+        isEqual = false;
+        return;
+      }
+    });
+
+    if (isEqual) {
+      setCurrentStepValid(true);
+    } else {
+      setCurrentStepValid(false);
+    }
   }
 
   return (
     <div>
       <div className='prev-next-container'>
-          <button><FaAngleLeft /></button>
-          <button onClick={counter}><FaAngleRight /></button>
+          <button onClick={countDown}><FaAngleLeft /></button>
+          <button onClick={countUp}><FaAngleRight /></button>
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
@@ -81,7 +110,7 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {list.map((block, i) => {
+              {list.map((block, index) => {
                 
                 const height = ((block * 500) / list.length) + 10 ;
                 let bg = "turquoise";
@@ -91,45 +120,46 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
                   bg = "turquoise";
                 }
 
-                  for(let x = 0; x < current.length; x++)
-                  {
-                    if(i === current[x]) {
-                      bg="blue";
-                      dropOrNotToDrop = false;
-                    }
-                      
-                  }
+                if(current.includes(index)) {
+                  bg = ( currentStepValid ? "#4bc52e" : "yellow" );
+                  isDraggable = true;
+                } else {
+                  bg = "black";
+                  isDraggable = false;
+                }
 
-                  const checkSort = (arr) =>{
-                    for(let i = 0; i < arr.length; i++)
-                    {
-                      if(arr[i] > arr[i+1])
-                        return false;
-                    }
-                    return true;
+                // Checking if the final array is sorted
+                const checkSort = (arr) => {
+                  for(let i = 0; i < arr.length; i++)
+                  {
+                    if(arr[i] > arr[i+1])
+                      return false;
                   }
+                }
 
                   if(steps === 7)
                   {
-                    if(checkSort(list))
+                    if(checkSort(list)) {
                       bg = "#4bc52e"
-                    else
+                      isDraggable = true;
+                    } else {
                       bg = "red"
+                    }
                     console.log(steps)
                   }
                 
                 const style = {
-                  backgroundColor: bg,
+                  // backgroundColor: bg,
                   color: color,
                   height: height,
                   width: width,
                 };
                 return (
                   <Draggable
-                    key={i}
-                    draggableId={"" + i}
-                    index={i}
-                    isDragDisabled={dropOrNotToDrop} 
+                    key={index}
+                    draggableId={"" + index}
+                    index={index}
+                    isDragDisabled={!isDraggable} 
                   >
                   
                     {(provided) => {
@@ -140,7 +170,11 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, counter }) {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <div style={style}>{block}</div>
+                        <div
+                          style={{ backgroundColor: current.includes(index) ? currentStepValid ? "#4bc52e" : "yellow" : bg || "black", ...style }}
+                        >
+                          {block}
+                        </div>
                       </li>
                     )}}
                   </Draggable>
