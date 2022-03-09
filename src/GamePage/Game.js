@@ -4,7 +4,7 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
-import Level2 from "./Components/level2";
+import Level2 from "./Components/Level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
