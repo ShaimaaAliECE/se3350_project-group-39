@@ -180,7 +180,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                         <button><FaAngleLeft /></button>
                         <button onClick={counter}><FaAngleRight /></button>
                     </div>
-                    <div> Step {steps}</div>
+                    <div className="stepCounter"> Step {steps}</div>
                     <Level3
                         blocks={blocks}
                         current={true}

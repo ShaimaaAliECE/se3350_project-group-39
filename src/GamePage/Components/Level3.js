@@ -15,6 +15,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
+  let stepInstructions = "";
 
   useEffect(() => {
     handleSteps();
