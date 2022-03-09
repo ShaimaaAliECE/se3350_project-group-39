@@ -2,10 +2,6 @@ import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
-<<<<<<< HEAD
-=======
-import { AngleRight,AngleLeft } from 'react-icons/fa';
->>>>>>> 936ebd0452be1650613b18a2cccb8a89b521652f
 import "./listBlock.css";
 
 function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
@@ -15,6 +11,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
+  const [currentStepValid, setCurrentStepValid] = useState(false);
   const [changes,setChanges] = useState([]);
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
@@ -49,6 +46,27 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
     setList(items);
   };
+
+  function checkCurrentStep(items) {
+    let array = items.slice(current[0], current[current.length - 1] + 1);
+
+    let sortedArray = JSON.parse(JSON.stringify(array));
+    sortedArray.sort((first, second) => first - second);
+    let isEqual = true;
+
+    array.forEach((item, index) => {
+      if (!(sortedArray[index] === item)) {
+        isEqual = false;
+        return;
+      }
+    });
+
+    if (isEqual) {
+      setCurrentStepValid(true);
+    } else {
+      setCurrentStepValid(false);
+    }
+  }
 
   const checkChange = (move) => {
 
