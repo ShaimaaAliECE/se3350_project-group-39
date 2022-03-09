@@ -1,9 +1,10 @@
 import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function Level3({ blocks, sorted, swap, needsSorting, steps }) {
+function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -176,6 +177,11 @@ function whichMoved(a, b) {
 
 
   return (
+    <div>
+          <div className='prev-next-container'>
+          <button onClick={countDown}><FaAngleLeft /></button>
+          <button onClick={countUp}><FaAngleRight /></button>
+      </div>
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="blocks" direction="horizontal">
         {(provided) => (
@@ -259,6 +265,7 @@ function whichMoved(a, b) {
         )}
       </Droppable>
     </DragDropContext>
+    </div>
   );
 }
 
