@@ -9,7 +9,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
   );
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
-  const [outside, setOutside] = useState([]); //The blocks left of the current array
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [changes,setChanges] = useState([]);
 
@@ -78,39 +77,31 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
       switch(steps){
         case 0:
           setCurrent([0, 1]);
-          setOutside([2, 3, 4, 5, 6, 7, 8, 9])
           checkArr();
           break;
         case 1:
           setCurrent([2,3,4])
-          setOutside([0,1,5,6,7,8,9]);
           checkArr();
           break;
         case 2:
           setCurrent([0,1,2,3,4])
-          setOutside([5,6,7,8,9]);
           checkArr();
           break;
         case 3:
-          checkArr();
-          setCurrent([5,6])
-          setOutside([0,1,2,3,4,7,8,9]);
-          
+          setCurrent([5,6])     
+          checkArr();   
           break;
-        case 4:
+        case 4:         
+          setCurrent([7,8,9])
           checkArr();
-          setCurrent([list[7], list[8],list[9]])
-          setOutside([list[0], list[1], list[2], list[3], list[4],list[5],list[6]]);
           break;
-        case 5:
+        case 5:          
+          setCurrent([5,6,7,8,9])
           checkArr();
-          setCurrent([list[5],list[6],list[7], list[8],list[9]])
-          setOutside([list[0], list[1],list[2], list[3], list[4]]);  
           break;
-        case 6:
+        case 6:         
+          setCurrent([0,1,2,3,4,5,6,7,8,9])
           checkArr();
-          setCurrent([list[0], list[1], list[2], list[3], list[4],list[5],list[6],list[7],list[8],list[9]])
-          setOutside([]);
           break;
         default:
           break;
