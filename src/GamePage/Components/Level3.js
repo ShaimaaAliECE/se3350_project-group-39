@@ -91,8 +91,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     }
 
     setOutOfPlace(arr)
-
-    
   };
 
   // Switches what is being stored in the current array
@@ -101,94 +99,30 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       switch(steps){
         case 0:
           setCurrent([0, 1]);
-          checkArr();
           break;
         case 1:
           setCurrent([2,3,4])
-          checkArr();
           break;
         case 2:
           setCurrent([0,1,2,3,4])
-          checkArr();
           break;
         case 3:
-          setCurrent([5,6])     
-          checkArr();   
+          setCurrent([5,6])       
           break;
         case 4:         
           setCurrent([7,8,9])
-          checkArr();
           break;
         case 5:          
           setCurrent([5,6,7,8,9])
-          checkArr();
           break;
         case 6:         
           setCurrent([0,1,2,3,4,5,6,7,8,9])
-          checkArr();
           break;
         default:
           break;
       }
   }
 
-// This checks if any blocks are out of array
-function checkArr()
-{
-    let arr = []; //holding array
-    let leftOffset = 0;
-
-
-
-    //Checks the left array
-    //Loop thtough left from 0 to length
-    // for(let i = 0 + leftOffset; i < left.length; i++)
-    // {
-    //     //Check the index of list see if corresponding values match
-    //     if(list[i] !== left[i])
-    //     {
-    //         arr.push(i);
-
-    //         leftOffset += whichMoved(list, left);
-    //     }
-    // }
-    // console.log('left: ' + left);
-    
-    // //Checks the right array
-    // for(let i = left.length + current.length; i < list.length; i++)
-    // {
-    //     if(list[i] !== right[i] && (right.length!=0))
-    //     {
-    //       arr.push(i)
-    //     }
-           
-    // }
-    // console.log('right: ' + right);
-
-    // //Checks the current array to see if its in order
-    // for(let i = current.length; i < list.length - left.length; i++)
-    // {
-    //     if(list[i+1] < list[i])
-    //         arr.push(i);
-    // }
-    // console.log('current: ' + current)
-
-    console.log(arr + "dsa")
-    setOutOfPlace(arr);
-}
-
-//a,b
-  function whichMoved(a, b) {
-    for(var i = 0; i < a.length; i++) {
-        if (a[i] !== b[i]) {
-            if(a[i+1] === b[i]) {
-                return 1;
-            } else {
-                return -1;
-            }
-          }
-        }
-  }
 
 
   return (
