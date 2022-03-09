@@ -9,9 +9,11 @@ export default function Level1() {
     let colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
 
     const [ index, setIndex ] = useState(1);
-    const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
-    const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
+    const [ blocks, setBlocks ] = useState(Steps["Rules"]["TutorialArray"]);
+    // const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
+    const steps = Steps["Rules"]["MergeSort"];
     const [ step, setStep ] = useState(steps[`${index}`]);
+    console.log(step);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
 
@@ -26,13 +28,11 @@ export default function Level1() {
     useEffect(() => {
 
         //setting displayed step as the initial step from the json file
-        setStep(steps[index]);
+        setStep(steps[`${index}`]);
 
         setWidth(
             Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
         );
-
-        setStep(steps[`${index}`])
 
         if (step.array) {
             setBlocks(step.array);
@@ -64,11 +64,14 @@ export default function Level1() {
     }
 
     function handlePrev()   {
-        setIndex(index-1);
+        if (index === 23)
+            setIndex(index - 2);
+        else    
+            setIndex(index - 1);
     }
 
     function handleDisable()    {
-        if (index === 23)   {
+        if (index > 22)   {
             setNextDisable(true);
         } else {
             setNextDisable(false);
