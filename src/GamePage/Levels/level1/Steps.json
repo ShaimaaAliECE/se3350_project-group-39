@@ -53,12 +53,12 @@
                 "range": [[3, 4]]
             },
             "11" : {
-                "Description": "Merge the 2 sorted items to make one larger sorted item which would be the sorted version of the left half of the whole array.",
+                "Description": "Merge the 2 sorted items to make one larger sorted.",
                 "array": [ 2, 6, 7, 4, 8, 3, 9, 2, 6, 4 ],
                 "range": [[0, 2], [3, 4]]
             },
             "12" : {
-                "Description": "Merge Complete!",
+                "Description": "Merge Complete! Half of the array is done!!",
                 "array": [ 2, 4, 6, 7, 8, 3, 9, 2, 6, 4 ],
                 "range": [[0, 4]]
             },

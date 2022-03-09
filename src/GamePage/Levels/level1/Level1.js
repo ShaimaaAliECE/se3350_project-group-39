@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import './Level1.css';
-import Steps from './Steps.json'
+import Steps from '../Steps.json'
 
 export default function Level1() {
 
+
     const colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
 
-    
+
     const [ index, setIndex ] = useState(1);
     const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
     const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
     const [ step, setStep ] = useState(steps[`${index}`]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
+    
 
     const [width, setWidth] = useState(
         Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
@@ -36,7 +38,7 @@ export default function Level1() {
             setBlocks(step.array);
         }
 
-        console.log(index, step.array)
+        console.log(index, step.array, step.Description);
         handleDisable();
 
     }, [index])
@@ -51,13 +53,13 @@ export default function Level1() {
     }
 
     function handleDisable()    {
-        if (index === 22)   {
+        if (index === 23)   {
             setNextDisable(true);
         } else {
             setNextDisable(false);
         }
 
-        if (index === 1)    {
+        if (index === 0)    {
             setPrevDisable(true);
         } else {
             setPrevDisable(false);
@@ -89,7 +91,6 @@ export default function Level1() {
                             'height': height, 
                             'width': width
                         }
-                        
                         return (<div key={i} className='block' style={style}>{block}</div>);
 
                     })}
