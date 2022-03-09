@@ -6,12 +6,13 @@ import Steps from './Steps.json'
 export default function Level1() {
     
 
-    let colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
+    const colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
 
     const [ index, setIndex ] = useState(1);
     const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
     const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
     const [ step, setStep ] = useState(steps[`${index}`]);
+    const [ range, setRange ] = useState();
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
 
@@ -24,6 +25,8 @@ export default function Level1() {
     const color = blocks.length <= 50 && width > 14 ? 'black' : 'transparent'
 
     useEffect(() => {
+
+        setRange(step.range);
 
         //setting displayed step as the initial step from the json file
         setStep(steps[index]);
@@ -47,15 +50,24 @@ export default function Level1() {
 
     }, [index])
 
-    function renderRanges(range)   {
-        return blocks.map(function(range)   {
-            for (let i in range)    {
-                let min = range[i][0];
-                let max = range[i][1];
+    function renderRanges()   {
+        for (let i in range)    {
+            let min = range[i][0];
+            let max = range[i][1];
 
-                console.log(min, max)
+            if (max === undefined)  {
+                max = min;
             }
-        })
+            
+            console.log(min, max)
+
+            blocks.map((block, j)  =>  {
+                if (min <= block[j] && block[j] <= max) {
+                    document.getElementById("block").style.backgroundColor = `${colours[i]}`
+                }
+            });
+        }
+            
     }
 
     function handleNext()  {
@@ -98,14 +110,15 @@ export default function Level1() {
                 <ul className="list">
                      {blocks.map((block, i) => {
                         const height = ((block * 500) / blocks.length) + 10;
-                        let bg = "turquoise"
 
                         const style = {
-                            'backgroundColor': bg,
                             'color': color, 
                             'height': height, 
                             'width': width
                         }
+
+                        renderRanges(range);
+
                         return (<div key={i} className='block' style={style}>{block}</div>);
 
                     })}
