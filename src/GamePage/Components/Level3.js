@@ -52,7 +52,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
     console.log(JSON.stringify(move.source.index) + "Dasdasd")
     let start = move.source.index;
     let end = move.destination.index;
-   
 
     
     if ((!current.includes(end) || !current.includes(end)) && end!=start) {
@@ -60,12 +59,14 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
       arr.push(end)
      
     }
+
     if (current.includes(end)) {
-      const index = arr.indexOf(current[end]);
-      const indexa = arr.indexOf(current[start]);
-      arr.splice(index, 1);
-      arr.splice(indexa, 1);
+      const endIndex = arr.indexOf(current[end]);
+      const startIndex = arr.indexOf(current[start]);
+      arr.splice(endIndex, 1);
+      arr.splice(startIndex, 1);
     }
+
     setOutOfPlace(arr)
 
     
