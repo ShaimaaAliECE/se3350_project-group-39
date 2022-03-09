@@ -43,7 +43,7 @@ export default function Level1() {
         
         handleDisable();
 
-        renderRanges(step.range);
+        renderRanges(range);
 
         console.log(index, step.array, step.Description);
         
@@ -59,24 +59,14 @@ export default function Level1() {
                 max = min;
             }
             
-            console.log(min, max)
+            console.log(min, max);
 
             blocks.map((block, j)  =>  {
-                if (min <= block[j] && block[j] <= max) {
-                    document.getElementById("block").style.backgroundColor = `${colours[index]}`
+                if (min <= j && j <= max) {
+                    document.getElementById(j).style.backgroundColor = `${colours[index % colours.length]}`
                 }
             });
         });
-        // for (let i in range)    {
-        //     let min = range[i][0];
-        //     let max = range[i][1];
-
-        //     if (max === undefined)  {
-        //         max = min;
-        //     }
-        //     });
-        // }
-            
     }
 
     function handleNext()  {
@@ -127,9 +117,7 @@ export default function Level1() {
                             'width': width
                         }
 
-                        renderRanges(range);
-
-                        return (<div key={i} className='block' style={style}>{block}</div>);
+                        return (<div key={i} id={i} className='block' style={style}>{block}</div>);
 
                     })}
                 </ul>
