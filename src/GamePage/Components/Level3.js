@@ -54,11 +54,21 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
     let end = move.destination.index;
    
 
+    
     if ((!current.includes(end) || !current.includes(end)) && end!=start) {
       arr.push(start)
       arr.push(end)
-     setOutOfPlace(arr)
+     
     }
+    if (current.includes(end)) {
+      const index = arr.indexOf(current[end]);
+      const indexa = arr.indexOf(current[start]);
+      arr.splice(index, 1);
+      arr.splice(indexa, 1);
+    }
+    setOutOfPlace(arr)
+
+    
   };
 
   // Switches what is being stored in the current array
@@ -76,15 +86,14 @@ function Level3({ blocks, sorted, swap, needsSorting, steps }) {
           checkArr();
           break;
         case 2:
+          setCurrent([0,1,2,3,4])
+          setOutside([5,6,7,8,9]);
           checkArr();
-          setCurrent([list[0], list[1], list[2], list[3], list[4]])
-          setOutside([ list[5], list[6], list[7], list[8], list[9]]);
-          
           break;
         case 3:
           checkArr();
-          setCurrent([list[5], list[6]])
-          setOutside([list[0], list[1], list[2], list[3], list[4],list[7], list[8], list[9]]);
+          setCurrent([5,6])
+          setOutside([0,1,2,3,4,7,8,9]);
           
           break;
         case 4:
