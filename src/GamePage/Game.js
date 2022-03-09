@@ -68,6 +68,14 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         }
     }
 
+    function countDown() {
+        setSteps(steps-1);
+        if(steps <= 0){
+            setSteps(0);
+        }
+ 
+    }
+
 
 
     // Sorts the array of numbers
@@ -164,6 +172,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     sorted={sortedIndex}
                     steps={steps}
                     countUp={counter}
+                    countDown={countDown}
                 />
             : difficulty === 3 ? 
                 <>
