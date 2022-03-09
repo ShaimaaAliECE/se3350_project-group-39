@@ -8,12 +8,8 @@ import Level2 from "./Components/level2";
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
-<<<<<<< HEAD
-import Level1 from "./Levels/Level1/Level1.js";
-=======
-import Level1 from "./Levels/Level1";
+import Level1 from "./Levels/Level1"
 import Level3 from "./Components/Level3";
->>>>>>> origin/main
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     // states

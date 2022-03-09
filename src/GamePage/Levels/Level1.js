@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import './Level1.css';
-import Steps from '../Steps.json'
+import Steps from './Steps.json'
 
 export default function Level1() {
+    
 
-
-    const colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
-
+    let colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
 
     const [ index, setIndex ] = useState(1);
     const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
@@ -15,6 +14,7 @@ export default function Level1() {
     const [ step, setStep ] = useState(steps[`${index}`]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
+
     
 
     const [width, setWidth] = useState(
@@ -37,11 +37,26 @@ export default function Level1() {
         if (step.array) {
             setBlocks(step.array);
         }
-
-        console.log(index, step.array, step.Description);
+        
         handleDisable();
 
+        renderRanges(step.range);
+
+        console.log(index, step.array, step.Description);
+        
+
     }, [index])
+
+    function renderRanges(range)   {
+        return blocks.map(function(range)   {
+            for (let i in range)    {
+                let min = range[i][0];
+                let max = range[i][1];
+
+                console.log(min, max)
+            }
+        })
+    }
 
     function handleNext()  {
         setIndex(index+1);
