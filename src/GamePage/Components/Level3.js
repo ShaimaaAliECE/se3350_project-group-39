@@ -170,15 +170,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                     }
                     return true;
                   }
-
-                  // if(steps === 7)
-                  // {
-                  //   if(checkSort(list))
-                  //     bg = "#4bc52e"
-                  //   else
-                  //     bg = "red"
-                  //   console.log(steps)
-                  // }
                 
                 const style = {
                   backgroundColor: bg,
