@@ -4,9 +4,9 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import axios from "axios";
-import Level1 from "./Levels/Level1";
-import Level3 from "./Components/Level3";
+import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
+import Level3 from "./Components/Level3";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     // states
