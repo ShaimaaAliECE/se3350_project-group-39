@@ -154,6 +154,10 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
+
+                  if (current.includes(i)) {
+                    bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
+                  }
                   console.log(steps +"step")
 
                   const checkSort = (arr) =>{
@@ -187,7 +191,11 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <div style={style}>{block}</div>
+                        <div 
+                          style={style}
+                        >
+                          {block}
+                        </div>
                       </li>
                     )}}
                   </Draggable>
