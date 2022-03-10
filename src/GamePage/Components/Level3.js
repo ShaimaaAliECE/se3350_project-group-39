@@ -26,7 +26,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     setWidth(
         Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
       );
-        setList(blocks);
+      setList(blocks);
   }, [blocks])
 
 
@@ -47,6 +47,10 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
     setList(items);
   };
+
+  useEffect(() => {
+    checkCurrentStep(list);
+  }, [list])
 
   function checkCurrentStep(items) {
     let array = items.slice(current[0], current[current.length - 1] + 1);
