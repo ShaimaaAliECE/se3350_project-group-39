@@ -19,14 +19,21 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
   let stepInstructions = "";
 
   useEffect(() => {
-    handleSteps();
+    setCurrentStepValid(false);
   }, [steps]);
 
   useEffect(() => {
+    handleSteps();
+    checkCurrentStep(list);
+  }, [currentStepValid]);
+
+  useEffect(() => {
+    setCurrentStepValid(false);
     setWidth(
-        Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
-      );
-      setList(blocks);
+      Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
+    );
+    setList(blocks);
+    checkCurrentStep(blocks);
   }, [blocks])
 
 
@@ -75,6 +82,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
     }
   }
 
+  // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
 
     let arr = outOfPlace;
@@ -152,6 +160,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
                   bg = "turquoise";
                 }
 
+                // 
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
@@ -159,15 +168,12 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
                   console.log("blebble " + mistakes)
 
 
-                  const checkSort = (arr) =>{
-                    for(let i = 0; i < arr.length; i++)
-                    {
-                      if(arr[i] > arr[i+1])
-                        return false;
-                    }
-                    return true;
+                // If the user moves the correct step into order
+                  if (current.includes(i) && !outOfPlace.includes(i)) {
+                    bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
-                
+                  console.log(steps +"step")
+
                 const style = {
                   backgroundColor: bg,
                   color: color,
@@ -190,7 +196,11 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <div style={style}>{block}</div>
+                        <div 
+                          style={style}
+                        >
+                          {block}
+                        </div>
                       </li>
                     )}}
                   </Draggable>
