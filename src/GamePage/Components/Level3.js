@@ -80,6 +80,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     }
   }
 
+  // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
 
     let arr = outOfPlace;
@@ -158,10 +159,12 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   bg = "turquoise";
                 }
 
+                // 
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
 
+                // If the user moves the correct step into order
                   if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
