@@ -123,8 +123,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       }
   }
 
-
-
   return (
     <div>
       <div className='prev-next-container'>
@@ -149,15 +147,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   bg = "turquoise";
                 }
 
-                  // for(let x = 0; x < outOfPlace.length; x++)
-                  // {
-                  //   if(i === outOfPlace[x]) {
-                  //     console.log(i)
-                  //     bg="red";
-                  //     //dropOrNotToDrop = false;
-                  //   }
-                      
-                  // }
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
