@@ -12,7 +12,7 @@ export default function Level1() {
     const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
     const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
     const [ step, setStep ] = useState(steps[`${index}`]);
-    const [ range, setRange ] = useState();
+    const [ range, setRange ] = useState([]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
 
@@ -43,7 +43,7 @@ export default function Level1() {
         
         handleDisable();
 
-        renderRanges(range);
+        renderRanges();
 
         console.log(index, step.array, step.Description);
         
@@ -51,18 +51,18 @@ export default function Level1() {
     }, [index])
 
     function renderRanges()   {
-        for (let i in range)    {
+        for (let i of range)    {
             let min = range[i][0];
             let max = range[i][1];
 
-            if (max === undefined)  {
+            if (!max)  {
                 max = min;
             }
             
             console.log(min, max)
 
             blocks.map((block, j)  =>  {
-                if (min <= j && j <= max) {
+                if (j >= min && j <= max) {
                     document.getElementById(j+"").style.backgroundColor = `${colours[i]}`
                 } else {
                     document.getElementById(j+"").style.backgroundColor = `#f0f0f0`
