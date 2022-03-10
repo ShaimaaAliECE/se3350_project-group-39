@@ -162,7 +162,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                     bg="red";
                   }
 
-                  if (current.includes(i)) {
+                  if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
                   console.log(steps +"step")
