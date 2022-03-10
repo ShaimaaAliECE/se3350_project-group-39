@@ -5,124 +5,132 @@ import Steps from './Steps.json'
 
 export default function Level1() {
     
-
-    const colours = ["#ff4444", "#33b5e5", "%ffbb33", "#00c851"] //red, light blue, yellow, green
+    const colours = ["#ff4444", "#00c851", "#ffbb33", "#33b5e5"] //red, green, yellow, light blue
 
     const [ index, setIndex ] = useState(1);
-    const [ blocks, setBlocks ] = useState([7, 6, 2, 8, 4, 3, 9, 2, 6, 4]);
-    const [ steps, setSteps ] = useState(Steps.Rules.MergeSort);
+    const [ blocks, setBlocks ] = useState(Steps["Rules"]["TutorialArray"]);
+    const steps = Steps["Rules"]["MergeSort"];
     const [ step, setStep ] = useState(steps[`${index}`]);
-    const [ range, setRange ] = useState([]);
+    const [ ranges, setRanges ] = useState([]);
     const [ nextDisable, setNextDisable ] = useState(false);
     const [ prevDisable, setPrevDisable ] = useState(false);
-
-    
 
     const [width, setWidth] = useState(
         Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
     );
     
-    const color = blocks.length <= 50 && width > 14 ? 'black' : 'transparent'
+    const color = blocks.length <= 50 && width > 14 ? 'black' : 'transparent';
 
     useEffect(() => {
 
-        setRange(step.range);
-
         //setting displayed step as the initial step from the json file
-        setStep(steps[index]);
+        setStep(steps[`${index}`]);
+
+        if (!step)
+            setStep(steps['0']);
+
+        setRanges(step.range);
 
         setWidth(
             Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
         );
 
-        setStep(steps[`${index}`])
-
         if (step.array) {
             setBlocks(step.array);
         }
-        
+
         handleDisable();
 
-        renderRanges();
-
+        
         console.log(index, step.array, step.Description);
         
+    }, [index, []])
 
-    }, [index])
+    useEffect(() => {
+        renderRanges();
+    }, [ranges])
 
     function renderRanges()   {
-        for (let i of range)    {
-            let min = range[i][0];
-            let max = range[i][1];
 
-            if (!max)  {
-                max = min;
-            }
+        let stack = [];
+        ranges.forEach((item, i) => {
             
-            console.log(min, max)
+            let min = item[0];
+            let max = item[1] ? item[1] : min;
+            console.log(i);
+            console.log(colours[i]);
+            blocks.forEach((block, j)  =>  {
 
-            blocks.map((block, j)  =>  {
-                if (j >= min && j <= max) {
-                    document.getElementById(j+"").style.backgroundColor = `${colours[i]}`
-                } else {
-                    document.getElementById(j+"").style.backgroundColor = `#f0f0f0`
+                if (min <= j && j <= max) {
+                    document.getElementById('block-' + j).style.backgroundColor = `${colours[i]}`;
+                    stack.push(j);
                 }
             });
-        }
-    }
+        });
 
+        blocks.forEach((block, x) => {
+            if (!stack.includes(x))
+                document.getElementById('block-' + x).style.backgroundColor = "turquoise";
+        })
+    }
+    
     function handleNext()  {
         setIndex(index+1);
+        console.log(index);
         
     }
 
     function handlePrev()   {
-        setIndex(index-1);
+        console.log(index);
+        setIndex(index - 1);
     }
 
     function handleDisable()    {
-        if (index === 23)   {
+        if (index === 22)   {
             setNextDisable(true);
         } else {
             setNextDisable(false);
         }
 
-        if (index === 0)    {
+        if (index === 1)    {
             setPrevDisable(true);
         } else {
             setPrevDisable(false);
         }
-    }
+}
     
 
     return (
         <div className='tutorial-div'>
             
-            <div className='prev-next-container'>
-                <button disabled={prevDisable} onClick={handlePrev} className="next-bttn"><FaAngleLeft /></button>
-                <button disabled={nextDisable} onClick={handleNext} className="prev-bttn"><FaAngleRight /></button>
-            </div>
             
-            <div>
+            
+            <div className = "tutorial-container">
                 <div className="steps-div">
-                    <label>hello</label>
+                    <div className='step-label-div'>
+                        <button disabled={prevDisable} onClick={handlePrev} className="bttn"><FaAngleLeft /></button>
+                        <label className='step-label'>{step ? step.Description ? step.Description : undefined : undefined}</label>
+                        <button disabled={nextDisable} onClick={handleNext} className="bttn"><FaAngleRight /></button>
+                    </div>
+                    
+                
+                    <ul className="list">
+                        {blocks.map((block, i) => {
+                            const height = ((block * 500) / blocks.length) + 10;
+                            let bg = 'turquoise';
+                            const style = {
+                                backgroundColor: bg,
+                                'color': color, 
+                                'height': height, 
+                                'width': width
+                            }
+
+                            return (<div key={i} id={'block-' + i} className='block' style={style}>{block}</div>);
+
+                        })}
+                    </ul>
+
                 </div>
-
-                <ul className="list">
-                     {blocks.map((block, i) => {
-                        const height = ((block * 500) / blocks.length) + 10;
-
-                        const style = {
-                            'color': color, 
-                            'height': height, 
-                            'width': width
-                        }
-
-                        return (<div key={i} id={i} className='block' style={style}>{block}</div>);
-
-                    })}
-                </ul>
-    
             </div>
         </div>
     );

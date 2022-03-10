@@ -1,9 +1,10 @@
-.prev-next-container {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    margin: 5px;
-    padding-left: 30px;
+.bttn  {
+    background: linear-gradient(to right, #9c27b0, #e040fb);
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+    color: white;
+
 }
 
 .prev-next-container > button {
@@ -23,13 +24,55 @@
     cursor: pointer;
 }
 
+.tutorial-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    background-color: rgba(18,50,108,0.1);
+    width: 900px;
+    height: 700px;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+.steps-div   {
+    min-width: 80%;
+    margin-top: 50px;
+}
+
+.step-label-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 80px;
+}
+
+.step-label {
+    color: white;
+    font-size: 25px;
+    overflow: hidden;
+    width: 70%;
+}
 
 .list   {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 25px;
 }
+
+
 
 .block  {
     border: 1px solid black;
     background-color: turquoise;
+}
+
+.block::hover   {
+
 }
