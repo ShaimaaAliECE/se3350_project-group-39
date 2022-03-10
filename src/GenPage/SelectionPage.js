@@ -10,6 +10,7 @@ import Game from "../GamePage/Game";
 import axios from "axios";
 import Timer from "./Timer";
 import levelData from '../Levels.json';
+import Timeout from "./Timeout";
 
 const { Option } = Select;
 
@@ -173,6 +174,9 @@ function SelectionPage() {
               <Timer handleTimeChange={handleTime} />
               : undefined
             }
+          {clicked ?
+          <Timeout />
+        : undefined}
         </div>
       </div>
     </div>

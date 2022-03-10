@@ -12,6 +12,13 @@ body {
     flex-direction: column;
 }
 
+.stepCounter{
+    color: white;
+    background-color: black;
+    max-width: 50px;
+    margin-left: 125px;
+    border-radius: 50px;
+}
 .radial-menu {
     background-image: linear-gradient(#7ee8fa, #eec0c6);
     width: 80px;

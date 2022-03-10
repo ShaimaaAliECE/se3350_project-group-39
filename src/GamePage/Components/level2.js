@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
+import useSound from 'use-sound';
 
 function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
@@ -41,7 +42,6 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
-
     checkCurrentStep(items);
   };
 

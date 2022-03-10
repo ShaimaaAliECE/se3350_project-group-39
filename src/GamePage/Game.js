@@ -4,10 +4,17 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
+<<<<<<< HEAD
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import Level1 from "./Levels/Level1"
+=======
+import Level2 from "./Components/Level2";
+import axios from "axios";
+import { resetServerContext } from "react-beautiful-dnd";
+import Level1 from "./Levels/Level1";
+>>>>>>> 52a6fa51ae3ab036b35e7e29bcd3cb352af3bbe7
 import Level3 from "./Components/Level3";
 import Level2 from "./Components/Level2";
 
@@ -25,6 +32,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [swap, setSwap] = useState([]);
     const [current, setCurrent] = useState([0,1,2]);
     const [steps, setSteps] = useState(0);
+
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
@@ -107,7 +115,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     
 
                     if (j< k) {
-                        speed = 10;
+                        setSpeed(10);
                         
                        
                         setBlocks(arr);
@@ -176,10 +184,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 />
             : difficulty === 3 ? 
                 <>
-                    <div className='prev-next-container'>
-                        <button><FaAngleLeft /></button>
-                        <button onClick={counter}><FaAngleRight /></button>
-                    </div>
+                <div className="stepCounter"> Step {steps}</div>
                     <Level3
                         blocks={blocks}
                         current={true}
@@ -187,6 +192,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                         needsSorting={isSorting}
                         sorted={sortedIndex}
                         steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
                     />
                 </>
             : <></>}

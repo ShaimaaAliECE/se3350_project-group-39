@@ -28,6 +28,10 @@ export default class Timer extends Component {
 
       this.setState({ display: timer });
 
+      if (minutes >= 5) {
+        window.location.href = '/MenuPage';
+      }
+      
     }, 1000);
   }
 
