@@ -125,6 +125,7 @@ export default function Level1() {
                                 'width': width
                             }
 
+
                             return (<div key={i} id={'block-' + i} className='block' style={style}>{block}</div>);
 
                         })}
