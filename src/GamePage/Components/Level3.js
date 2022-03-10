@@ -19,14 +19,21 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   let stepInstructions = "";
 
   useEffect(() => {
-    handleSteps();
+    setCurrentStepValid(false);
   }, [steps]);
 
   useEffect(() => {
+    handleSteps();
+    checkCurrentStep(list);
+  }, [currentStepValid]);
+
+  useEffect(() => {
+    setCurrentStepValid(false);
     setWidth(
-        Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
-      );
-      setList(blocks);
+      Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 8)
+    );
+    setList(blocks);
+    checkCurrentStep(blocks);
   }, [blocks])
 
 
