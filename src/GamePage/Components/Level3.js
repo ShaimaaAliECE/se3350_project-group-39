@@ -13,6 +13,8 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [changes,setChanges] = useState([]);
+  const [mistakes, setMistakes] = useState(0);
+
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -80,6 +82,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     }
   }
 
+  // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
 
     let arr = outOfPlace;
@@ -91,7 +94,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     if ((!current.includes(end) || !current.includes(end)) && end!=start) {
       arr.push(start)
       arr.push(end)
-     
+      setMistakes(mistakes + 1);
     }
 
     if (current.includes(end)) {
@@ -140,6 +143,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={countUp}><FaAngleRight /></button>
       </div>
+      <div>mistakes {mistakes}</div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (
@@ -158,10 +162,15 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   bg = "turquoise";
                 }
 
+                // 
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
+                  console.log(steps +"step")
+                  console.log("blebble " + mistakes)
 
+
+                // If the user moves the correct step into order
                   if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
