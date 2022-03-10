@@ -4,7 +4,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
+function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -46,6 +46,8 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
+    console.log("blebblelelele " + mistakes)
+
   };
 
   useEffect(() => {
@@ -84,7 +86,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     if ((!current.includes(end) || !current.includes(end)) && end!=start) {
       arr.push(start)
       arr.push(end)
-     
     }
 
     if (current.includes(end)) {
@@ -155,6 +156,8 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                     bg="red";
                   }
                   console.log(steps +"step")
+                  console.log("blebble " + mistakes)
+
 
                   const checkSort = (arr) =>{
                     for(let i = 0; i < arr.length; i++)
