@@ -4,7 +4,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
 import "./listBlock.css";
 
-function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, countDown }) {
+function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -13,6 +13,8 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [changes,setChanges] = useState([]);
+  const [mistakes, setMistakes] = useState(0);
+
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -53,8 +55,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
-    console.log("blebblelelele " + mistakes)
-
   };
 
   useEffect(() => {
@@ -94,6 +94,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, mistakes, countUp, 
     if ((!current.includes(end) || !current.includes(end)) && end!=start) {
       arr.push(start)
       arr.push(end)
+      setMistakes(mistakes + 1);
     }
 
     if (current.includes(end)) {

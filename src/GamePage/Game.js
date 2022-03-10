@@ -24,7 +24,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     const [swap, setSwap] = useState([]);
     const [current, setCurrent] = useState([0,1,2]);
     const [steps, setSteps] = useState(0);
-    const [mistakes, setMistakes] = useState(0);
 
 
     // Gets random numbers from the back end and fills the blocks array with them
@@ -177,7 +176,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 />
             : difficulty === 3 ? 
                 <>
-                <div className="stepCounter"> Step {steps}, mistakes{mistakes}</div>
+                <div className="stepCounter"> Step {steps}</div>
                     <Level3
                         blocks={blocks}
                         current={true}
