@@ -14,7 +14,9 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [changes,setChanges] = useState([]);
   const [mistakes, setMistakes] = useState(0);
-
+  const [life1, setLife1] = useState(true);
+  const [life2, setLife2] = useState(true);
+  const [life3, setLife3] = useState(true);
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -48,7 +50,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     //Check if block can be changed, if not 
     
     checkChange(result);
-    
     const items = Array.from(list);
     console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
@@ -82,6 +83,19 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     }
   }
 
+  //checks how many lives user has
+  const checkLives = () => {
+    if(mistakes === 0){
+      setLife1(false)
+    }
+    if(mistakes === 1){
+      setLife2(false);
+    }
+    if(mistakes === 2){
+      setLife3(false);
+    }
+  }
+
   // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
 
@@ -95,6 +109,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       arr.push(start)
       arr.push(end)
       setMistakes(mistakes + 1);
+      checkLives();
     }
 
     if (current.includes(end)) {
@@ -144,6 +159,11 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
           <button onClick={countUp}><FaAngleRight /></button>
       </div>
       <div>mistakes{mistakes}</div>
+      <div className="lives">
+      <div>{life1? <div>life 1</div> : null}</div>
+      <div>{life2? <div>life 2</div> : null}</div>
+      <div>{life3? <div>life 3</div> : null}</div> 
+      </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (
