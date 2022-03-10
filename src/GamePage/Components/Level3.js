@@ -143,6 +143,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={countUp}><FaAngleRight /></button>
       </div>
+      <div>mistakes{mistakes}</div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (
