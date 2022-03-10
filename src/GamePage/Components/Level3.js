@@ -167,15 +167,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                   }
                   console.log(steps +"step")
 
-                  const checkSort = (arr) =>{
-                    for(let i = 0; i < arr.length; i++)
-                    {
-                      if(arr[i] > arr[i+1])
-                        return false;
-                    }
-                    return true;
-                  }
-                
                 const style = {
                   backgroundColor: bg,
                   color: color,
