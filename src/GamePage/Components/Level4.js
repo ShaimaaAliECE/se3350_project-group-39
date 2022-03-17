@@ -185,9 +185,9 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       </div>
       <div>mistakes{mistakes}</div>
       <div className="lives">
-      <div>{life1? <FaHeart/> : null}</div>
-      <div>{life2? <FaHeart/> : null}</div>
-      <div>{life3? <FaHeart/> : null}</div> 
+      <div>{life1 ? <FaHeart/> : null}</div>
+      <div>{life2 ? <FaHeart/> : null}</div>
+      <div>{life3 ? <FaHeart/> : null}</div> 
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
