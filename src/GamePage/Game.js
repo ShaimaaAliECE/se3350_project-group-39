@@ -80,8 +80,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
  
     }
 
-
-
     // Sorts the array of numbers
     function handleSort() {
         const sortOrder = (order) => {

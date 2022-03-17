@@ -2,6 +2,8 @@ import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+import useSound from "use-sound";
+import ErrorSound from '../../Sounds/error.mp3';
 import "./listBlock.css";
 
 
@@ -41,6 +43,8 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     checkCurrentStep(blocks);
   }, [blocks])
 
+  // call the react hook to create a function to call the sound
+  const [ playErrorSound ] = useSound(ErrorSound);
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
@@ -106,10 +110,11 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     let end = move.destination.index;
 
     
-    if ((!current.includes(end) || !current.includes(end)) && end!=start) {
+    if ((!current.includes(end) || !current.includes(end)) && end !== start) {
       arr.push(start)
       arr.push(end)
       setMistakes(mistakes + 1);
+      playErrorSound();
       checkLives();
     }
 
@@ -120,7 +125,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       arr.splice(startIndex, 1);
     }
 
-    setOutOfPlace(arr)
+    setOutOfPlace(arr);
   };
 
   // Switches what is being stored in the current array
