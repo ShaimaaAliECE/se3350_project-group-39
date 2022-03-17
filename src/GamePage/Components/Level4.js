@@ -1,7 +1,6 @@
-import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
-import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./listBlock.css";
 
 
@@ -181,9 +180,9 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       </div>
       <div>mistakes{mistakes}</div>
       <div className="lives">
-      <div>{life1? <FaHeart/> : null}</div>
-      <div>{life2? <FaHeart/> : null}</div>
-      <div>{life3? <FaHeart/> : null}</div> 
+      <div>{life1 ? <FaHeart/> : null}</div>
+      <div>{life2 ? <FaHeart/> : null}</div>
+      <div>{life3 ? <FaHeart/> : null}</div> 
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">

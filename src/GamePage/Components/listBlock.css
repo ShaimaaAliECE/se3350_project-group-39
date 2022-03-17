@@ -28,10 +28,11 @@
     display: flex;
     justify-content: space-between;
     max-width: 70px;
+    min-height: 30px;
     margin: auto;
 }
 
 .lives * {
-    color: red;
+    color: rgb(227,27,35);
     font-size: 20px;
 }
