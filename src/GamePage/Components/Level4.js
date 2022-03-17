@@ -20,7 +20,6 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
-  let stepInstructions = "";
 
   useEffect(() => {
     setCurrentStepValid(false);
@@ -43,9 +42,7 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-    
-    console.log(JSON.stringify(result) + "Dasdasd")
-    
+        
     // FOR EACH CHANGE then check validity, if the des
     //Check if block can be changed, if not 
     
@@ -100,7 +97,6 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const checkChange = (move) => {
 
     let arr = outOfPlace;
-    console.log(JSON.stringify(move.source.index) + "Dasdasd")
     let start = move.source.index;
     let end = move.destination.index;
 
