@@ -51,6 +51,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         console.log("isSorting = " + isSorting); 
     }
 
+    // reset steps when the level changes
     useEffect(() => {
         setSteps(0);
     }, [difficulty])

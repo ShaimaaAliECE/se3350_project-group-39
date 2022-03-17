@@ -28,6 +28,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 70px;
+    min-height: 30px;
     margin: auto;
 }
 
