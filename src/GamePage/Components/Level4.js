@@ -1,7 +1,6 @@
-import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
-import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./listBlock.css";
 
 
