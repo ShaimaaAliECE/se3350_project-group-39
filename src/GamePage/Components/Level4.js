@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable, resetServerContext } from "react
 import "./listBlock.css";
 
 
-function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
+function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -128,7 +128,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     console.log(steps);
       switch(steps){
         case 0:
-          setCurrent([0, 1]);
+          setCurrent([0, 1,18,19]);
           break;
         case 1:
           setCurrent([2,3,4])
@@ -238,4 +238,4 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   );
 }
 
-export default Level3;
+export default Level4;
