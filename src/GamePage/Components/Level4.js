@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable, resetServerContext } from "react
 import "./listBlock.css";
 
 
-function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
+function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -21,7 +21,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
-  let stepInstructions = "";
 
   useEffect(() => {
     setCurrentStepValid(false);
@@ -44,9 +43,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-    
-    console.log(JSON.stringify(result) + "Dasdasd")
-    
+        
     // FOR EACH CHANGE then check validity, if the des
     //Check if block can be changed, if not 
     
@@ -101,7 +98,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const checkChange = (move) => {
 
     let arr = outOfPlace;
-    console.log(JSON.stringify(move.source.index) + "Dasdasd")
     let start = move.source.index;
     let end = move.destination.index;
 
@@ -128,28 +124,52 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     console.log(steps);
       switch(steps){
         case 0:
-          setCurrent([0, 1]);
-          break;
+            setCurrent([0, 1]);
+            break;
         case 1:
-          setCurrent([2,3,4])
-          break;
+            setCurrent([2,3,4])
+            break;
         case 2:
-          setCurrent([0,1,2,3,4])
-          break;
+            setCurrent([0,1,2,3,4])
+            break;
         case 3:
-          setCurrent([5,6])       
-          break;
+            setCurrent([5,6])       
+            break;
         case 4:         
-          setCurrent([7,8,9])
-          break;
+            setCurrent([7,8,9])
+            break;
         case 5:          
-          setCurrent([5,6,7,8,9])
-          break;
+            setCurrent([5,6,7,8,9])
+            break;
         case 6:         
-          setCurrent([0,1,2,3,4,5,6,7,8,9])
-          break;
+            setCurrent([0,1,2,3,4,5,6,7,8,9])
+            break;
+        case 7:
+            setCurrent([10, 11]);
+            break;
+        case 8:
+            setCurrent([12, 13, 14]);
+            break;
+        case 9:
+            setCurrent([10,11,12,13,14]);
+            break;
+        case 10:
+            setCurrent([15,16]);
+            break;
+        case 11:
+            setCurrent([17,18,19]);
+            break;
+        case 12:
+            setCurrent([15,16,17,18,19]);
+            break;
+        case 13:
+            setCurrent([10,11,12,13,14,15,16,17,18,19]);
+            break;
+        case 14:
+            setCurrent([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
+            break;
         default:
-          break;
+            break;
       }
   }
 
@@ -238,4 +258,4 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   );
 }
 
-export default Level3;
+export default Level4;

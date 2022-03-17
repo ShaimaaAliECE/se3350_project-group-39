@@ -4,9 +4,12 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import axios from "axios";
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
+import { resetServerContext } from "react-beautiful-dnd";
 import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
 import Level3 from "./Components/Level3";
+import Level4 from "./Components/Level4";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     // states
@@ -31,7 +34,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
             url: "/random",
             params: {
                 size: size,
-                min: 1
+                min: 1,
+                max: 20
             },
             
         }).then(({ data }) => {
@@ -49,6 +53,10 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         console.log("isSorting = " + isSorting); 
     }
 
+    useEffect(() => {
+        setSteps(0);
+    }, [difficulty])
+
     // Called every time the start button is clicked and when the sliders are moved
     useEffect(() => {
         getRandomNumbers();
@@ -61,7 +69,10 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     function counter(){
         console.log(steps)
         setSteps(steps+1);
-        if(steps >= 7){
+        if(steps >= 7 && difficulty < 4){
+            setSteps(0);
+        }
+        if(steps >= 14 && difficulty === 4){
             setSteps(0);
         }
     }
@@ -176,6 +187,20 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 <>
                 <div className="stepCounter"> Step {steps}</div>
                     <Level3
+                        blocks={blocks}
+                        current={true}
+                        swap={swap}
+                        needsSorting={isSorting}
+                        sorted={sortedIndex}
+                        steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
+                    />
+                </>
+            : difficulty === 4 ? 
+                <>
+                <div className="stepCounter"> Step {steps}</div>
+                    <Level4
                         blocks={blocks}
                         current={true}
                         swap={swap}

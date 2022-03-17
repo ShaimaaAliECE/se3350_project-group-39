@@ -23,3 +23,15 @@
     transition-property: height;
     transition-timing-function: ease-in;
 }
+
+.lives{
+    display: flex;
+    justify-content: space-between;
+    max-width: 70px;
+    margin: auto;
+}
+
+.lives * {
+    color: red;
+    font-size: 20px;
+}
