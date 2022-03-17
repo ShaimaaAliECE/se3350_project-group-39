@@ -1,7 +1,6 @@
-import { fireEvent } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
-import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import "./listBlock.css";
@@ -47,13 +46,12 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const [ playErrorSound ] = useSound(ErrorSound);
 
   const handleOnDragEnd = (result) => {
+    // prevent illegal moves
     if (!result.destination) return;
-    
-    console.log(JSON.stringify(result) + "Dasdasd")
     
     // FOR EACH CHANGE then check validity, if the des
     //Check if block can be changed, if not 
-    
+
     checkChange(result);
     const items = Array.from(list);
     console.log(items)
@@ -105,7 +103,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const checkChange = (move) => {
 
     let arr = outOfPlace;
-    console.log(JSON.stringify(move.source.index) + "Dasdasd")
     let start = move.source.index;
     let end = move.destination.index;
 
@@ -114,7 +111,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
       arr.push(start)
       arr.push(end)
       setMistakes(mistakes + 1);
-      playErrorSound();
+      playErrorSound(); // play error sound to indicate error
       checkLives();
     }
 
