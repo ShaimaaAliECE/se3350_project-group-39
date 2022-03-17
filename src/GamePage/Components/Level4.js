@@ -128,28 +128,52 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
     console.log(steps);
       switch(steps){
         case 0:
-          setCurrent([0, 1,18,19]);
-          break;
+            setCurrent([0, 1]);
+            break;
         case 1:
-          setCurrent([2,3,4])
-          break;
+            setCurrent([2,3,4])
+            break;
         case 2:
-          setCurrent([0,1,2,3,4])
-          break;
+            setCurrent([0,1,2,3,4])
+            break;
         case 3:
-          setCurrent([5,6])       
-          break;
+            setCurrent([5,6])       
+            break;
         case 4:         
-          setCurrent([7,8,9])
-          break;
+            setCurrent([7,8,9])
+            break;
         case 5:          
-          setCurrent([5,6,7,8,9])
-          break;
+            setCurrent([5,6,7,8,9])
+            break;
         case 6:         
-          setCurrent([0,1,2,3,4,5,6,7,8,9])
-          break;
+            setCurrent([0,1,2,3,4,5,6,7,8,9])
+            break;
+        case 7:
+            setCurrent([10, 11]);
+            break;
+        case 8:
+            setCurrent([12, 13, 14]);
+            break;
+        case 9:
+            setCurrent([10,11,12,13,14]);
+            break;
+        case 10:
+            setCurrent([15,16]);
+            break;
+        case 11:
+            setCurrent([17,18,19]);
+            break;
+        case 12:
+            setCurrent([15,16,17,18,19]);
+            break;
+        case 13:
+            setCurrent([10,11,12,13,14,15,16,17,18,19]);
+            break;
+        case 14:
+            setCurrent([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
+            break;
         default:
-          break;
+            break;
       }
   }
 
