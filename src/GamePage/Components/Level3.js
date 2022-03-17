@@ -3,6 +3,7 @@ import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
+import WinSound from '../../Sounds/win.mp3';
 import "./listBlock.css";
 
 
@@ -44,6 +45,7 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
   // call the react hook to create a function to call the sound
   const [ playErrorSound ] = useSound(ErrorSound);
+  const [ playWinSound ] = useSound(WinSound);
 
   const handleOnDragEnd = (result) => {
     // prevent illegal moves
@@ -81,6 +83,9 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
 
     if (isEqual) {
       setCurrentStepValid(true);
+      if (steps === 7) {
+        playWinSound();
+      }
     } else {
       setCurrentStepValid(false);
     }
