@@ -11,8 +11,6 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
     // states
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
-    const [completed, setCompleted] = useState(false);
-
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
@@ -33,7 +31,6 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
     // reset steps when the level changes
     useEffect(() => {
         setSteps(0);
-        setCompleted(false);
     }, [difficulty])
 
     // Called every time the start button is clicked and when the sliders are moved
@@ -42,7 +39,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
     }, [clicked, size]);
 
     // Increments steps according to how many steps there are
-    function counter(complete){
+    function counter(){
         console.log(steps)
         setSteps(steps+1);
         if(steps >= 7 && difficulty < 4){
@@ -51,10 +48,6 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
         if(steps >= 14 && difficulty === 4){
             setSteps(0);
         }
-
-        // set whether the user completed the level or not
-        if (complete)
-            setCompleted(true);
     }
 
     function countDown() {
@@ -64,8 +57,6 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
         }
  
     }
-
-    let timerRef = createRef();
 
     return (
         <div className="game" id="game-body">
@@ -78,7 +69,8 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                     steps={steps}
                     countUp={counter}
                     countDown={countDown}
-                    timer={<Timer ref={timerRef} id="timer" completed={completed} algorithm={algorithm} level={difficulty} />}
+                    algorithm={algorithm}
+                    level={difficulty}
                 />
             : difficulty === 3 ? 
                 <>
@@ -89,7 +81,8 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         steps={steps}
                         countUp={counter}
                         countDown={countDown}
-                        timer={<Timer id="timer" completed={completed} algorithm={algorithm} level={difficulty} />}
+                        algorithm={algorithm}
+                        level={difficulty}
                     />
                 </>
             : difficulty === 4 ? 
@@ -101,7 +94,8 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         steps={steps}
                         countUp={counter}
                         countDown={countDown}
-                        timer={<Timer id="timer" completed={completed} algorithm={algorithm} level={difficulty} />}
+                        algorithm={algorithm}
+                        level={difficulty}
                     />
                 </>
             : <></>}

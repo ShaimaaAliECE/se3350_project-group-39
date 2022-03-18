@@ -7,14 +7,16 @@ import useSound from 'use-sound';
 import WinSound from '../../Sounds/win.mp3';
 import ErrorSound from '../../Sounds/error.mp3';
 import { notification } from "antd";
+import Timer from "../../GenPage/Timer";
 
-function Level2({ blocks, steps, countUp, countDown, timer }) {
+function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //Currently highlighted blue blocks
   const [currentStepValid, setCurrentStepValid] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [won, setWon] = useState(false);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let isDraggable = true;
@@ -32,7 +34,7 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     checkCurrentStep(list);
 
     // send message for current step correct
-    if (currentStepValid) 
+    if (currentStepValid && !completed) 
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
@@ -48,6 +50,10 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     setList(blocks);
     checkCurrentStep(blocks);
   }, [blocks]);
+
+  useEffect(() => {
+    if (completed) setWon(true);
+  }, [completed]);
 
   useEffect(() => {
     if (won) handleLevelComplete();
@@ -138,7 +144,7 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     // if the current step is not valid don't progress
     if (!currentStepValid) return;
 
-    let completed = true;
+    let complete = true;
 
     // check if the user completed the level
     const arrCpy = JSON.parse(JSON.stringify(blocks));
@@ -146,15 +152,17 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
 
     arrCpy.forEach((item, index) => {
       if (!(list[index] === item)) {
-        completed = false;
+        complete = false;
         return;
       }
     });
 
-    // count up the step
-    countUp(completed);
+    if (complete) {
+      setCompleted(true);
+    }
 
-    if (completed) setWon(true);
+    // count up the step
+    countUp();
   }
 
   return (
@@ -163,7 +171,7 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
-      {!won ? timer : undefined}
+      {!won ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (

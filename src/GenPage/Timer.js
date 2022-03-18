@@ -10,7 +10,8 @@ export default class Timer extends Component {
 
     this.state = {
       display: '00:00',
-      start: new Date()
+      start: new Date(),
+      completed: this.props.completed
     }
   }
 
@@ -46,8 +47,9 @@ export default class Timer extends Component {
   }
 
   componentWillUnmount() {
-    // this.props.handleTimeChange(parseFloat(this.state.display));
     clearInterval(this.interval);
+
+    console.log(this.props);
 
     if (!localStorage.getItem('token')) {
       // notify the user to login

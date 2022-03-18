@@ -6,9 +6,10 @@ import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
 import "./listBlock.css";
 import { notification } from "antd";
+import Timer from "../../GenPage/Timer";
 
 
-function Level3({ blocks, steps, countUp, countDown }) {
+function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -17,6 +18,8 @@ function Level3({ blocks, steps, countUp, countDown }) {
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [changes,setChanges] = useState([]);
+  const [won, setWon] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [mistakes, setMistakes] = useState(0);
   const [life1, setLife1] = useState(true);
   const [life2, setLife2] = useState(true);
@@ -52,6 +55,14 @@ function Level3({ blocks, steps, countUp, countDown }) {
     setList(blocks);
     checkCurrentStep(blocks);
   }, [blocks])
+
+  useEffect(() => {
+    if (completed) setWon(true);
+  }, [completed])
+
+  useEffect(() => {
+    if (won) handleLevelComplete();
+  }, [won]);
 
   // call the react hook to create a function to call the sound
   const [ playErrorSound ] = useSound(ErrorSound);
@@ -93,12 +104,35 @@ function Level3({ blocks, steps, countUp, countDown }) {
 
     if (isEqual) {
       setCurrentStepValid(true);
-      if (steps === 7) {
-        playWinSound();
-      }
     } else {
       setCurrentStepValid(false);
     }
+  }
+
+  // increment the step counter
+  const handleNextStep = () => {
+    // if the current step is not valid don't progress
+    if (!currentStepValid) return;
+
+    let complete = true;
+
+    // check if the user completed the level
+    const arrCpy = JSON.parse(JSON.stringify(blocks));
+    arrCpy.sort((first, second) => first - second);
+
+    arrCpy.forEach((item, index) => {
+      if (!(list[index] === item)) {
+        complete = false;
+        return;
+      }
+    });
+
+    if (complete) {
+      setCompleted(true);
+    }
+
+    // count up the step
+    countUp();
   }
 
   //checks how many lives user has
@@ -128,6 +162,17 @@ function Level3({ blocks, steps, countUp, countDown }) {
       });
     }
 
+  }
+
+  // function to trigger when the user wins the level
+  function handleLevelComplete() {
+    playWinSound();
+
+    notification.success({
+      message: 'Congrats!',
+      description: 'You have successfully completed the level',
+      placement: 'topLeft'
+    });
   }
 
   // Checks what change the user has made in terms of moving the blocks
@@ -190,8 +235,9 @@ function Level3({ blocks, steps, countUp, countDown }) {
     <div>
       <div className='prev-next-container'>
           <button onClick={countDown}><FaAngleLeft /></button>
-          <button onClick={countUp}><FaAngleRight /></button>
+          <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
+      {!won ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
       <div>mistakes{mistakes}</div>
       <div className="lives">
       <div>{life1? <FaHeart/> : null}</div>
