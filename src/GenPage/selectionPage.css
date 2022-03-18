@@ -17,10 +17,10 @@
 }
 
 .options-container{
-    background-color: #10072e;
+    /* background-color: #10072e; */
     justify-content: space-between;
     margin: auto;
-    max-width: fit-content;
+    max-width: max-content;
 }
 
 .Menu {

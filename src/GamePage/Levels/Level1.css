@@ -45,8 +45,9 @@
 .step-label {
     color: white;
     font-size: 25px;
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 70%;
+    min-height: 100px;
 }
 
 .list   {

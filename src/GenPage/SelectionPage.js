@@ -174,6 +174,7 @@ function SelectionPage() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
