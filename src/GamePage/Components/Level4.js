@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./listBlock.css";
 
 
-function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
+function Level4({ blocks, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -196,11 +196,6 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                 
                 const height = ((block * 500) / list.length) + 10 ;
                 let bg = "turquoise";
-
-                // the array is resetted
-                if (needsSorting){
-                  bg = "turquoise";
-                }
 
                 // 
                   if (outOfPlace.includes(i)) {

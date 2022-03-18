@@ -5,9 +5,10 @@ import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
 import "./listBlock.css";
+import { notification } from "antd";
 
 
-function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
+function Level3({ blocks, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -32,6 +33,15 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   useEffect(() => {
     handleSteps();
     checkCurrentStep(list);
+
+    // display notifation that the user cleared the current level
+    if (currentStepValid) {
+      notification.success({
+        message: 'Hooray!',
+        description: 'You got it! Click on the right arrow to move to the next step',
+        placement: 'topRight'
+      });
+    }
   }, [currentStepValid]);
 
   useEffect(() => {
@@ -95,13 +105,29 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   const checkLives = () => {
     if(mistakes === 0){
       setLife1(false)
+      notification.error({
+        message: 'Oops!',
+        description: 'You moved the wrong tiles! Lost a life :(',
+        placement: 'topRight'
+      });
     }
     if(mistakes === 1){
       setLife2(false);
+      notification.error({
+        message: 'Oops!',
+        description: 'You moved the wrong tiles! Lost a life :(',
+        placement: 'topRight'
+      });
     }
     if(mistakes === 2){
       setLife3(false);
+      notification.error({
+        message: 'Oops!',
+        description: 'You moved the wrong tiles! Lost a life :(',
+        placement: 'topRight'
+      });
     }
+
   }
 
   // Checks what change the user has made in terms of moving the blocks
@@ -184,11 +210,6 @@ function Level3({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                 
                 const height = ((block * 500) / list.length) + 10 ;
                 let bg = "turquoise";
-
-                // the array is resetted
-                if (needsSorting){
-                  bg = "turquoise";
-                }
 
                 // 
                   if (outOfPlace.includes(i)) {

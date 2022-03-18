@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import React, { Component } from 'react';
 
 // component to display the time the user takes on a level
@@ -6,7 +7,7 @@ export default class Timer extends Component {
     super(props);
 
     this.state = {
-      display: '00.00',
+      display: '00:00',
       start: new Date()
     }
   }
@@ -24,7 +25,7 @@ export default class Timer extends Component {
       let minutes = Math.floor(milliseconds / min);
       minutes = minutes < 10 ? '0' + minutes : minutes;
 
-      let timer = minutes + '.' + seconds;
+      let timer = minutes + ':' + seconds;
 
       this.setState({ display: timer });
 
@@ -33,6 +34,13 @@ export default class Timer extends Component {
       }
       
     }, 1000);
+
+    // display notification that the timer has started
+    notification.info({
+      message: 'Timer has started!',
+      description: 'Complete the level as soon as possible!',
+      placement: 'topLeft'
+    });
   }
 
   componentWillUnmount() {

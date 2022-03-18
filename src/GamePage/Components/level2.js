@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable, resetServerContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
 import useSound from 'use-sound';
 
-function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown }) {
+function Level2({ blocks, steps, countUp, countDown }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -114,11 +114,6 @@ function Level2({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
                 
                 const height = ((block * 500) / list.length) + 10 ;
                 let bg = "turquoise";
-
-                // the array is resetted
-                if (needsSorting){
-                  bg = "turquoise";
-                }
 
                 if(current.includes(index)) {
                   bg = ( currentStepValid ? "#4bc52e" : "yellow" );
