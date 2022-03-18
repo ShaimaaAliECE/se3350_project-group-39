@@ -8,7 +8,6 @@ import Level4 from "./Components/Level4";
 
 export default function Game({ algorythm, difficulty, size, clicked }) {
     // states
-    const [length, setLength] = useState(size);
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
 
@@ -37,9 +36,6 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     // Called every time the start button is clicked and when the sliders are moved
     useEffect(() => {
         getRandomNumbers();
-        // update states
-        setLength(size);
-        
     }, [clicked, size]);
 
     // Increments steps according to how many steps there are

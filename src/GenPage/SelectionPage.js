@@ -1,7 +1,7 @@
 import "./selectionPage.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Slider, PageHeader, Select, Image } from "antd";
+import { Slider, PageHeader, Select, Image, Divider } from "antd";
 import "antd/dist/antd.min.css";
 import useToken from "../useToken";
 import Header from "../Header/Header";
@@ -139,7 +139,6 @@ function SelectionPage() {
             style={{ width: "270px" }}
             defaultValue={listSize}
             value={listSize}
-            disabled={false}
             max={50}
             step={10}
             onChange={(value) => {
@@ -153,13 +152,14 @@ function SelectionPage() {
           />
         </div>
 
-        <div align="center" style={{ padding: "10px" }}>
+        {/* <div align="center" style={{ padding: "10px" }}>
           <div>
             <button className="submit" onClick={() => setClicked(!clicked)}>
               {clicked ? 'Reset' : 'Sort'}
             </button>
           </div>
-        </div>
+        </div> */}
+        <Divider />
 
         <div className="expand">
           <div className="expandDiv">
