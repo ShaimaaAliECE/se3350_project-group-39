@@ -32,34 +32,6 @@ function SelectionPage() {
     setListSize(levelData["levels"][`${level}`]["size"]);
   }, [level]);
 
-  // method to set time from the timer component
-  const handleTime = (curTime) => {
-    setTime(curTime);
-  }
-
-  // method to store the statistics when a level ends
-  const handleCompletion = () => {
-    axios({
-      method: "POST",
-      url: "/add_entry",
-      data: {
-        algorithm: algo,
-        level: level,
-        time: 0,
-        // time: time
-      },
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   // Function to set the difficulty
   function getDifficulty() {
 
@@ -164,7 +136,7 @@ function SelectionPage() {
         <div className="expand">
           <div className="expandDiv">
             <Game
-              algorythm={algo}
+              algorithm={algo}
               difficulty={level}
               size={listSize}
               clicked={clicked}

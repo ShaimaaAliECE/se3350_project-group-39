@@ -30,6 +30,14 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
   useEffect(() => {
     handleSteps();
     checkCurrentStep(list);
+
+    // send message for current step correct
+    if (currentStepValid) 
+      notification.success({
+        message: 'Hooray!',
+        description: 'You got it! Click on the right arrow to move to the next step',
+        placement: 'topLeft'
+      })
   }, [currentStepValid])
 
   useEffect(() => {
@@ -40,6 +48,10 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     setList(blocks);
     checkCurrentStep(blocks);
   }, [blocks]);
+
+  useEffect(() => {
+    if (won) handleLevelComplete();
+  }, [won]);
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
@@ -111,22 +123,21 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
   }
 
   // function to trigger when the user wins the level
-  const handleLevelComplete = () => {
-    if (!won) {
-      playWinSound();
+  function handleLevelComplete() {
+    playWinSound();
 
-      notification.success({
-        message: 'Congrats!',
-        description: 'You have successfully completed the level',
-        placement: 'topLeft'
-      });
-
-      setWon(true);
-    }
+    notification.success({
+      message: 'Congrats!',
+      description: 'You have successfully completed the level',
+      placement: 'topLeft'
+    });
   }
 
   // increment the step counter
   const handleNextStep = () => {
+    // if the current step is not valid don't progress
+    if (!currentStepValid) return;
+
     let completed = true;
 
     // check if the user completed the level
@@ -143,10 +154,7 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     // count up the step
     countUp(completed);
 
-    if (completed) {
-      unmountComponentAtNode(document.getElementById('timer'));
-      handleLevelComplete();
-    }
+    if (completed) setWon(true);
   }
 
   return (
@@ -155,7 +163,7 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
-      {timer}
+      {!won ? timer : undefined}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (
@@ -198,7 +206,6 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
                   }
                 
                 const style = {
-                  // backgroundColor: bg,
                   color: color,
                   height: height,
                   width: width,

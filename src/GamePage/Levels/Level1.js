@@ -103,8 +103,6 @@ export default function Level1() {
     return (
         <div className='tutorial-div'>
             
-            <timer />
-            
             <div className = "tutorial-container">
                 <div className="steps-div">
                     <div className='step-label-div prev-next-container'>

@@ -39,7 +39,7 @@ function Level3({ blocks, steps, countUp, countDown }) {
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
-        placement: 'topRight'
+        placement: 'topLeft'
       });
     }
   }, [currentStepValid]);
@@ -108,7 +108,7 @@ function Level3({ blocks, steps, countUp, countDown }) {
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topRight'
+        placement: 'topLeft'
       });
     }
     if(mistakes === 1){
@@ -116,7 +116,7 @@ function Level3({ blocks, steps, countUp, countDown }) {
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topRight'
+        placement: 'topLeft'
       });
     }
     if(mistakes === 2){
@@ -124,7 +124,7 @@ function Level3({ blocks, steps, countUp, countDown }) {
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topRight'
+        placement: 'topLeft'
       });
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import "./Game.css";
 import axios from "axios";
 import Level1 from "./Levels/Level1"
@@ -65,6 +65,8 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
  
     }
 
+    let timerRef = createRef();
+
     return (
         <div className="game" id="game-body">
             { difficulty === 1 ? 
@@ -76,7 +78,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                     steps={steps}
                     countUp={counter}
                     countDown={countDown}
-                    timer={<Timer completed={completed} algorithm={algorithm} level={difficulty} />}
+                    timer={<Timer ref={timerRef} id="timer" completed={completed} algorithm={algorithm} level={difficulty} />}
                 />
             : difficulty === 3 ? 
                 <>
@@ -87,7 +89,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         steps={steps}
                         countUp={counter}
                         countDown={countDown}
-                        timer={<Timer completed={completed} algorithm={algorithm} level={difficulty} />}
+                        timer={<Timer id="timer" completed={completed} algorithm={algorithm} level={difficulty} />}
                     />
                 </>
             : difficulty === 4 ? 
@@ -99,7 +101,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         steps={steps}
                         countUp={counter}
                         countDown={countDown}
-                        timer={<Timer completed={completed} algorithm={algorithm} level={difficulty} />}
+                        timer={<Timer id="timer" completed={completed} algorithm={algorithm} level={difficulty} />}
                     />
                 </>
             : <></>}
