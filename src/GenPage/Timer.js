@@ -95,7 +95,7 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <div className="timer">
+      <div id="timer" className="timer">
         {this.state.display} MINUTES
       </div>
     )

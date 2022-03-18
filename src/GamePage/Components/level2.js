@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
+import {unmountComponentAtNode} from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
 import useSound from 'use-sound';
+import WinSound from '../../Sounds/win.mp3';
+import ErrorSound from '../../Sounds/error.mp3';
+import { notification } from "antd";
 
 function Level2({ blocks, steps, countUp, countDown, timer }) {
     const [width, setWidth] = useState(
@@ -11,8 +15,13 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
   const [list, setList] = useState(blocks);
   const [current, setCurrent] = useState([]); //Currently highlighted blue blocks
   const [currentStepValid, setCurrentStepValid] = useState(false);
+  const [won, setWon] = useState(false);
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let isDraggable = true;
+
+  // sounds
+  const [playWinSound] = useSound(WinSound);
+  const [playErrorSound] = useSound(ErrorSound);
 
   useEffect(() => {
     setCurrentStepValid(false);
@@ -33,8 +42,13 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
   }, [blocks]);
 
   const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+
     // accomodate invalid dragging of items
-    if (!result.destination || !current.includes(result.destination.index)) return;
+    if (!current.includes(result.destination.index)) {
+      playErrorSound();
+      return;
+    }
 
     const items = Array.from(list);
     console.log(items)
@@ -96,12 +110,43 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     }
   }
 
+  // function to trigger when the user wins the level
+  const handleLevelComplete = () => {
+    if (!won) {
+      playWinSound();
+
+      notification.success({
+        message: 'Congrats!',
+        description: 'You have successfully completed the level',
+        placement: 'topLeft'
+      });
+
+      setWon(true);
+    }
+  }
+
   // increment the step counter
   const handleNextStep = () => {
+    let completed = true;
+
     // check if the user completed the level
+    const arrCpy = JSON.parse(JSON.stringify(blocks));
+    arrCpy.sort((first, second) => first - second);
+
+    arrCpy.forEach((item, index) => {
+      if (!(list[index] === item)) {
+        completed = false;
+        return;
+      }
+    });
 
     // count up the step
-    countUp();
+    countUp(completed);
+
+    if (completed) {
+      unmountComponentAtNode(document.getElementById('timer'));
+      handleLevelComplete();
+    }
   }
 
   return (
