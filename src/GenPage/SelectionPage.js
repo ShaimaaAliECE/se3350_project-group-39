@@ -81,9 +81,10 @@ function SelectionPage() {
         <p align="center" className="sign">
           Select an Algorithm
         </p>
-
+      <div className="options-container">
         <div className="barDiv">
           <Select
+          className="selection-box"
             defaultValue="mergeSort"
             onChange={(value) => {
               console.log(value);
