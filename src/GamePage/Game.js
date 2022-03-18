@@ -5,8 +5,9 @@ import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
 import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
+import Timer from "../GenPage/Timer";
 
-export default function Game({ algorythm, difficulty, size, clicked }) {
+export default function Game({ algorithm, difficulty, size, clicked }) {
     // states
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
@@ -69,6 +70,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                     steps={steps}
                     countUp={counter}
                     countDown={countDown}
+                    timer={<Timer completed={false} algorithm={algorithm} level={difficulty} />}
                 />
             : difficulty === 3 ? 
                 <>
@@ -79,6 +81,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                         steps={steps}
                         countUp={counter}
                         countDown={countDown}
+                        timer={<Timer completed={false} algorithm={algorithm} level={difficulty} />}
                     />
                 </>
             : difficulty === 4 ? 
@@ -90,6 +93,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                         steps={steps}
                         countUp={counter}
                         countDown={countDown}
+                        timer={<Timer completed={false} algorithm={algorithm} level={difficulty} />}
                     />
                 </>
             : <></>}

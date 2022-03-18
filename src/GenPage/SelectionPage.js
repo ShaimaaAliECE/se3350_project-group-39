@@ -8,7 +8,6 @@ import Header from "../Header/Header";
 import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
 import axios from "axios";
-import Timer from "./Timer";
 import levelData from '../Levels.json';
 import Timeout from "./Timeout";
 
@@ -170,13 +169,7 @@ function SelectionPage() {
               clicked={clicked}
             />
           </div>
-          {clicked ?
-              <Timer handleTimeChange={handleTime} />
-              : undefined
-            }
-          {clicked ?
           <Timeout />
-        : undefined}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
 import useSound from 'use-sound';
 
-function Level2({ blocks, steps, countUp, countDown }) {
+function Level2({ blocks, steps, countUp, countDown, timer }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -102,6 +102,7 @@ function Level2({ blocks, steps, countUp, countDown }) {
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={countUp}><FaAngleRight /></button>
       </div>
+      {timer}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (

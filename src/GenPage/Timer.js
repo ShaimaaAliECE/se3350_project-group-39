@@ -45,7 +45,7 @@ export default class Timer extends Component {
   }
 
   componentWillUnmount() {
-    this.props.handleTimeChange(parseFloat(this.state.display));
+    // this.props.handleTimeChange(parseFloat(this.state.display));
     clearInterval(this.interval);
 
     if (!localStorage.getItem('token')) {
@@ -77,7 +77,7 @@ export default class Timer extends Component {
         data: {
           algorithm: this.props.algorithm,
           level: this.props.level,
-          time: parseInt(time),
+          time: parseFloat(time),
         },
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
