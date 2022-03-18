@@ -96,11 +96,19 @@ function Level2({ blocks, steps, countUp, countDown, timer }) {
     }
   }
 
+  // increment the step counter
+  const handleNextStep = () => {
+    // check if the user completed the level
+
+    // count up the step
+    countUp();
+  }
+
   return (
     <div>
       <div className='prev-next-container'>
           <button onClick={countDown}><FaAngleLeft /></button>
-          <button onClick={countUp}><FaAngleRight /></button>
+          <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
       {timer}
       <DragDropContext onDragEnd={handleOnDragEnd}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { notification } from 'antd';
 import axios from 'axios';
+import './Timer.css';
 
 // component to display the time the user takes on a level
 export default class Timer extends Component {
@@ -94,7 +95,7 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <div style={{ fontWeight: 'bold', fontSize: 20 }}>
+      <div className="timer">
         {this.state.display} MINUTES
       </div>
     )
