@@ -173,12 +173,11 @@ function Level4({ blocks, sorted, swap, needsSorting, steps, countUp, countDown 
   }
 
   return (
-    <div>
+    <div className="lvl4">
       <div className='prev-next-container'>
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={countUp}><FaAngleRight /></button>
       </div>
-      <div>mistakes{mistakes}</div>
       <div className="lives">
       <div>{life1 ? <FaHeart/> : null}</div>
       <div>{life2 ? <FaHeart/> : null}</div>

@@ -1,14 +1,16 @@
 .listBlocks {
-    margin: 0 auto;
-    min-height: 520px;
-    min-width: 90%;
     text-align: center;
     list-style-type: none;
     display: flex;
+    justify-content: center;
+    /* background-color: blue; */
+    padding-inline-start: 0px;
+
 }
 
 .listBlocks li {
     margin: 1px;
+    /* background-color: red; */
 }
 
 .listBlocks .block {
@@ -30,9 +32,22 @@
     max-width: 70px;
     min-height: 30px;
     margin: auto;
+    /* background-color: purple; */
 }
 
 .lives * {
     color: rgb(227,27,35);
     font-size: 20px;
+}
+
+.prev-next-container{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: green; */
+    max-width: 150px;
+    margin: auto;
+}
+
+.lvl4{
+    /* background-color: yellow; */
 }

@@ -159,7 +159,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
     }
 
     return (
-        <div id="game-body">
+        <div className="game" id="game-body">
             { difficulty === 1 ? 
                 <Level1
                     length={length}
@@ -196,7 +196,7 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
                 </>
             : difficulty === 4 ? 
                 <>
-                <div className="stepCounter"> Step {steps}</div>
+                <div className="stepCounter"> Step {steps + 1}</div>
                     <Level4
                         blocks={blocks}
                         current={true}

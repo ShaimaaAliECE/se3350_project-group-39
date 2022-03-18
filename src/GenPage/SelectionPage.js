@@ -82,9 +82,10 @@ function SelectionPage() {
         <p align="center" className="sign">
           Select an Algorithm
         </p>
-
+      <div className="options-container">
         <div className="barDiv">
           <Select
+          className="selection-box"
             defaultValue="mergeSort"
             onChange={(value) => {
               console.log(value);
@@ -152,14 +153,14 @@ function SelectionPage() {
             disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
           />
         </div>
-
-        <div align="center" style={{ padding: "10px" }}>
-          <div>
+      </div>
+        
+          <div className="sort-btn-container">
             <button className="submit" onClick={() => setClicked(!clicked)}>
               {clicked ? 'Reset' : 'Sort'}
             </button>
           </div>
-        </div>
+        
 
         <div className="expand">
           <div className="expandDiv">
