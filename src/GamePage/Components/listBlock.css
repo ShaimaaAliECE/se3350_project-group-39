@@ -51,3 +51,11 @@
 .lvl4{
     /* background-color: yellow; */
 }
+
+.game-lost-pop-up * {
+    color: black;
+}
+
+.pop-up-content {
+    color: black;
+}

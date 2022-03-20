@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import 'antd/dist/antd.css';
+import { Modal, Button } from 'antd';
 import "./listBlock.css";
 
 
@@ -17,6 +19,8 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [life1, setLife1] = useState(true);
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
+  const [visible, setVisible] = useState(false); // fucntion for popup
+  const [loading, setLoading] = useState(false); // fucntion for loss popup
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -38,6 +42,13 @@ function Level4({ blocks, steps, countUp, countDown }) {
     setList(blocks);
     checkCurrentStep(blocks);
   }, [blocks])
+
+  // calls the pop up after losing game
+  useEffect(() => {
+    if(mistakes > 2){
+      showModal();
+    }
+  }, [mistakes])
 
 
   const handleOnDragEnd = (result) => {
@@ -118,6 +129,24 @@ function Level4({ blocks, steps, countUp, countDown }) {
     setOutOfPlace(arr)
   };
 
+  // functions to show pop up after losing game
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  // functions to handle pop-up
+  const handleOk = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setVisible(false);
+    }, 3000);
+  };
+
+  // functions which closes pop up
+  const handleCancel = () => {
+    setVisible(false);
+  };
   // Switches what is being stored in the current array
   function handleSteps() {
     console.log(steps);
@@ -183,6 +212,49 @@ function Level4({ blocks, steps, countUp, countDown }) {
       <div>{life2 ? <FaHeart/> : null}</div>
       <div>{life3 ? <FaHeart/> : null}</div> 
       </div>
+      <div className="game-lost-pop-up">{visible? <Modal
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          closable = {false}
+          maskClosable = {false}
+          footer={[
+            <Button key="back" onClick={handleCancel}>
+              Return
+            </Button>,
+            <Button
+              key="link"
+              href="https://google.com"
+              type="primary"
+              loading={loading}
+              onClick={handleOk}
+            >
+              Restart Level
+            </Button>,
+            <Button
+            key="link"
+            href="https://google.com"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+            >
+              Return To Previous Level
+            </Button>,
+            <Button
+            key="link"
+            href="http://localhost:3000/MenuPage"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+            >
+              Quit Game
+            </Button>,
+          ]}
+        >
+          <h1 className="pop-up-content">Oh No... You Lost All Your Lives</h1>
+          <h2 className="pop-up-content">You now have the choice to:</h2>
+
+        </Modal> : null}</div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (

@@ -4,9 +4,11 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
-import "./listBlock.css";
 import { notification } from "antd";
 import Timer from "../../GenPage/Timer";
+import 'antd/dist/antd.css';
+import { Modal, Button } from 'antd';
+import "./listBlock.css";
 
 
 function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
@@ -24,10 +26,12 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [life1, setLife1] = useState(true);
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
-  let stepInstructions = "";
 
   useEffect(() => {
     setCurrentStepValid(false);
@@ -64,6 +68,17 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
     if (won) handleLevelComplete();
   }, [won]);
 
+  useEffect(() => {
+    checkCurrentStep(list);
+  }, [list])
+
+  // calls the pop up after losing game
+  useEffect(() => {
+    if(mistakes > 2){
+      showModal();
+    }
+  }, [mistakes])
+
   // call the react hook to create a function to call the sound
   const [ playErrorSound ] = useSound(ErrorSound);
   const [ playWinSound ] = useSound(WinSound);
@@ -83,10 +98,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
 
     setList(items);
   };
-
-  useEffect(() => {
-    checkCurrentStep(list);
-  }, [list])
 
   function checkCurrentStep(items) {
     let array = items.slice(current[0], current[current.length - 1] + 1);
@@ -201,6 +212,26 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
     setOutOfPlace(arr);
   };
 
+  // functions to show pop up after losing game
+  const showModal = () => {
+    setVisible(true);
+    playErrorSound();
+  };
+  
+  // functions to handle pop-up
+  const handleOk = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setVisible(false);
+    }, 3000);
+  };
+
+  // functions which closes pop up
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
   // Switches what is being stored in the current array
   function handleSteps() {
     console.log(steps);
@@ -238,12 +269,54 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
           <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
       {!won ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
-      <div>mistakes{mistakes}</div>
       <div className="lives">
       <div>{life1? <FaHeart/> : null}</div>
       <div>{life2? <FaHeart/> : null}</div>
       <div>{life3? <FaHeart/> : null}</div> 
       </div>
+      <div className="game-lost-pop-up">{visible? <Modal
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          closable = {false}
+          maskClosable = {false}
+          footer={[
+            <Button key="back" onClick={handleCancel}>
+              Return
+            </Button>,
+            <Button
+              key="link"
+              href="https://google.com"
+              type="primary"
+              loading={loading}
+              onClick={handleOk}
+            >
+              Restart Level
+            </Button>,
+            <Button
+            key="link"
+            href="https://google.com"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+            >
+              Return To Previous Level
+            </Button>,
+            <Button
+            key="link"
+            href="http://localhost:3000/MenuPage"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+            >
+              Quit Game
+            </Button>,
+          ]}
+        >
+          <h1 className="pop-up-content">Oh No... You Lost All Your Lives</h1>
+          <h2 className="pop-up-content">You now have the choice to:</h2>
+
+        </Modal> : null}</div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="blocks" direction="horizontal">
           {(provided) => (
@@ -308,7 +381,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
           )}
         </Droppable>
       </DragDropContext>
+      
     </div>
+    
   );
 }
 

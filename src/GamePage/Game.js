@@ -74,7 +74,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                 />
             : difficulty === 3 ? 
                 <>
-                <div className="stepCounter"> Step {steps}</div>
+                <div className="stepCounter"> Step {steps + 1}</div>
                     <Level3
                         blocks={blocks}
                         current={true}
