@@ -85,7 +85,7 @@ function SelectionPage() {
           <Slider
             style={{ width: "300px" }}
             defaultValue={1}
-            disabled={false}
+            disabled={false} 
             min={1}
             max={5}
             onChange={(value) => {

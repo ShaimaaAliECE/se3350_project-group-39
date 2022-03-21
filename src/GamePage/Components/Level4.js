@@ -59,7 +59,6 @@ function Level4({ blocks, steps, countUp, countDown }) {
     
     checkChange(result);
     const items = Array.from(list);
-    console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
@@ -149,7 +148,6 @@ function Level4({ blocks, steps, countUp, countDown }) {
   };
   // Switches what is being stored in the current array
   function handleSteps() {
-    console.log(steps);
       switch(steps){
         case 0:
             setCurrent([0, 1]);
@@ -218,6 +216,8 @@ function Level4({ blocks, steps, countUp, countDown }) {
           onCancel={handleCancel}
           closable = {false}
           maskClosable = {false}
+          maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
+          width={800}
           footer={[
             <Button key="back" onClick={handleCancel}>
               Return
@@ -272,15 +272,12 @@ function Level4({ blocks, steps, countUp, countDown }) {
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
-                  console.log(steps +"step")
-                  console.log("blebble " + mistakes)
 
 
                 // If the user moves the correct step into order
                   if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
-                  console.log(steps +"step")
 
                 const style = {
                   backgroundColor: bg,

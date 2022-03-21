@@ -31,6 +31,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
 
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
+  const originialList = blocks;
   let dropOrNotToDrop = false;
 
   useEffect(() => {
@@ -92,11 +93,11 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
 
     checkChange(result);
     const items = Array.from(list);
-    console.log(items)
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
+    console.log(originialList)
   };
 
   function checkCurrentStep(items) {
@@ -234,7 +235,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
 
   // Switches what is being stored in the current array
   function handleSteps() {
-    console.log(steps);
       switch(steps){
         case 0:
           setCurrent([0, 1]);
@@ -280,6 +280,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
           onCancel={handleCancel}
           closable = {false}
           maskClosable = {false}
+          maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
+          width={800}
           footer={[
             <Button key="back" onClick={handleCancel}>
               Return
@@ -295,12 +297,21 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
             </Button>,
             <Button
             key="link"
-            href="https://google.com"
+            href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
             onClick={handleOk}
             >
-              Return To Previous Level
+              Return To A Previous Level
+            </Button>,
+            <Button
+            key="link"
+            href="http://localhost:3000/SelectionPage"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+            >
+              Try Again With Another Algorithm
             </Button>,
             <Button
             key="link"
@@ -334,15 +345,12 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
                   if (outOfPlace.includes(i)) {
                     bg="red";
                   }
-                  console.log(steps +"step")
-                  console.log("blebble " + mistakes)
 
 
                 // If the user moves the correct step into order
                   if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
-                  console.log(steps +"step")
 
                 const style = {
                   backgroundColor: bg,
