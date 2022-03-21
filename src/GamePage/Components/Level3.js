@@ -8,6 +8,7 @@ import { notification } from "antd";
 import Timer from "../../GenPage/Timer";
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
+import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
 
 
@@ -28,6 +29,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level2&3"];
+
 
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
@@ -97,7 +100,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
-    console.log(originialList)
+    console.log(current + "yeet")
+    console.log(correctBlocks[steps].current + "yellow")
+    
   };
 
   function checkCurrentStep(items) {
@@ -235,31 +240,32 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
 
   // Switches what is being stored in the current array
   function handleSteps() {
-      switch(steps){
+    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+      /*switch(steps){
         case 0:
-          setCurrent([0, 1]);
+          setCurrent(correctBlocks[steps].current);
           break;
         case 1:
-          setCurrent([2,3,4])
+          setCurrent(correctBlocks[steps].current)
           break;
         case 2:
-          setCurrent([0,1,2,3,4])
+          setCurrent(correctBlocks[steps].current)
           break;
         case 3:
-          setCurrent([5,6])       
+          setCurrent(correctBlocks[steps].current)       
           break;
         case 4:         
-          setCurrent([7,8,9])
+          setCurrent(correctBlocks[steps].current)
           break;
         case 5:          
-          setCurrent([5,6,7,8,9])
+          setCurrent(correctBlocks[steps].current)
           break;
         case 6:         
-          setCurrent([0,1,2,3,4,5,6,7,8,9])
+          setCurrent(correctBlocks[steps].current)
           break;
         default:
           break;
-      }
+      }*/
   }
 
   return (
@@ -277,7 +283,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
       <div className="game-lost-pop-up">{visible? <Modal
           visible={visible}
           onOk={handleOk}
-          onCancel={handleCancel}
+          onCancel={handleCancel} 
           closable = {false}
           maskClosable = {false}
           maskStyle = {{backgroundColor: "black", opacity: "0.8"}}

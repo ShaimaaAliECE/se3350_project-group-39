@@ -7,6 +7,7 @@ import useSound from 'use-sound';
 import WinSound from '../../Sounds/win.mp3';
 import ErrorSound from '../../Sounds/error.mp3';
 import { notification } from "antd";
+import CorrectSteps from './CorrectSteps.json'
 import Timer from "../../GenPage/Timer";
 
 function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
@@ -18,6 +19,7 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [won, setWon] = useState(false);
+  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level2&3"];
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let isDraggable = true;
 
@@ -79,32 +81,34 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
 
   // Switches what is being stored in the current array
   function handleSteps() {
-    console.log(steps);
-      switch(steps){
-        case 0:
-          setCurrent([0,1]);
-          break;
-        case 1:
-          setCurrent([2,3,4])
-          break;
-        case 2:
-          setCurrent([0,1,2,3,4])
-          break;
-        case 3:
-          setCurrent([5,6])
-          break;
-        case 4:
-          setCurrent([7,8,9])
-          break;
-        case 5:
-          setCurrent([5,6,7,8,9])
-          break;
-        case 6:
-          setCurrent([0,1,2,3,4,5,6,7,8,9])
-          break;
-        default:
-          break;
-      }
+    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+
+    // console.log(steps);
+    //   switch(steps){
+    //     case 0:
+    //       setCurrent([0,1]);
+    //       break;
+    //     case 1:
+    //       setCurrent([2,3,4])
+    //       break;
+    //     case 2:
+    //       setCurrent([0,1,2,3,4])
+    //       break;
+    //     case 3:
+    //       setCurrent([5,6])
+    //       break;
+    //     case 4:
+    //       setCurrent([7,8,9])
+    //       break;
+    //     case 5:
+    //       setCurrent([5,6,7,8,9])
+    //       break;
+    //     case 6:
+    //       setCurrent([0,1,2,3,4,5,6,7,8,9])
+    //       break;
+    //     default:
+    //       break;
+    //   }
   }
 
   function checkCurrentStep(items) {

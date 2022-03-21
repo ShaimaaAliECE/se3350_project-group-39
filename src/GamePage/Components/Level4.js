@@ -3,6 +3,7 @@ import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
+import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
 
 
@@ -21,6 +22,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false); // fucntion for popup
   const [loading, setLoading] = useState(false); // fucntion for loss popup
+  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -148,55 +150,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
   };
   // Switches what is being stored in the current array
   function handleSteps() {
-      switch(steps){
-        case 0:
-            setCurrent([0, 1]);
-            break;
-        case 1:
-            setCurrent([2,3,4])
-            break;
-        case 2:
-            setCurrent([0,1,2,3,4])
-            break;
-        case 3:
-            setCurrent([5,6])       
-            break;
-        case 4:         
-            setCurrent([7,8,9])
-            break;
-        case 5:          
-            setCurrent([5,6,7,8,9])
-            break;
-        case 6:         
-            setCurrent([0,1,2,3,4,5,6,7,8,9])
-            break;
-        case 7:
-            setCurrent([10, 11]);
-            break;
-        case 8:
-            setCurrent([12, 13, 14]);
-            break;
-        case 9:
-            setCurrent([10,11,12,13,14]);
-            break;
-        case 10:
-            setCurrent([15,16]);
-            break;
-        case 11:
-            setCurrent([17,18,19]);
-            break;
-        case 12:
-            setCurrent([15,16,17,18,19]);
-            break;
-        case 13:
-            setCurrent([10,11,12,13,14,15,16,17,18,19]);
-            break;
-        case 14:
-            setCurrent([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]);
-            break;
-        default:
-            break;
-      }
+    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
   }
 
   return (
@@ -213,7 +167,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
       <div className="game-lost-pop-up">{visible? <Modal
           visible={visible}
           onOk={handleOk}
-          onCancel={handleCancel}
+          onCancel={handleCancel} 
           closable = {false}
           maskClosable = {false}
           maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
@@ -233,12 +187,21 @@ function Level4({ blocks, steps, countUp, countDown }) {
             </Button>,
             <Button
             key="link"
-            href="https://google.com"
+            href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
             onClick={handleOk}
             >
-              Return To Previous Level
+              Return To A Previous Level
+            </Button>,
+            <Button
+            key="link"
+            href="http://localhost:3000/SelectionPage"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+            >
+              Try Again With Another Algorithm
             </Button>,
             <Button
             key="link"
