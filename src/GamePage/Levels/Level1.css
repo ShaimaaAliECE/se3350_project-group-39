@@ -31,24 +31,26 @@
 .steps-div   {
     min-width: 80%;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    margin: 20px;
+    
 }
 
-.step-label-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 80px;
+.steps-label-div    {
+    margin: 30px;
 }
 
 .step-label {
     color: white;
+
     font-size: 25px;
     /* overflow: hidden; */
     width: 70%;
-    min-height: 100px;
 }
+
+
 
 .list   {
     display: flex;
