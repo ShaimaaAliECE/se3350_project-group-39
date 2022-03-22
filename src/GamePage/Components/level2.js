@@ -10,7 +10,7 @@ import { notification } from "antd";
 import CorrectSteps from './CorrectSteps.json'
 import Timer from "../../GenPage/Timer";
 
-function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
+function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshLevel}) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -168,10 +168,20 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
 
     if (complete) {
       setCompleted(true);
+      resetLevel();
+      refreshLevel();
     }
 
     // count up the step
     countUp();
+  }
+
+  // things to take care of when resetting level
+  function resetLevel() {
+    setCompleted(false);
+    setCurrent([]);
+    setWon(false);
+    setCurrentStepValid(false);
   }
 
   return (
