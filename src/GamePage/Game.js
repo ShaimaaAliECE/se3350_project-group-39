@@ -4,17 +4,10 @@ import mergeSort from "../Algos/MergeSort";
 import bubbleSort from "../Algos/BubbleSort";
 import quickSort from "../Algos/QuickSort"
 import ListBlocks from "./Components/ListBlock";
-<<<<<<< HEAD
 import axios from "axios";
 import { resetServerContext } from "react-beautiful-dnd";
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import Level1 from "./Levels/Level1"
-=======
-import Level2 from "./Components/Level2";
-import axios from "axios";
-import { resetServerContext } from "react-beautiful-dnd";
-import Level1 from "./Levels/Level1";
->>>>>>> 52a6fa51ae3ab036b35e7e29bcd3cb352af3bbe7
 import Level3 from "./Components/Level3";
 import Level2 from "./Components/Level2";
 
@@ -58,8 +51,8 @@ export default function Game({ algorythm, difficulty, size, clicked }) {
         }
         console.log("isSorting = " + isSorting); 
     }
-
-    // Called every time the start button is clicked and when the sliders are moved
+    
+    3// Called every time the start button is clicked and when the sliders are moved
     useEffect(() => {
         getRandomNumbers();
         // update states
