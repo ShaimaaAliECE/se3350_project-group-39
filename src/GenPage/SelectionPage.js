@@ -101,7 +101,7 @@ function SelectionPage() {
             defaultValue={1}
             disabled={false} 
             min={1}
-            max={5}
+            max={6}
             value={level ? level : 1}
             onChange={(value) => {
               setLevel(value);
@@ -127,7 +127,7 @@ function SelectionPage() {
             defaultValue={listSize}
             value={listSize}
             max={50}
-            step={10}
+            step={1}
             onChange={(value) => {
               setListSize(value);
             }}
