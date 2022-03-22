@@ -143,13 +143,6 @@ function SelectionPage() {
           />
         </div>
 
-        {/* <div align="center" style={{ padding: "10px" }}>
-          <div>
-            <button className="submit" onClick={() => setClicked(!clicked)}>
-              {clicked ? 'Reset' : 'Sort'}
-            </button>
-          </div>
-        </div> */}
         <Divider />
 
         <div className="expand">
