@@ -19,7 +19,6 @@ export default class Timeout extends React.Component {
     }
 
     _onAction(e) {
-      console.log('user did something', e)
       this.setState({isTimedOut: false})
     }
    

@@ -103,15 +103,13 @@ export default function Level1() {
     return (
         <div className='tutorial-div'>
             
-            
-            
             <div className = "tutorial-container">
                 <div className="steps-div">
-                    <div className='step-label-div'>
-                        <button disabled={prevDisable} onClick={handlePrev} className="bttn"><FaAngleLeft /></button>
-                        <label className='step-label'>{step ? step.Description ? step.Description : undefined : undefined}</label>
-                        <button disabled={nextDisable} onClick={handleNext} className="bttn"><FaAngleRight /></button>
+                    <div className='step-label-div prev-next-container'>
+                        <button disabled={prevDisable} onClick={handlePrev}><FaAngleLeft /></button>
+                        <button disabled={nextDisable} onClick={handleNext}><FaAngleRight /></button>
                     </div>
+                    <label className='step-label'>{step ? step.Description ? step.Description : undefined : undefined}</label>
                     
                 
                     <ul className="list">
@@ -124,7 +122,6 @@ export default function Level1() {
                                 'height': height, 
                                 'width': width
                             }
-
 
                             return (<div key={i} id={'block-' + i} className='block' style={style}>{block}</div>);
 
