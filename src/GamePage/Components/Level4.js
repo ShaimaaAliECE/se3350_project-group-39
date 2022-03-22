@@ -5,9 +5,15 @@ import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
 import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
+import Timer from "../../GenPage/Timer";
+import { notification } from "antd";
+import useSound from "use-sound";
+import ErrorSound from '../../Sounds/error.mp3';
+import WinSound from '../../Sounds/win.mp3';
 
 
-function Level4({ blocks, steps, countUp, countDown }) {
+
+function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -16,6 +22,8 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [changes,setChanges] = useState([]);
+  const [won, setWon] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [mistakes, setMistakes] = useState(0);
   const [life1, setLife1] = useState(true);
   const [life2, setLife2] = useState(true);
@@ -23,6 +31,10 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [visible, setVisible] = useState(false); // fucntion for popup
   const [loading, setLoading] = useState(false); // fucntion for loss popup
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
+
+  // Sounds
+  const [playWinSound] = useSound(WinSound);
+  const [playErrorSound] = useSound(ErrorSound);
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -34,6 +46,14 @@ function Level4({ blocks, steps, countUp, countDown }) {
   useEffect(() => {
     handleSteps();
     checkCurrentStep(list);
+
+    if (currentStepValid) {
+      notification.success({
+        message: 'Hooray!',
+        description: 'You got it! Click on the right arrow to move to the next step',
+        placement: 'topLeft'
+      });
+    }
   }, [currentStepValid]);
 
   useEffect(() => {
@@ -51,6 +71,14 @@ function Level4({ blocks, steps, countUp, countDown }) {
       showModal();
     }
   }, [mistakes])
+
+  useEffect(() => {
+    if (won) handleLevelComplete();
+  }, [won]);
+
+  useEffect(() => {
+    if (completed) setWon(true);
+  }, [completed])
 
 
   const handleOnDragEnd = (result) => {
@@ -92,6 +120,32 @@ function Level4({ blocks, steps, countUp, countDown }) {
     }
   }
 
+    // increment the step counter
+    const handleNextStep = () => {
+      // if the current step is not valid don't progress
+      if (!currentStepValid) return;
+  
+      let complete = true;
+  
+      // check if the user completed the level
+      const arrCpy = JSON.parse(JSON.stringify(blocks));
+      arrCpy.sort((first, second) => first - second);
+  
+      arrCpy.forEach((item, index) => {
+        if (!(list[index] === item)) {
+          complete = false;
+          return;
+        }
+      });
+  
+      if (complete) {
+        setCompleted(true);
+      }
+  
+      // count up the step
+      countUp();
+    }
+
   //checks how many lives user has
   const checkLives = () => {
     if(mistakes === 0){
@@ -104,6 +158,17 @@ function Level4({ blocks, steps, countUp, countDown }) {
       setLife3(false);
     }
   }
+
+  // function to trigger when the user wins the level
+  function handleLevelComplete() {
+    playWinSound();
+  
+    notification.success({
+      message: 'Congrats!',
+      description: 'You have successfully completed the level',
+      placement: 'topLeft'
+      });
+    }
 
   // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
@@ -157,8 +222,9 @@ function Level4({ blocks, steps, countUp, countDown }) {
     <div className="lvl4">
       <div className='prev-next-container'>
           <button onClick={countDown}><FaAngleLeft /></button>
-          <button onClick={countUp}><FaAngleRight /></button>
+          <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
+      {!won ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
       <div className="lives">
       <div>{life1 ? <FaHeart/> : null}</div>
       <div>{life2 ? <FaHeart/> : null}</div>

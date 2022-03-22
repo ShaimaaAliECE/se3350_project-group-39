@@ -241,31 +241,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
   // Switches what is being stored in the current array
   function handleSteps() {
     return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
-      /*switch(steps){
-        case 0:
-          setCurrent(correctBlocks[steps].current);
-          break;
-        case 1:
-          setCurrent(correctBlocks[steps].current)
-          break;
-        case 2:
-          setCurrent(correctBlocks[steps].current)
-          break;
-        case 3:
-          setCurrent(correctBlocks[steps].current)       
-          break;
-        case 4:         
-          setCurrent(correctBlocks[steps].current)
-          break;
-        case 5:          
-          setCurrent(correctBlocks[steps].current)
-          break;
-        case 6:         
-          setCurrent(correctBlocks[steps].current)
-          break;
-        default:
-          break;
-      }*/
+  
   }
 
   return (
