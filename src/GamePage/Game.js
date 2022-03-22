@@ -24,7 +24,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
         else if(difficulty === 4)
             max = 50;
         else
-            max = 100;
+            max = 99;
             
         axios({
             method: "GET",
@@ -72,6 +72,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
     }
 
     function refLevel(lvl, alg) {
+        setSteps(0);
         getRandomNumbers();
         refreshLevel(lvl, alg);
     }
