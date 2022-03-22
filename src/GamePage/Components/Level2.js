@@ -90,13 +90,14 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
     console.log(mergeSort(list, steps));
 
     const arr = mergeSort(list, steps);
-    if(!arr)
-      return handleRefresh();
+
+    if(!arr) {
+      setCompleted(true);
+      return;
+    }
 
     const min = arr[0];
     const max = arr[arr.length - 1];
-
-
 
     const curArr = [];
     for (let i = min; i <= max; i++) {
@@ -136,6 +137,9 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
       description: 'You have successfully completed the level',
       placement: 'topLeft'
     });
+
+    // make modal visible and ask the user for what to do next
+    handleRefresh();
   }
 
   // increment the step counter

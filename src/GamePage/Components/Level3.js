@@ -192,6 +192,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       description: 'You have successfully completed the level',
       placement: 'topLeft'
     });
+
+    // make modal visible and ask the user for what to do next
+    handleRefresh();
   }
 
   // Checks what change the user has made in terms of moving the blocks
@@ -265,7 +268,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
 
     const arr = mergeSort(list, steps);
     if(!arr)
-      return handleRefresh();
+      return setCompleted(true);
 
     const min = arr[0];
     const max = arr[arr.length - 1];

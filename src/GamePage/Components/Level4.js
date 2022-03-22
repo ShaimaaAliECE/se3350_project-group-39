@@ -124,33 +124,38 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
     }
   }
 
-    // increment the step counter
-    const handleNextStep = () => {
-      // if the current step is not valid don't progress
-      if (!currentStepValid) return;
-  
-      let complete = true;
-  
-      // check if the user completed the level
-      const arrCpy = JSON.parse(JSON.stringify(blocks));
-      arrCpy.sort((first, second) => first - second);
-  
-      arrCpy.forEach((item, index) => {
-        if (!(list[index] === item)) {
-          complete = false;
-          return;
-        }
-      });
-  
-      if (complete) {
-        setCompleted(true);
-        resetLevel();
-        refreshLevel();
+  // increment the step counter
+  const handleNextStep = () => {
+    // if the current step is not valid don't progress
+    if (!currentStepValid) return;
+
+    let complete = true;
+
+    // check if the user completed the level
+    const arrCpy = JSON.parse(JSON.stringify(blocks));
+    arrCpy.sort((first, second) => first - second);
+
+    arrCpy.forEach((item, index) => {
+      if (!(list[index] === item)) {
+        complete = false;
+        return;
       }
-  
-      // count up the step
-      countUp();
+    });
+
+    if (complete) {
+      setCompleted(true);
+      handleRefresh();
     }
+
+    // count up the step
+    countUp();
+  }
+
+  function handleRefresh() {
+    resetLevel();
+    refreshLevel();
+    setVisible(false);
+  }
 
   //checks how many lives user has
   const checkLives = () => {
@@ -188,8 +193,10 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
       message: 'Congrats!',
       description: 'You have successfully completed the level',
       placement: 'topLeft'
-      });
-    }
+    });
+
+    handleRefresh();
+  }
 
   // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
@@ -236,13 +243,6 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   }
   
   // functions to handle pop-up
-  const handleRefresh = () => {
-    resetLevel();
-    refreshLevel();
-    setVisible(false);
-  };
-
-  // functions to handle pop-up
   const handleOk = () => {
     setLoading(true);
     setTimeout(() => {
@@ -262,7 +262,7 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   
       const arr = mergeSort(list, steps);
       if(!arr)
-        return handleRefresh();
+        return setCompleted(true);
   
       const min = arr[0];
       const max = arr[arr.length - 1];
