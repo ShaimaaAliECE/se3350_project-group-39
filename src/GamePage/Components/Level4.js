@@ -143,6 +143,8 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   
       if (complete) {
         setCompleted(true);
+        resetLevel();
+        refreshLevel();
       }
   
       // count up the step
@@ -226,8 +228,8 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
     setLife3(true);
 
     setMistakes(0);
-
     setLost(false);
+    setCompleted(false);
 
     setOutOfPlace([]);
   }

@@ -12,11 +12,7 @@ import levelData from '../Levels.json';
 import Timeout from "./Timeout";
 import { useParams } from "react-router-dom";
 
-
 const { Option } = Select;
-
-
-
 
 function SelectionPage() {
   // states
@@ -37,7 +33,7 @@ function SelectionPage() {
   function refreshLevel(lvl, alg) {
     setLevel(lvl ? lvl : 1);
 
-    setAlgo(alg ? alg : "MergeSort");
+    setAlgo(alg ? alg : "mergeSort");
   }
 
   useEffect(() => {
@@ -75,7 +71,7 @@ function SelectionPage() {
           <Select
           className="selection-box"
             defaultValue="mergeSort"
-            value={algo ? algo : 1}
+            value={algo ? algo : "mergeSort"}
             onChange={(value) => {
               console.log(value);
               setAlgo(value);
