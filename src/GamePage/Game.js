@@ -44,7 +44,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
     // reset steps when the level changes
     useEffect(() => {
         setSteps(0);
-    }, [difficulty])
+    }, [difficulty, refreshLevel])
 
     // Called every time the start button is clicked and when the sliders are moved
     useEffect(() => {
@@ -70,6 +70,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
     }
 
     function refLevel(lvl, alg) {
+        setSteps(0);
         getRandomNumbers();
         refreshLevel(lvl, alg);
     }
@@ -78,7 +79,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
         <div className="game" id="game-body">
             { difficulty === 1 ? 
                 <Level1 
-                    refreshLevel={() => refLevel(1, "MergeSort")}
+                    refreshLevel={() => refLevel(1, "mergeSort")}
                 />
             : difficulty === 2 ? 
                 <Level2
@@ -89,7 +90,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
-                    refreshLevel={() => refLevel(2, "MergeSort")}
+                    refreshLevel={() => refLevel(2, "mergeSort")}
                 />
             : difficulty === 3 ? 
                 <>
@@ -102,7 +103,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
-                        refreshLevel={() => refLevel(3, "MergeSort")}
+                        refreshLevel={() => refLevel(3, "mergeSort")}
                     />
                 </>
             : difficulty === 4 ? 
@@ -116,7 +117,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
-                        refreshLevel={() => refLevel(4, "MergeSort")}
+                        refreshLevel={() => refLevel(4, "mergeSort")}
                     />
                 </>
             : difficulty === 5 ?
@@ -130,7 +131,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
-                    refreshLevel={() => refLevel(5, "MergeSort")}
+                    refreshLevel={() => refLevel(5, "mergeSort")}
                 />
             </>
             : difficulty === 6 ?
