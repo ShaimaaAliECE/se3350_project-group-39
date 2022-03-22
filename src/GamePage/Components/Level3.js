@@ -12,7 +12,7 @@ import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
 
 
-function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
+function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLevel }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -30,8 +30,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level2&3"];
-
-
+  const [lost, setLost] = useState(false);
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   const originialList = blocks;
@@ -79,6 +78,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
   // calls the pop up after losing game
   useEffect(() => {
     if(mistakes > 2){
+      setLost(true);
       showModal();
     }
   }, [mistakes])
@@ -223,8 +223,26 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
     setVisible(true);
     playErrorSound();
   };
+
+  function resetLevel() {
+    setLife1(true);
+    setLife2(true);
+    setLife3(true);
+
+    setMistakes(0);
+
+    setLost(false);
+
+    setOutOfPlace([]);
+  }
   
   // functions to handle pop-up
+  const handleRefresh = () => {
+    resetLevel();
+    refreshLevel();
+    setVisible(false);
+  };
+  
   const handleOk = () => {
     setLoading(true);
     setTimeout(() => {
@@ -241,7 +259,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
   // Switches what is being stored in the current array
   function handleSteps() {
     return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
-  
   }
 
   return (
@@ -250,7 +267,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
-      {!won ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
+      {!won && !lost ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
       <div className="lives">
       <div>{life1? <FaHeart/> : null}</div>
       <div>{life2? <FaHeart/> : null}</div>
@@ -269,16 +286,13 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
               Return
             </Button>,
             <Button
-              key="link"
-              href="https://google.com"
               type="primary"
               loading={loading}
-              onClick={handleOk}
+              onClick={handleRefresh}
             >
               Restart Level
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
@@ -287,7 +301,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
               Return To A Previous Level
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
@@ -296,7 +309,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level }) {
               Try Again With Another Algorithm
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/MenuPage"
             type="primary"
             loading={loading}

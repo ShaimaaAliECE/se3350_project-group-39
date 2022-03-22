@@ -8,7 +8,7 @@ import Level4 from "./Components/Level4";
 import Timer from "../GenPage/Timer";
 import Level5 from "./Components/Level5";
 
-export default function Game({ algorithm, difficulty, size, clicked }) {
+export default function Game({ algorithm, difficulty, size, clicked, refreshLevel }) {
     // states
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
@@ -59,12 +59,32 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
 
     }
 
+    function refLevel(lvl, alg) {
+        getRandomNumbers();
+        refreshLevel(lvl, alg);
+    }
+
     return (
         <div className="game" id="game-body">
-            {difficulty === 1 ?
-                <Level1 />
-                : difficulty === 2 ?
-                    <Level2
+            { difficulty === 1 ? 
+                <Level1 
+                    refreshLevel={() => refLevel(1, "MergeSort")}
+                />
+            : difficulty === 2 ? 
+                <Level2
+                    blocks={blocks}
+                    current={true}
+                    steps={steps}
+                    countUp={counter}
+                    countDown={countDown}
+                    algorithm={algorithm}
+                    level={difficulty}
+                    refreshLevel={() => refLevel(2, "MergeSort")}
+                />
+            : difficulty === 3 ? 
+                <>
+                <div className="stepCounter"> Step {steps + 1}</div>
+                    <Level3
                         blocks={blocks}
                         current={true}
                         steps={steps}
@@ -72,48 +92,24 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refLevel(3, "MergeSort")}
                     />
-                    : difficulty === 3 ?
-                        <>
-                            <div className="stepCounter"> Step {steps + 1}</div>
-                            <Level3
-                                blocks={blocks}
-                                current={true}
-                                steps={steps}
-                                countUp={counter}
-                                countDown={countDown}
-                                algorithm={algorithm}
-                                level={difficulty}
-                            />
-                        </>
-
-                        : difficulty === 4 ?
-                            <>
-                                <div className="stepCounter"> Step {steps + 1}</div>
-                                <Level4
-                                    blocks={blocks}
-                                    current={true}
-                                    steps={steps}
-                                    countUp={counter}
-                                    countDown={countDown}
-                                    algorithm={algorithm}
-                                    level={difficulty}
-                                />
-                            </>
-                            : difficulty === 5 ?
-                                <>
-                                    <div className="stepCounter"> Step {steps + 1}</div>
-                                    <Level5
-                                        blocks={blocks}
-                                        current={true}
-                                        steps={steps}
-                                        countUp={counter}
-                                        countDown={countDown}
-                                        algorithm={algorithm}
-                                        level={difficulty}
-                                    />
-                                </>
-                                : <></>}
+                </>
+            : difficulty === 4 ? 
+                <>
+                <div className="stepCounter"> Step {steps + 1}</div>
+                    <Level4
+                        blocks={blocks}
+                        current={true}
+                        steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
+                        algorithm={algorithm}
+                        level={difficulty}
+                        refreshLevel={() => refLevel(4, "MergeSort")}
+                    />
+                </>
+            : <></>}
         </div>
     );
 }
