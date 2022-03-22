@@ -1,32 +1,23 @@
 import "./selectionPage.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Slider, PageHeader, Select, Image, Divider } from "antd";
+import { Slider, Select, Image, Divider } from "antd";
 import "antd/dist/antd.min.css";
-import useToken from "../useToken";
-import Header from "../Header/Header";
-import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
-import axios from "axios";
 import levelData from '../Levels.json';
 import Timeout from "./Timeout";
 import { useParams } from "react-router-dom";
 
-
 const { Option } = Select;
-
-
-
 
 function SelectionPage() {
   // states
   const [level, setLevel] = useState(1);
-  const [time, setTime] = useState(0.0);
   const [listSize, setListSize] = useState(levelData["levels"][`${level}`]["size"]);
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
-  const word = "Start";
+
   // Images used when the user is selecting an algo
   const sortImage = {
     bubbleSort: "./assets/AlgoImages/bubbleSort.png",
@@ -37,7 +28,7 @@ function SelectionPage() {
   function refreshLevel(lvl, alg) {
     setLevel(lvl ? lvl : 1);
 
-    setAlgo(alg ? alg : "MergeSort");
+    setAlgo(alg ? alg : "mergeSort");
   }
 
   useEffect(() => {
@@ -155,6 +146,7 @@ function SelectionPage() {
               refreshLevel={refreshLevel}
             />
           </div>
+
           <Timeout />
         </div>
       </div>

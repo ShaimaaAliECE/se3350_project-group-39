@@ -145,10 +145,13 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
 
     if (complete) {
       setCompleted(true);
+      resetLevel();
+      refreshLevel();
     }
 
     // count up the step
     countUp();
+
   }
 
   //checks how many lives user has
@@ -230,8 +233,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
     setLife3(true);
 
     setMistakes(0);
-
     setLost(false);
+    setCompleted(false);
 
     setOutOfPlace([]);
   }
