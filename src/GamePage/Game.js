@@ -1,11 +1,10 @@
-import React, { useState, useEffect, createRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./Game.css";
 import axios from "axios";
 import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
 import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
-import Timer from "../GenPage/Timer";
 
 export default function Game({ algorithm, difficulty, size, clicked }) {
     // states
@@ -51,11 +50,9 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
     }
 
     function countDown() {
+        if (steps === 0) return;
+
         setSteps(steps-1);
-        if(steps <= 0){
-            setSteps(0);
-        }
- 
     }
 
     return (
