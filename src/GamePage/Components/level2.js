@@ -35,14 +35,18 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
     handleSteps();
     checkCurrentStep(list);
 
+  }, [currentStepValid]);
+
+  useEffect(() => {
     // send message for current step correct
-    if (currentStepValid && !completed) 
+    if (currentStepValid && !completed) {
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
         placement: 'topLeft'
-      })
-  }, [currentStepValid])
+      });
+    }
+  }, [list]);
 
   useEffect(() => {
     setWidth(
@@ -51,6 +55,7 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
     setCurrentStepValid(false);
     setList(blocks);
     checkCurrentStep(blocks);
+
   }, [blocks]);
 
   useEffect(() => {
