@@ -15,19 +15,30 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
+        let max = 0;
+
+        // Determines what the max is depedning on the level
+        if(difficulty <=3)
+            max = 20;
+        else if(difficulty === 4)
+            max = 50;
+        else
+            max = 100;
+            
         axios({
             method: "GET",
             url: "/random",
             params: {
                 size: size,
                 min: 1,
-                max: 20
+                max: max
             },
 
         }).then(({ data }) => {
             setBlocks(data);
         });
     }
+
 
     // reset steps when the level changes
     useEffect(() => {
