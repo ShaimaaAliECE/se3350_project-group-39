@@ -271,8 +271,6 @@ function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  ref
       curArr.push(i);
     }
 
-
-    
     setCurrent(curArr);
   }
 
