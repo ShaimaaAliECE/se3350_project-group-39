@@ -7,6 +7,7 @@ import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
 import Timer from "../GenPage/Timer";
 import Level5 from "./Components/Level5";
+import CustomLevel from "./Components/CustomLevel";
 
 export default function Game({ algorithm, difficulty, size, clicked, refreshLevel }) {
     // states
@@ -134,7 +135,21 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     refreshLevel={() => refLevel(5, "MergeSort")}
                 />
             </>
-            : <></>}
+            : difficulty === 6 ?
+            <>
+                <div className="stepCounter"> Step {steps + 1}</div>
+                <CustomLevel
+                    blocks={blocks}
+                    current={true}
+                    steps={steps}
+                    countUp={counter}
+                    countDown={countDown}
+                    algorithm={algorithm}
+                    level={difficulty}
+                    refreshLevel={() => refLevel(6, "MergeSort")}
+                />
+            </> 
+            :<></>}
         </div>
     );
 }

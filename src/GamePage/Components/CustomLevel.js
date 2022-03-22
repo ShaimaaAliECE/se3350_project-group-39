@@ -11,7 +11,7 @@ import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
 
-function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
+function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -380,4 +380,4 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   );
 }
 
-export default Level5;
+export default CustomLevel;
