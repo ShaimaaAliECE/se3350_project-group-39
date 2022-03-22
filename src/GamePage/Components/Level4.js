@@ -198,6 +198,7 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
       arr.push(start)
       arr.push(end)
       setMistakes(mistakes + 1);
+      playErrorSound(); // play error sound to indicate error
       checkLives();
     }
 
