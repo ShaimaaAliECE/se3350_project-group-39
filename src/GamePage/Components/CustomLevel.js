@@ -11,9 +11,7 @@ import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
 
-
-
-function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
+function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -29,8 +27,8 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false); // fucntion for popup
-  const [loading, setLoading] = useState(false); 
-  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
+  const [loading, setLoading] = useState(false); // fucntion for loss popup
+  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level5"];
   const [lost, setLost] = useState(false);
 
 
@@ -143,41 +141,40 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   
       if (complete) {
         setCompleted(true);
-        resetLevel();
-        refreshLevel();
       }
   
       // count up the step
       countUp();
     }
 
-  //checks how many lives user has
-  const checkLives = () => {
-    if(mistakes === 0){
-      setLife1(false)
-      notification.error({
-        message: 'Oops!',
-        description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
-      });
+    //checks how many lives user has
+    const checkLives = () => {
+      if(mistakes === 0){
+        setLife1(false)
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft'
+        });
+      }
+      if(mistakes === 1){
+        setLife2(false);
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft'
+        });
+      }
+      if(mistakes === 2){
+        setLife3(false);
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft'
+        });
+      }
+  
     }
-    if(mistakes === 1){
-      setLife2(false);
-      notification.error({
-        message: 'Oops!',
-        description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
-      });
-    }
-    if(mistakes === 2){
-      setLife3(false);
-      notification.error({
-        message: 'Oops!',
-        description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
-      });
-    }
-  }
 
   // function to trigger when the user wins the level
   function handleLevelComplete() {
@@ -229,7 +226,6 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
 
     setMistakes(0);
     setLost(false);
-    setCompleted(false);
 
     setOutOfPlace([]);
   }
@@ -260,7 +256,7 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   }
 
   return (
-    <div className="lvl4">
+    <div className="lvl5">
       <div className='prev-next-container'>
           <button onClick={countDown}><FaAngleLeft /></button>
           <button onClick={handleNextStep}><FaAngleRight /></button>
@@ -384,4 +380,4 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
   );
 }
 
-export default Level4;
+export default CustomLevel;

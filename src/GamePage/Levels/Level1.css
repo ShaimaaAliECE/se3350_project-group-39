@@ -59,7 +59,9 @@
     border-radius: 25px;
 }
 
-
+.list * {
+    transition-duration: 0.3s;
+}
 
 .block  {
     border: 1px solid black;

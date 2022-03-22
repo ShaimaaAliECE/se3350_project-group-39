@@ -1,32 +1,35 @@
 import "./selectionPage.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Slider, PageHeader, Select, Image, Divider } from "antd";
+import { Slider, Select, Image, Divider } from "antd";
 import "antd/dist/antd.min.css";
-import useToken from "../useToken";
-import Header from "../Header/Header";
-import Expand from "react-expand-animated";
 import Game from "../GamePage/Game";
-import axios from "axios";
 import levelData from '../Levels.json';
 import Timeout from "./Timeout";
+import { useParams } from "react-router-dom";
 
 const { Option } = Select;
 
 function SelectionPage() {
+  // states
   const [level, setLevel] = useState(1);
-  const [time, setTime] = useState(0.0);
   const [listSize, setListSize] = useState(levelData["levels"][`${level}`]["size"]);
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
-  const word = "Start";
+
   // Images used when the user is selecting an algo
   const sortImage = {
     bubbleSort: "./assets/AlgoImages/bubbleSort.png",
     quickSort: "./assets/AlgoImages/quickSort.png",
     mergeSort: "./assets/AlgoImages/bubbleSort.png",
   };
+
+  function refreshLevel(lvl, alg) {
+    setLevel(lvl ? lvl : 1);
+
+    setAlgo(alg ? alg : "mergeSort");
+  }
 
   useEffect(() => {
     setListSize(levelData["levels"][`${level}`]["size"]);
@@ -63,6 +66,7 @@ function SelectionPage() {
           <Select
           className="selection-box"
             defaultValue="mergeSort"
+            value={algo ? algo : "mergeSort"}
             onChange={(value) => {
               console.log(value);
               setAlgo(value);
@@ -92,7 +96,8 @@ function SelectionPage() {
             defaultValue={1}
             disabled={false} 
             min={1}
-            max={5}
+            max={6}
+            value={level ? level : 1}
             onChange={(value) => {
               setLevel(value);
             }}
@@ -117,7 +122,7 @@ function SelectionPage() {
             defaultValue={listSize}
             value={listSize}
             max={50}
-            step={10}
+            step={1}
             onChange={(value) => {
               setListSize(value);
             }}
@@ -129,13 +134,6 @@ function SelectionPage() {
           />
         </div>
 
-        {/* <div align="center" style={{ padding: "10px" }}>
-          <div>
-            <button className="submit" onClick={() => setClicked(!clicked)}>
-              {clicked ? 'Reset' : 'Sort'}
-            </button>
-          </div>
-        </div> */}
         <Divider />
 
         <div className="expand">
@@ -145,8 +143,10 @@ function SelectionPage() {
               difficulty={level}
               size={listSize}
               clicked={clicked}
+              refreshLevel={refreshLevel}
             />
           </div>
+
           <Timeout />
         </div>
       </div>

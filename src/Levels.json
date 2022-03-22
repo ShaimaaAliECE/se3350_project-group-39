@@ -35,7 +35,7 @@
             "isMovable" : true,
             "tutorial" : false
         },
-        "custom" :  {
+        "6" :  {
             "size" : null,
             "min" : 1,
             "max" : null,
