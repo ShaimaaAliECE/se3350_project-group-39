@@ -9,6 +9,7 @@ import ErrorSound from '../../Sounds/error.mp3';
 import { notification } from "antd";
 import CorrectSteps from './CorrectSteps.json'
 import Timer from "../../GenPage/Timer";
+import mergeSort from "../../Algos/MergeSort";
 
 function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshLevel}) {
     const [width, setWidth] = useState(
@@ -86,34 +87,23 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
 
   // Switches what is being stored in the current array
   function handleSteps() {
-    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+    console.log(mergeSort(list, steps));
 
-    // console.log(steps);
-    //   switch(steps){
-    //     case 0:
-    //       setCurrent([0,1]);
-    //       break;
-    //     case 1:
-    //       setCurrent([2,3,4])
-    //       break;
-    //     case 2:
-    //       setCurrent([0,1,2,3,4])
-    //       break;
-    //     case 3:
-    //       setCurrent([5,6])
-    //       break;
-    //     case 4:
-    //       setCurrent([7,8,9])
-    //       break;
-    //     case 5:
-    //       setCurrent([5,6,7,8,9])
-    //       break;
-    //     case 6:
-    //       setCurrent([0,1,2,3,4,5,6,7,8,9])
-    //       break;
-    //     default:
-    //       break;
-    //   }
+    const arr = mergeSort(list, steps);
+    if(!arr)
+      return handleRefresh();
+
+    const min = arr[0];
+    const max = arr[arr.length - 1];
+
+
+
+    const curArr = [];
+    for (let i = min; i <= max; i++) {
+      curArr.push(i);
+    }
+
+    setCurrent(curArr);
   }
 
   function checkCurrentStep(items) {
@@ -168,12 +158,16 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
 
     if (complete) {
       setCompleted(true);
-      resetLevel();
-      refreshLevel();
+      handleRefresh();
     }
 
     // count up the step
     countUp();
+  }
+
+  function handleRefresh() {
+    resetLevel();
+    refreshLevel();
   }
 
   // things to take care of when resetting level
@@ -226,8 +220,6 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
                     if(checkSort(list)) {
                       bg = "#4bc52e"
                       isDraggable = true;
-                    } else {
-                      bg = "red"
                     }
                     console.log(steps)
                   }

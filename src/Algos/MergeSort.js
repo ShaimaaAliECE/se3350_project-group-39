@@ -1,4 +1,5 @@
 let order = [];
+let steps = [];
 
 const merge = (numbers, left, mid, right) =>{
     let i = left
@@ -44,12 +45,17 @@ const mergeHelper = (numbers, left, right) => {
 
     mergeHelper(numbers, left, mid)
     mergeHelper(numbers, mid + 1, right) 
+
+    
+    steps.push([left, right]);
+    //steps.push([mid + 1, right]);
     
     merge(numbers, left, mid, right)
 }
 
-const mergeSort = (numbers) => {
+const mergeSort = (numbers, stepNum) => {
     order = []
+    steps = [];
     const dupNumbers = numbers.slice() // copying numbers array
     
     mergeHelper(dupNumbers, 0, dupNumbers.length - 1)
@@ -58,7 +64,7 @@ const mergeSort = (numbers) => {
         order.push([null, null, null, i]) // i moved to the correct position
     }
 
-    return order
+    return steps[stepNum];
 }
 
 export default mergeSort
