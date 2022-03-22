@@ -150,13 +150,29 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
   const checkLives = () => {
     if(mistakes === 0){
       setLife1(false)
+      notification.error({
+        message: 'Oops!',
+        description: 'You moved the wrong tiles! Lost a life :(',
+        placement: 'topLeft'
+      });
     }
     if(mistakes === 1){
       setLife2(false);
+      notification.error({
+        message: 'Oops!',
+        description: 'You moved the wrong tiles! Lost a life :(',
+        placement: 'topLeft'
+      });
     }
     if(mistakes === 2){
       setLife3(false);
+      notification.error({
+        message: 'Oops!',
+        description: 'You moved the wrong tiles! Lost a life :(',
+        placement: 'topLeft'
+      });
     }
+
   }
 
   // function to trigger when the user wins the level
