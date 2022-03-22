@@ -7,7 +7,7 @@ import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
 import Timer from "../GenPage/Timer";
 
-export default function Game({ algorithm, difficulty, size, clicked }) {
+export default function Game({ algorithm, difficulty, size, clicked, refreshLevel }) {
     // states
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
@@ -58,10 +58,17 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
  
     }
 
+    function refLevel(lvl, alg) {
+        getRandomNumbers();
+        refreshLevel(lvl, alg);
+    }
+
     return (
         <div className="game" id="game-body">
             { difficulty === 1 ? 
-                <Level1 />
+                <Level1 
+                    refreshLevel={() => refLevel(1, "MergeSort")}
+                />
             : difficulty === 2 ? 
                 <Level2
                     blocks={blocks}
@@ -71,6 +78,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
+                    refreshLevel={() => refLevel(2, "MergeSort")}
                 />
             : difficulty === 3 ? 
                 <>
@@ -83,6 +91,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refLevel(3, "MergeSort")}
                     />
                 </>
             : difficulty === 4 ? 
@@ -96,6 +105,7 @@ export default function Game({ algorithm, difficulty, size, clicked }) {
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refLevel(4, "MergeSort")}
                     />
                 </>
             : <></>}

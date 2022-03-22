@@ -29,7 +29,7 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false); // fucntion for popup
-  const [loading, setLoading] = useState(false); // fucntion for loss popup
+  const [loading, setLoading] = useState(false); 
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
 
   // Sounds
