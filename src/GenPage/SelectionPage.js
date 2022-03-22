@@ -10,10 +10,16 @@ import Game from "../GamePage/Game";
 import axios from "axios";
 import levelData from '../Levels.json';
 import Timeout from "./Timeout";
+import { useParams } from "react-router-dom";
+
 
 const { Option } = Select;
 
+
+
+
 function SelectionPage() {
+  // states
   const [level, setLevel] = useState(1);
   const [time, setTime] = useState(0.0);
   const [listSize, setListSize] = useState(levelData["levels"][`${level}`]["size"]);
@@ -27,6 +33,12 @@ function SelectionPage() {
     quickSort: "./assets/AlgoImages/quickSort.png",
     mergeSort: "./assets/AlgoImages/bubbleSort.png",
   };
+
+  function refreshLevel(lvl, alg) {
+    setLevel(lvl ? lvl : 1);
+
+    setAlgo(alg ? alg : "MergeSort");
+  }
 
   useEffect(() => {
     setListSize(levelData["levels"][`${level}`]["size"]);
@@ -88,6 +100,7 @@ function SelectionPage() {
             disabled={false} 
             min={1}
             max={5}
+            value={level ? level : 1}
             onChange={(value) => {
               setLevel(value);
             }}
@@ -140,6 +153,7 @@ function SelectionPage() {
               difficulty={level}
               size={listSize}
               clicked={clicked}
+              refreshLevel={refreshLevel}
             />
           </div>
           <Timeout />

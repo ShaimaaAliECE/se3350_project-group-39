@@ -21,7 +21,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false); // fucntion for popup
-  const [loading, setLoading] = useState(false); // fucntion for loss popup
+  const [loading, setLoading] = useState(false); 
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
