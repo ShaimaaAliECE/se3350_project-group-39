@@ -144,18 +144,34 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
       countUp();
     }
 
-  //checks how many lives user has
-  const checkLives = () => {
-    if(mistakes === 0){
-      setLife1(false)
+    //checks how many lives user has
+    const checkLives = () => {
+      if(mistakes === 0){
+        setLife1(false)
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft'
+        });
+      }
+      if(mistakes === 1){
+        setLife2(false);
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft'
+        });
+      }
+      if(mistakes === 2){
+        setLife3(false);
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft'
+        });
+      }
+  
     }
-    if(mistakes === 1){
-      setLife2(false);
-    }
-    if(mistakes === 2){
-      setLife3(false);
-    }
-  }
 
   // function to trigger when the user wins the level
   function handleLevelComplete() {
@@ -180,6 +196,7 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
       arr.push(start)
       arr.push(end)
       setMistakes(mistakes + 1);
+      playErrorSound(); // play error sound to indicate error
       checkLives();
     }
 
