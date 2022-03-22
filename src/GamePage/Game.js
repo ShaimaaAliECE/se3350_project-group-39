@@ -109,6 +109,19 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         refreshLevel={() => refLevel(4, "MergeSort")}
                     />
                 </>
+            : difficulty === 5 ?
+            <>
+                <div className="stepCounter"> Step {steps + 1}</div>
+                <Level5
+                    blocks={blocks}
+                    current={true}
+                    steps={steps}
+                    countUp={counter}
+                    countDown={countDown}
+                    algorithm={algorithm}
+                    level={difficulty}
+                />
+            </>
             : <></>}
         </div>
     );
