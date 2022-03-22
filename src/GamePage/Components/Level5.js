@@ -11,7 +11,7 @@ import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
 
-function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
+function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -29,6 +29,8 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [visible, setVisible] = useState(false); // fucntion for popup
   const [loading, setLoading] = useState(false); // fucntion for loss popup
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level5"];
+  const [lost, setLost] = useState(false);
+
 
   // Sounds
   const [playWinSound] = useSound(WinSound);
@@ -66,6 +68,7 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
   // calls the pop up after losing game
   useEffect(() => {
     if(mistakes > 2){
+      setLost(true);
       showModal();
     }
   }, [mistakes])
@@ -215,6 +218,25 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
     setVisible(true);
   };
 
+  // things to take care of when resetting level
+  function resetLevel() {
+    setLife1(true);
+    setLife2(true);
+    setLife3(true);
+
+    setMistakes(0);
+    setLost(false);
+
+    setOutOfPlace([]);
+  }
+  
+  // functions to handle pop-up
+  const handleRefresh = () => {
+    resetLevel();
+    refreshLevel();
+    setVisible(false);
+  };
+
   // functions to handle pop-up
   const handleOk = () => {
     setLoading(true);
@@ -258,16 +280,13 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
               Return
             </Button>,
             <Button
-              key="link"
-              href="https://google.com"
               type="primary"
               loading={loading}
-              onClick={handleOk}
+              onClick={handleRefresh}
             >
               Restart Level
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
@@ -276,16 +295,13 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level }) {
               Return To A Previous Level
             </Button>,
             <Button
-            key="link"
-            href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
-            onClick={handleOk}
+            onClick={handleRefresh}
             >
               Try Again With Another Algorithm
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/MenuPage"
             type="primary"
             loading={loading}

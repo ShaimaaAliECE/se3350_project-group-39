@@ -13,7 +13,7 @@ import WinSound from '../../Sounds/win.mp3';
 
 
 
-function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
+function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -31,6 +31,8 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [visible, setVisible] = useState(false); // fucntion for popup
   const [loading, setLoading] = useState(false); 
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
+  const [lost, setLost] = useState(false);
+
 
   // Sounds
   const [playWinSound] = useSound(WinSound);
@@ -68,6 +70,7 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
   // calls the pop up after losing game
   useEffect(() => {
     if(mistakes > 2){
+      setLost(true);
       showModal();
     }
   }, [mistakes])
@@ -172,7 +175,6 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
         placement: 'topLeft'
       });
     }
-
   }
 
   // function to trigger when the user wins the level
@@ -215,6 +217,26 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
   // functions to show pop up after losing game
   const showModal = () => {
     setVisible(true);
+  };
+
+  // things to take care of when resetting level
+  function resetLevel() {
+    setLife1(true);
+    setLife2(true);
+    setLife3(true);
+
+    setMistakes(0);
+
+    setLost(false);
+
+    setOutOfPlace([]);
+  }
+  
+  // functions to handle pop-up
+  const handleRefresh = () => {
+    resetLevel();
+    refreshLevel();
+    setVisible(false);
   };
 
   // functions to handle pop-up
@@ -260,16 +282,13 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
               Return
             </Button>,
             <Button
-              key="link"
-              href="https://google.com"
               type="primary"
               loading={loading}
-              onClick={handleOk}
+              onClick={handleRefresh}
             >
               Restart Level
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
@@ -278,16 +297,13 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level }) {
               Return To A Previous Level
             </Button>,
             <Button
-            key="link"
-            href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
-            onClick={handleOk}
+            onClick={handleRefresh}
             >
               Try Again With Another Algorithm
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/MenuPage"
             type="primary"
             loading={loading}

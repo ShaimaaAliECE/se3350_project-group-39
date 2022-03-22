@@ -75,6 +75,7 @@ function SelectionPage() {
           <Select
           className="selection-box"
             defaultValue="mergeSort"
+            value={algo ? algo : 1}
             onChange={(value) => {
               console.log(value);
               setAlgo(value);

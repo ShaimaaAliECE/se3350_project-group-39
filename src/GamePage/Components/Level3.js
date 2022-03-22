@@ -224,6 +224,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
     playErrorSound();
   };
 
+  // things to take care of when resetting level
   function resetLevel() {
     setLife1(true);
     setLife2(true);
@@ -301,10 +302,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
               Return To A Previous Level
             </Button>,
             <Button
-            href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
-            onClick={handleOk}
+            onClick={handleRefresh}
             >
               Try Again With Another Algorithm
             </Button>,

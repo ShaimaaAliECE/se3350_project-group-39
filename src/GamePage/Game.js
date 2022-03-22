@@ -120,6 +120,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
+                    refreshLevel={() => refLevel(5, "MergeSort")}
                 />
             </>
             : <></>}
