@@ -267,8 +267,6 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
       const min = arr[0];
       const max = arr[arr.length - 1];
   
-  
-  
       const curArr = [];
       for (let i = min; i <= max; i++) {
         curArr.push(i);
