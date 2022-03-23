@@ -325,7 +325,7 @@ function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  ref
             >
               {list.map((block, i) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 200) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 // 
