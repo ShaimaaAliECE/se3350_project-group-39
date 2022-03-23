@@ -7,6 +7,7 @@ import Game from "../GamePage/Game";
 import levelData from '../Levels.json';
 import Timeout from "./Timeout";
 import { useParams } from "react-router-dom";
+import { Modal, Button } from 'antd';
 
 const { Option } = Select;
 
@@ -49,6 +50,8 @@ function SelectionPage() {
       return "./assets/Levels/hard.png"
     }
   }
+
+
 
   return (
     <div className="App">

@@ -345,7 +345,7 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
             >
               {list.map((block, i) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 200) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 // 

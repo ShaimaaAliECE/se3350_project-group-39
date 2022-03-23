@@ -199,7 +199,7 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
             >
               {list.map((block, index) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 200) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 if(current.includes(index)) {
