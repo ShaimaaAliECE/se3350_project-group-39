@@ -10,6 +10,8 @@ import { notification } from "antd";
 import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
+import MergeSort from '../../Algos/MergeSort';
+import mergeSort from "../../Algos/MergeSort";
 
 function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
     const [width, setWidth] = useState(
@@ -250,10 +252,28 @@ function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  ref
   const handleCancel = () => {
     setVisible(false);
   };
+
   // Switches what is being stored in the current array
   function handleSteps() {
-    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+    console.log(mergeSort(list, steps));
+
+    const arr = mergeSort(list, steps);
+    if(!arr)
+      return handleRefresh();
+
+    const min = arr[0];
+    const max = arr[arr.length - 1];
+
+
+
+    const curArr = [];
+    for (let i = min; i <= max; i++) {
+      curArr.push(i);
+    }
+
+    setCurrent(curArr);
   }
+
 
   return (
     <div className="lvl5">
@@ -334,7 +354,7 @@ function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  ref
                   }
 
 
-                // If the user moves the correct step into order
+                  // If the user moves the correct step into order
                   if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
