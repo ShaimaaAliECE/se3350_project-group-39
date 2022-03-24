@@ -296,9 +296,6 @@ function Level4({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
           maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
           width={800}
           footer={[
-            <Button key="back" onClick={handleCancel}>
-              Return
-            </Button>,
             <Button
               type="primary"
               loading={loading}
