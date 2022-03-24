@@ -1,3 +1,40 @@
+.tutorial-div   {
+    margin: 30px;
+    min-height: 800px;
+    border-radius: 25px;
+    width: 900px;
+    background-color: var(--backgroundColour);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.steps-div   {
+    min-height: 200px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    min-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+}
+
+.step-label-div {
+   height: 140px;
+}
+
+.step-label {
+    color: black;
+    font-size: 25px;
+    /* overflow: hidden; */
+    width: 70%;
+    min-height: 100px;
+}
+
 .prev-next-container > button {
     color: white;
     background: linear-gradient(to right, #9c27b0, #e040fb);
@@ -18,44 +55,14 @@
     cursor: pointer;
 }
 
-.tutorial-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 900px;
-    height: 700px;
-    padding: 50px;
-    border-radius: 25px;
-}
 
-.steps-div   {
-    min-width: 80%;
-    margin-top: 50px;
-}
-
-.step-label-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 80px;
-}
-
-.step-label {
-    color: white;
-    font-size: 25px;
-    /* overflow: hidden; */
-    width: 70%;
-    min-height: 100px;
-}
 
 .list   {
     display: flex;
+    min-height: 500px;
     flex-direction: row;
     justify-content: center;
-    padding: 50px;
-    margin: 20px;
+    padding: 0px;
     border-radius: 25px;
 }
 

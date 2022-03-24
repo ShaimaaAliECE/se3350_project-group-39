@@ -52,12 +52,13 @@ function SelectionPage() {
 
   return (
     <div className="App">
-      <div className="Frame">
       <div className="submit-btn">
-                        <button className="btn" onClick={() => {navigate('/MenuPage')}}>
-                            back
-                        </button>
-                    </div>
+        <button className="btn" onClick={() => {navigate('/MenuPage')}}>
+            back
+        </button>
+      </div>
+     
+      
         <p align="center" className="sign">
           Select an Algorithm
         </p>
@@ -150,7 +151,6 @@ function SelectionPage() {
           <Timeout />
         </div>
       </div>
-    </div>
     </div>
   );
 }
