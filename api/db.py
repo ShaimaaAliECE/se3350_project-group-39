@@ -123,7 +123,7 @@ def get_user_info(email):
             stat.algorithm,
             stat.level
         ORDER BY
-            stat.level DESC;
+            level DESC;
     '''
     cursor.execute(query)
 
