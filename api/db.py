@@ -139,9 +139,7 @@ def get_user_info(email):
         JOIN  users u
             ON (stat.email = u.email)
         WHERE
-            u.email=\'{email}\'
-        GROUP BY
-            stat.algorithm;
+            u.email=\'{email}\';
     '''
     cursor.execute(query)
 
