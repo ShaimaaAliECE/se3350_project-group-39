@@ -8,30 +8,9 @@
     text-align: center;
 }
 
-.btn {
-    margin: 10px;
-    width: 200px;
-    border-radius: 5em;
-    color: #fff;
-    background: linear-gradient(to right, #9c27b0, #e040fb);
-    border: 0;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 13px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-}
-
 .btn:hover {
     cursor: pointer;
     filter: brightness(75%);
-}
-
-#title {
-    font-size: calc(10 px + 2vmin);
-    margin: 50px;
 }
 
 #menu {
@@ -44,17 +23,10 @@
     height: 100vh;
 }
 
-.logoutbtn > button {
-    background-color: transparent;
-    border: none;
-}
-
-.logoutbtn > button:hover {
-    cursor: pointer;
-        filter: brightness(95%);
-}
-
 #startBtn {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
+Header {
+    margin-right: 90px;
+}

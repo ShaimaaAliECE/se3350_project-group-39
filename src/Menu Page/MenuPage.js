@@ -12,30 +12,31 @@ function MenuPage() {
 
     return (
         <div id="menu-body" className="App">
-            <Header removeToken={removeToken} />
+
             <div id="menu">
                 <div id="title"> Algorithms Game</div>
                 <div id="loginFrame">
-                <button
-                    id="startBtn"
-                    className="btn"
-                    onClick={() => {
-                        navigate('/SelectionPage')
-                    }}
-                >
-                    {' '}
-                    Selection{' '}
-                </button>
-                <button
-                    id="statsBtn"
-                    className="btn"
-                    onClick={() => {
-                        navigate('/Profile')
-                    }}
-                >
-                    {' '}
-                    Statistics{' '}
-                </button>
+                    <button
+                        id="startBtn"
+                        className="btn"
+                        onClick={() => {
+                            navigate('/SelectionPage')
+                        }}
+                    >
+                        {' '}
+                        Selection{' '}
+                    </button>
+                    <button
+                        id="statsBtn"
+                        className="btn"
+                        onClick={() => {
+                            navigate('/Profile')
+                        }}
+                    >
+                        {' '}
+                        Statistics{' '}
+                    </button>
+                    <Header className ="btn" removeToken={removeToken} />
                 </div>
             </div>
         </div>

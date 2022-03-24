@@ -21,13 +21,25 @@ h1 {
 
 .btn {
     margin: 10px;
-    background-color: beige;
-    color: black;
-    border-color: white;
     width: 200px;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, #9c27b0, #e040fb);
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
 #title {
-    font-size: calc(10px + 2vmin);
-    margin: 50px;
+    color: white;
+    justify-content: center;
+    display: flex;
+    padding-top: 20px;
+    font-size: 40px;
+    text-shadow: white 0px 0px 8px;
 }
