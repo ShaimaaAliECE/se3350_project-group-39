@@ -50,10 +50,13 @@ def get_statistics(email):
 
     rows = cursor.fetchall()
 
-    # make the object json serializable
+    # create a data object
     data = list()
+
+    # add the data rows
     for row in rows:
         data.append(dict(row))
+    
 
     return data
 
@@ -79,3 +82,86 @@ def add_statistics(email, algorithm, level, time):
 
     conn.commit()
 
+# get info about the used based on the statistics
+def get_user_info(email):
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    data = dict()
+
+    # get the favorite algorithm
+    query = f'''
+        SELECT 
+            algorithm
+        FROM
+            statistics stat
+        JOIN  users u
+            ON (stat.email = u.email)
+        WHERE
+            u.email=\'{email}\'
+        GROUP BY
+            algorithm
+        ORDER BY
+            count(algorithm) DESC;
+    '''
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    data['favorite'] = rows[0]['algorithm']
+
+    # get the best time
+    query = f'''
+        SELECT 
+            MIN(time) as MinTime
+        FROM
+            statistics stat
+        JOIN  users u
+            ON (stat.email = u.email)
+        WHERE
+            u.email=\'{email}\'
+        GROUP BY
+            stat.algorithm,
+            stat.level
+        ORDER BY
+            stat.level DESC;
+    '''
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    data['best_time'] = rows[0]['MinTime']
+
+    # get the highest level
+    query = f'''
+        SELECT 
+            MAX(level) as Maxlevel
+        FROM
+            statistics stat
+        JOIN  users u
+            ON (stat.email = u.email)
+        WHERE
+            u.email=\'{email}\'
+        GROUP BY
+            stat.algorithm;
+    '''
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    data['highest_level'] = rows[0]['MaxLevel']
+
+    # get the total number of games
+    query = f'''
+        SELECT 
+            count(*) as TotalMatches
+        FROM
+            statistics stat
+        JOIN  users u
+            ON (stat.email = u.email)
+        WHERE
+            u.email=\'{email}\';
+    '''
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    data['total_games'] = rows[0]['TotalMatches']
+
+    return data
