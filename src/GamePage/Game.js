@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./Game.css";
 import axios from "axios";
 import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
 import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
-import Timer from "../GenPage/Timer";
 import Level5 from "./Components/Level5";
 import CustomLevel from "./Components/CustomLevel";
 
