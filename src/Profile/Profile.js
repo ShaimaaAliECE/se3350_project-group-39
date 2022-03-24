@@ -49,9 +49,9 @@ export default class Profile extends Component {
     const { profileData } = this.state;
     return (
       <div>
-        <h1>User Statistics</h1>
+        <h1 id="title">User Statistics</h1>
         <div className='dataframe'>
-          <div className="profile">
+          <div id="profile">
             {
               profileData &&
               <div className="data-container">

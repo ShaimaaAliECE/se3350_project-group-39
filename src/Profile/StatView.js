@@ -8,10 +8,13 @@ export default class StatView extends Component {
     super(props);
   }
 
+  
+
+
   render() {
     return (
       <div className="stat-row-container">
-        <label style={{ color: 'lightblue', fontWeight: 'bold' }}>{this.props.statID}</label>
+        <label style={{ color: '#e040fb', fontWeight: 'bold' }}>{this.props.statID}</label>
         <label>{this.props.level}</label>
         <label>{this.props.algorithm}</label>
         <label>{this.props.time}</label>
