@@ -4,25 +4,26 @@ import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
 import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
+import Timer from "../GenPage/Timer";
 import Level5 from "./Components/Level5";
 import CustomLevel from "./Components/CustomLevel";
 
-export default function Game({ algorithm, difficulty, size, clicked, refreshLevel }) {
+export default function Game({ algorithm, difficulty, size, clicked, refreshLevel, max }) {
     // states
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
-        let max = 0;
-
+        
         // Determines what the max is depedning on the level
         if(difficulty <=3)
             max = 20;
         else if(difficulty === 4)
             max = 50;
-        else
+        else if(difficulty === 5)
             max = 99;
+        
             
         axios({
             method: "GET",
