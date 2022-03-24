@@ -15,6 +15,7 @@ function SelectionPage() {
   // states
   const [level, setLevel] = useState(1);
   const [listSize, setListSize] = useState(levelData["levels"][`${level}`]["size"]);
+  const [valRange, setValueRange] = useState(levelData["levels"][`${level}`]["max"]);
   const [clicked, setClicked] = useState(false);
   const [algo, setAlgo] = useState("mergeSort");
   const navigate = useNavigate();
@@ -34,6 +35,10 @@ function SelectionPage() {
 
   useEffect(() => {
     setListSize(levelData["levels"][`${level}`]["size"]);
+  }, [level]);
+
+  useEffect(()=> {
+    setValueRange(levelData["levels"][`${level}`]["max"]);
   }, [level]);
 
   // Function to set the difficulty
@@ -135,6 +140,24 @@ function SelectionPage() {
 
             disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
           />
+          <p className="sign" align="center">
+            Range of Values: 0-{valRange}
+          </p>
+           <Slider
+            style={{ width: "270px" }}
+            defaultValue={valRange}
+            value={valRange}
+            max={100}
+            step={1}
+            onChange={(value) => {
+              setValueRange(value);
+            }}
+            onAfterChange={() => {
+              console.log("valrange = " + valRange);
+            }}
+
+            disabled={levelData["levels"][`${level}`]["tutorial"] ? true : false}
+          />
         </div>
 
         <Divider />
@@ -145,6 +168,7 @@ function SelectionPage() {
               algorithm={algo}
               difficulty={level}
               size={listSize}
+              max={valRange}
               clicked={clicked}
               refreshLevel={refreshLevel}
             />
