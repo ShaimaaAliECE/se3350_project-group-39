@@ -50,7 +50,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3
       });
     }
   }, [currentStepValid]);
@@ -161,7 +162,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3
       });
     }
     if(mistakes === 1){
@@ -169,7 +171,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3
       });
     }
     if(mistakes === 2){
@@ -177,7 +180,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3
       });
     }
 
@@ -190,7 +194,8 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
     notification.success({
       message: 'Congrats!',
       description: 'You have successfully completed the level',
-      placement: 'topLeft'
+      placement: 'topLeft',
+      duration: 3
     });
 
     // make modal visible and ask the user for what to do next
