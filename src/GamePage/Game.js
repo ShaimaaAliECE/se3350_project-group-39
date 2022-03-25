@@ -21,8 +21,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
             max = 50;
         else if(difficulty === 5)
             max = 99;
-        
-            
+
         axios({
             method: "GET",
             url: "/random",
