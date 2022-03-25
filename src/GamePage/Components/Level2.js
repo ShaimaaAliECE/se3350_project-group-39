@@ -44,7 +44,9 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3,
+        maxCount: 2
       });
     }
   }, [list]);
@@ -135,7 +137,9 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshL
     notification.success({
       message: 'Congrats!',
       description: 'You have successfully completed the level',
-      placement: 'topLeft'
+      placement: 'topLeft',
+      duration: 3,
+      maxCount: 2
     });
 
     // make modal visible and ask the user for what to do next
