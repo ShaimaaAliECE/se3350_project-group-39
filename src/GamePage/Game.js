@@ -30,7 +30,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
             params: {
                 size: size,
                 min: 1,
-                max: 20
+                max: max
             },
             
         }).then(({ data }) => {
