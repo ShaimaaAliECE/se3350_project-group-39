@@ -5,6 +5,8 @@ import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
 import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
+import Level5 from "./Components/Level5";
+import Level6 from "./Components/CustomLevel";
 import Timer from "../GenPage/Timer";
 
 export default function Game({ algorithm, difficulty, size, clicked, refreshLevel, max }) {
@@ -74,6 +76,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
+                    refreshLevel={() => refreshLevel(2, "mergeSort")}
                 />
             : difficulty === 3 ? 
                 <>
@@ -86,6 +89,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refreshLevel(3, "mergeSort")}
                     />
                 </>
             : difficulty === 4 ? 
@@ -99,6 +103,35 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refreshLevel(4, "mergeSort")}
+                    />
+                </>
+                : difficulty === 5 ? 
+                <>
+                <div className="stepCounter"> Step {steps + 1}</div>
+                    <Level5
+                        blocks={blocks}
+                        current={true}
+                        steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
+                        algorithm={algorithm}
+                        level={difficulty}
+                        refreshLevel={() => refreshLevel(5, "mergeSort")}
+                    />
+                </>
+                : difficulty === 6 ? 
+                <>
+                <div className="stepCounter"> Step {steps + 1}</div>
+                    <Level6
+                        blocks={blocks}
+                        current={true}
+                        steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
+                        algorithm={algorithm}
+                        level={difficulty}
+                        refreshLevel={() => refreshLevel(6, "mergeSort")}
                     />
                 </>
             : <></>}

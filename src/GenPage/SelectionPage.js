@@ -73,7 +73,7 @@ function SelectionPage() {
 
       <div className="options-container">
             <div className="bar-left">
-              <div classname='algo-select'>
+              <div className='algo-select'>
                 <Select className="selection-box"
                   defaultValue="mergeSort"
                   value={algo ? algo : "mergeSort"}
