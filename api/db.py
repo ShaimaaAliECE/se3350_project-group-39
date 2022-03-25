@@ -120,8 +120,8 @@ def get_user_info(email):
         WHERE
             u.email=\'{email}\'
         GROUP BY
-            stat.algorithm,
-            stat.level
+            stat.algorithm
+            ,stat.level
         ORDER BY
             stat.level DESC;
     '''
@@ -165,3 +165,37 @@ def get_user_info(email):
     data['total_games'] = rows[0]['TotalMatches']
 
     return data
+
+def add_user(email, password):
+    conn = create_connection()
+    cursor = conn.cursor()
+
+    query = f'''
+        SELECT 
+            *
+        FROM
+            users
+        WHERE
+            email=\'{email}\'';
+    '''
+    conn.execute(query)
+
+    rows = cursor.fetchall()
+
+    if len(rows) > 0:
+        return { 'success': False, 'msg': 'Email already exists!' }
+    
+    query = f'''
+        INSERT INTO users (
+            email
+            ,password
+        ) VALUES (
+            \'{email}\'
+            ,\'{password}\'
+        );
+    '''
+    cursor.execute(query)
+
+    conn.commit()
+
+    return { 'success': True, 'msg': 'Successfully added user!' }
