@@ -85,6 +85,10 @@ function Login(props) {
                             Submit
                         </button>
                     </div>
+
+                    <div className="suliRedirect">
+                        <a href="/Signup">Create account</a>
+                    </div>
                 </form>
             </div>
         </div>
