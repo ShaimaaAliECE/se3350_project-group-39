@@ -145,4 +145,4 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
             :<></>}
         </div>
     );
-}
+} 
