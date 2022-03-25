@@ -12,6 +12,12 @@
     margin: 1px;
 }
 
+.listBlocks li:hover {
+    filter: brightness(85%);
+    transition-property: filter;
+    transition-duration: 0.3s;
+}
+
 .listBlocks .block {
     background-color: turquoise;
     color: #282c34;
