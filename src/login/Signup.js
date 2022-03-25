@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { notification } from "antd";
 
 
 function Signup(props) {
@@ -16,15 +17,27 @@ function Signup(props) {
     function signUp(event) {
         axios({
             method: "POST",
-            url: "/Signup",
+            url: "/sign_up",
             data: {
                 email: signupForm.email,
                 password: signupForm.password,
             },
         })
             .then((response) => {
-                props.setToken(response.data.access_token);
-                navigate("/");
+                if (response.data.success) {
+                    notification.success({
+                        description: 'Successfully created user! Please login with your username and password.',
+                        message: 'Success!',
+                        placement: 'topLeft'
+                    });
+                    navigate("/");
+                } else {
+                    notification.error({
+                        description: response.data.msg,
+                        message: 'Error!',
+                        placement: 'topLeft'
+                    });
+                }
             })
             .catch((error) => {
                 if (error.response) {

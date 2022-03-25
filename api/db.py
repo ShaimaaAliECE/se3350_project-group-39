@@ -107,7 +107,8 @@ def get_user_info(email):
     cursor.execute(query)
 
     rows = cursor.fetchall()
-    data['favorite'] = rows[0]['algorithm']
+    if rows:
+        data['favorite'] = rows[0]['algorithm']
 
     # get the best time
     query = f'''
@@ -128,7 +129,8 @@ def get_user_info(email):
     cursor.execute(query)
 
     rows = cursor.fetchall()
-    data['best_time'] = rows[0]['MinTime']
+    if rows:
+        data['best_time'] = rows[0]['MinTime']
 
     # get the highest level
     query = f'''
@@ -144,7 +146,8 @@ def get_user_info(email):
     cursor.execute(query)
 
     rows = cursor.fetchall()
-    data['highest_level'] = rows[0]['MaxLevel']
+    if rows:
+        data['highest_level'] = rows[0]['MaxLevel']
 
     # get the total number of games
     query = f'''
@@ -160,7 +163,8 @@ def get_user_info(email):
     cursor.execute(query)
 
     rows = cursor.fetchall()
-    data['total_games'] = rows[0]['TotalMatches']
+    if rows:
+        data['total_games'] = rows[0]['TotalMatches']
 
     return data
 
@@ -168,21 +172,6 @@ def add_user(email, password):
     conn = create_connection()
     cursor = conn.cursor()
 
-    query = f'''
-        SELECT 
-            *
-        FROM
-            users
-        WHERE
-            email=\'{email}\'';
-    '''
-    conn.execute(query)
-
-    rows = cursor.fetchall()
-
-    if len(rows) > 0:
-        return { 'success': False, 'msg': 'Email already exists!' }
-    
     query = f'''
         INSERT INTO users (
             email
@@ -192,7 +181,10 @@ def add_user(email, password):
             ,\'{password}\'
         );
     '''
-    cursor.execute(query)
+    try:
+        cursor.execute(query)
+    except:
+        return { 'success': False, 'msg': 'Email already exists!' }
 
     conn.commit()
 

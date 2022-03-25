@@ -90,7 +90,6 @@ def logout():
     unset_jwt_cookies(response)
     return response
 
-
 api.after_request
 def refresh_expiring_jwts(response):
     try:
