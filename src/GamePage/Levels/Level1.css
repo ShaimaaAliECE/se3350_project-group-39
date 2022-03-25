@@ -54,44 +54,6 @@
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.tutorial-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 900px;
-    height: 700px;
-    padding: 50px;
-    border-radius: 25px;
-}
-
-.steps-div   {
-    min-width: 80%;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100px;
-    margin: 20px;
-    
-}
-
-.steps-label-div    {
-    margin: 30px;
-}
-
-.step-label {
-    color: white;
-
-    font-size: 25px;
-    /* overflow: hidden; */
-    width: 70%;
-}
-=======
-
->>>>>>> anuj-b
-
-
-
 .list   {
     display: flex;
     min-height: 500px;
