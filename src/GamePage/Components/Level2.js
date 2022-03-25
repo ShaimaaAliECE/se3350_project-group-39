@@ -9,8 +9,9 @@ import ErrorSound from '../../Sounds/error.mp3';
 import { notification } from "antd";
 import CorrectSteps from './CorrectSteps.json'
 import Timer from "../../GenPage/Timer";
+import mergeSort from "../../Algos/MergeSort";
 
-function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
+function Level2({ blocks, steps, countUp, countDown, algorithm, level , refreshLevel}) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -35,14 +36,18 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
     handleSteps();
     checkCurrentStep(list);
 
+  }, [currentStepValid]);
+
+  useEffect(() => {
     // send message for current step correct
-    if (currentStepValid && !completed) 
+    if (currentStepValid && !completed) {
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
         placement: 'topLeft'
-      })
-  }, [currentStepValid])
+      });
+    }
+  }, [list]);
 
   useEffect(() => {
     setWidth(
@@ -51,6 +56,7 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
     setCurrentStepValid(false);
     setList(blocks);
     checkCurrentStep(blocks);
+
   }, [blocks]);
 
   useEffect(() => {
@@ -81,34 +87,24 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
 
   // Switches what is being stored in the current array
   function handleSteps() {
-    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+    console.log(mergeSort(list, steps));
 
-    // console.log(steps);
-    //   switch(steps){
-    //     case 0:
-    //       setCurrent([0,1]);
-    //       break;
-    //     case 1:
-    //       setCurrent([2,3,4])
-    //       break;
-    //     case 2:
-    //       setCurrent([0,1,2,3,4])
-    //       break;
-    //     case 3:
-    //       setCurrent([5,6])
-    //       break;
-    //     case 4:
-    //       setCurrent([7,8,9])
-    //       break;
-    //     case 5:
-    //       setCurrent([5,6,7,8,9])
-    //       break;
-    //     case 6:
-    //       setCurrent([0,1,2,3,4,5,6,7,8,9])
-    //       break;
-    //     default:
-    //       break;
-    //   }
+    const arr = mergeSort(list, steps);
+
+    if(!arr) {
+      setCompleted(true);
+      return;
+    }
+
+    const min = arr[0];
+    const max = arr[arr.length - 1];
+
+    const curArr = [];
+    for (let i = min; i <= max; i++) {
+      curArr.push(i);
+    }
+
+    setCurrent(curArr);
   }
 
   function checkCurrentStep(items) {
@@ -141,6 +137,9 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
       description: 'You have successfully completed the level',
       placement: 'topLeft'
     });
+
+    // make modal visible and ask the user for what to do next
+    handleRefresh();
   }
 
   // increment the step counter
@@ -163,10 +162,24 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
 
     if (complete) {
       setCompleted(true);
+      handleRefresh();
     }
 
     // count up the step
     countUp();
+  }
+
+  function handleRefresh() {
+    resetLevel();
+    refreshLevel();
+  }
+
+  // things to take care of when resetting level
+  function resetLevel() {
+    setCompleted(false);
+    setCurrent([]);
+    setWon(false);
+    setCurrentStepValid(false);
   }
 
   return (
@@ -186,7 +199,7 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
             >
               {list.map((block, index) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 125) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 if(current.includes(index)) {
@@ -211,8 +224,6 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
                     if(checkSort(list)) {
                       bg = "#4bc52e"
                       isDraggable = true;
-                    } else {
-                      bg = "red"
                     }
                     console.log(steps)
                   }

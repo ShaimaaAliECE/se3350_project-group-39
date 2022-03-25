@@ -279,9 +279,6 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
           maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
           width={800}
           footer={[
-            <Button key="back" onClick={handleCancel}>
-              Return
-            </Button>,
             <Button
               type="primary"
               loading={loading}
@@ -328,7 +325,7 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
             >
               {list.map((block, i) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 200) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 // 

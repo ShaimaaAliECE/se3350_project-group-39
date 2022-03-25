@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  border: 1px solid lightblue;
+  border: 1px solid #e040fb;
   border-radius: 5px;
   padding: 10px;
 }

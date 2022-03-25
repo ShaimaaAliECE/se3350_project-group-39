@@ -1,9 +1,8 @@
 .tutorial-div   {
-    margin: 30px;
+    margin: 0px;
     min-height: 800px;
     border-radius: 25px;
-    width: 900px;
-    background-color: var(--backgroundColour);
+    width: 800px;
     display: flex;
     justify-content: center;
     flex-direction: column;

@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuPage from './Menu Page/MenuPage';
 import Profile from './Profile/Profile';
 import useToken from './useToken';
-import Game from './GamePage/Game';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,7 +16,6 @@ ReactDOM.render(
         <Route path="/SelectionPage" element={<SelectionPage token={localStorage.getItem('token')}/>}></Route>
         <Route path="/MenuPage" element={<MenuPage/>}></Route>
         <Route path="/Profile" element={<Profile token={localStorage.getItem('token')} setToken={() => {const { saveToken } = useToken(); return saveToken; }} />}></Route>
-        <Route path="/Game" element={<Game/>}></Route>
 
       </Routes>
     </Router>
