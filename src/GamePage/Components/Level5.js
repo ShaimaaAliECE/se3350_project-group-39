@@ -52,7 +52,8 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
         placement: 'topLeft',
-        duration: 3
+        duration: 3,
+        maxCount: 2
       });
     }
   }, [currentStepValid]);
@@ -158,7 +159,8 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
           message: 'Oops!',
           description: 'You moved the wrong tiles! Lost a life :(',
           placement: 'topLeft',
-          duration: 3
+          duration: 3,
+          maxCount: 2
         });
       }
       if(mistakes === 1){
@@ -167,7 +169,8 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
           message: 'Oops!',
           description: 'You moved the wrong tiles! Lost a life :(',
           placement: 'topLeft',
-          duration: 3
+          duration: 3,
+          maxCount: 2
         });
       }
       if(mistakes === 2){
@@ -176,7 +179,8 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
           message: 'Oops!',
           description: 'You moved the wrong tiles! Lost a life :(',
           placement: 'topLeft',
-          duration: 3
+          duration: 3,
+          maxCount: 2
         });
       }
   
@@ -190,7 +194,8 @@ function Level5({ blocks, steps, countUp, countDown, algorithm, level,  refreshL
       message: 'Congrats!',
       description: 'You have successfully completed the level',
       placement: 'topLeft',
-      duration: 3
+      duration: 3,
+      maxCount: 2
       });
     }
 
