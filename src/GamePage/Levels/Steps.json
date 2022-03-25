@@ -108,7 +108,7 @@
                 "range": [[0, 4],[5, 9]]
             },
             "22" : {
-                "Description": "MergeSort Algorythm Completed!",
+                "Description": "MergeSort Algorithm Completed!",
                 "array": [ 2, 2, 3, 4, 4, 6, 6, 7, 8, 9 ],
                 "range": [[0, 9]]
             }

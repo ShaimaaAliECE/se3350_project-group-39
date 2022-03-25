@@ -102,15 +102,17 @@ export default function Level1() {
 
     return (
         <div className='tutorial-div'>
-            
-            <div className = "tutorial-container">
                 <div className="steps-div">
-                    <div className='step-label-div prev-next-container'>
+                
+                    <div className='step-label-div'>
+                        <label className='step-label'>{step ? step.Description ? step.Description : undefined : undefined}</label>
+                    </div>
+
+                    <div className='prev-next-container'>
                         <button disabled={prevDisable} onClick={handlePrev}><FaAngleLeft /></button>
                         <button disabled={nextDisable} onClick={handleNext}><FaAngleRight /></button>
                     </div>
-                    <label className='step-label'>{step ? step.Description ? step.Description : undefined : undefined}</label>
-                    
+                </div>
                 
                     <ul className="list">
                         {blocks.map((block, i) => {
@@ -127,9 +129,6 @@ export default function Level1() {
 
                         })}
                     </ul>
-
-                </div>
-            </div>
         </div>
     );
 }

@@ -26,10 +26,15 @@ export default class Profile extends Component {
     })
     .then((response) => {
       const res = response.data
+      console.log(res);
       res.access_token && this.props.setToken(res.access_token)
       this.setState({ profileData: {
           profile_name: res.name,
-          about_me: res.about
+          about_me: res.about,
+          favAlg: res.info.favorite,
+          bestTime: res.info.best_time,
+          highestLevel: res.info.highest_level,
+          totalGames: res.info.total_games
         }
       })
     }).catch((error) => {
@@ -49,18 +54,18 @@ export default class Profile extends Component {
     const { profileData } = this.state;
     return (
       <div>
-        <h1>User Statistics</h1>
+        <h1 id="title">User Statistics</h1>
         <div className='dataframe'>
-          <div className="profile">
+          <div id="profile">
             {
               profileData &&
               <div className="data-container">
                 <p>Profile Name <br /> <i>{profileData.profile_name}</i></p>
                 <p>About Me <br /> <i>{profileData.about_me}</i></p>
-                <p>Favorite Algo <br /> <i>(most used algo)</i></p>
-                <p>PR <br /> <i>(time taken)</i></p>
-                <p>Highest Level <br /> <i>(respective to fav algo)</i></p>
-                <p>Total Games Completed <br /> <i>(number of games won)</i></p>
+                <p>Favorite Algo <br /> <i>{profileData.favAlg}</i></p>
+                <p>PR <br /> <i>{profileData.bestTime} min</i></p>
+                <p>Highest Level <br /> <i>{profileData.highestLevel}</i></p>
+                <p>Total Games Completed <br /> <i>{profileData.totalGames}</i></p>
               </div>
             }
           </div>

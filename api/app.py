@@ -7,7 +7,7 @@ from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, \
 from random import seed, randint
 
 # methods to access the database
-from db import get_user, get_statistics, add_statistics
+from db import get_user, get_statistics, add_statistics, get_user_info, add_user
 
 # create the flask app
 api = Flask(__name__, static_folder="./build", static_url_path="")
@@ -53,13 +53,35 @@ def createToken():
 def myProfile():
     email = get_jwt_identity()
 
+    user_info = get_user_info(email)
+
     response_body = {
         "name" : email,
-        "about" : f"Hello I am {email}!"
+        "about" : f"Hello I am {email}!",
+        "info": user_info
     }
 
     return response_body
 
+# method to sign up a user
+@api.route('/sign_up', methods=["POST"])
+def signUp():
+    if request.method == "POST":
+        data = json.loads(request.data)
+
+        if not data['email'] or not data['password']:
+            return { 'msg': 'Invalid Username and/or password values', 'success': False }
+
+        email = data['email']
+        password = data['password']
+        
+        res = add_user(email, password)
+
+        if res['success']:
+            access_token = create_access_token(identity=email)
+            res["access_token"] = access_token
+
+        return res
 
 # Logout out route
 @api.route('/logout', methods=["POST"])
