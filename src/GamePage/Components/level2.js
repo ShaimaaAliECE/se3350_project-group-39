@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {unmountComponentAtNode} from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import "./listBlock.css";
@@ -7,7 +6,6 @@ import useSound from 'use-sound';
 import WinSound from '../../Sounds/win.mp3';
 import ErrorSound from '../../Sounds/error.mp3';
 import { notification } from "antd";
-import CorrectSteps from './CorrectSteps.json'
 import Timer from "../../GenPage/Timer";
 
 function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
@@ -19,7 +17,6 @@ function Level2({ blocks, steps, countUp, countDown, algorithm, level }) {
   const [currentStepValid, setCurrentStepValid] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [won, setWon] = useState(false);
-  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level2&3"];
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let isDraggable = true;
 
