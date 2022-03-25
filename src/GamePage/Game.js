@@ -74,6 +74,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
+                    refreshLevel={() => refreshLevel(2, "mergeSort")}
                 />
             : difficulty === 3 ? 
                 <>
@@ -86,6 +87,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refreshLevel(2, "mergeSort")}
                     />
                 </>
             : difficulty === 4 ? 
@@ -99,6 +101,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
+                        refreshLevel={() => refreshLevel(2, "mergeSort")}
                     />
                 </>
             : <></>}
