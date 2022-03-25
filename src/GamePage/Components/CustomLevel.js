@@ -1,12 +1,19 @@
+<<<<<<< Updated upstream
+=======
 import React, { useState, useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
 import "./listBlock.css";
+import Timer from "../../GenPage/Timer";
+import { notification } from "antd";
+import useSound from "use-sound";
+import ErrorSound from '../../Sounds/error.mp3';
+import WinSound from '../../Sounds/win.mp3';
+import mergeSort from "../../Algos/MergeSort";
 
-
-function Level4({ blocks, steps, countUp, countDown }) {
+function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
     const [width, setWidth] = useState(
     Math.min(20, Math.ceil(window.innerWidth / blocks.length) - 5)
   );
@@ -14,28 +21,20 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
-<<<<<<< Updated upstream
-  const [changes,setChanges] = useState([]);
-=======
   const [won, setWon] = useState(false);
   const [completed, setCompleted] = useState(false);
->>>>>>> Stashed changes
   const [mistakes, setMistakes] = useState(0);
   const [life1, setLife1] = useState(true);
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false); // fucntion for popup
-  const [loading, setLoading] = useState(false); 
-<<<<<<< Updated upstream
-  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
-=======
+  const [loading, setLoading] = useState(false); // fucntion for loss popup
   const [lost, setLost] = useState(false);
 
-  
+
   // Sounds
   const [playWinSound] = useSound(WinSound);
   const [playErrorSound] = useSound(ErrorSound);
->>>>>>> Stashed changes
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
@@ -47,6 +46,16 @@ function Level4({ blocks, steps, countUp, countDown }) {
   useEffect(() => {
     handleSteps();
     checkCurrentStep(list);
+
+    if (currentStepValid) {
+      notification.success({
+        message: 'Hooray!',
+        description: 'You got it! Click on the right arrow to move to the next step',
+        placement: 'topLeft',
+        duration: 3,
+        maxCount: 2
+      });
+    }
   }, [currentStepValid]);
 
   useEffect(() => {
@@ -61,9 +70,18 @@ function Level4({ blocks, steps, countUp, countDown }) {
   // calls the pop up after losing game
   useEffect(() => {
     if(mistakes > 2){
+      setLost(true);
       showModal();
     }
   }, [mistakes])
+
+  useEffect(() => {
+    if (won) handleLevelComplete();
+  }, [won]);
+
+  useEffect(() => {
+    if (completed) setWon(true);
+  }, [completed])
 
 
   const handleOnDragEnd = (result) => {
@@ -105,18 +123,79 @@ function Level4({ blocks, steps, countUp, countDown }) {
     }
   }
 
-  //checks how many lives user has
-  const checkLives = () => {
-    if(mistakes === 0){
-      setLife1(false)
+    // increment the step counter
+    const handleNextStep = () => {
+      // if the current step is not valid don't progress
+      if (!currentStepValid) return;
+  
+      let complete = true;
+  
+      // check if the user completed the level
+      const arrCpy = JSON.parse(JSON.stringify(blocks));
+      arrCpy.sort((first, second) => first - second);
+  
+      arrCpy.forEach((item, index) => {
+        if (!(list[index] === item)) {
+          complete = false;
+          return;
+        }
+      });
+  
+      if (complete) {
+        setCompleted(true);
+      }
+  
+      // count up the step
+      countUp();
     }
-    if(mistakes === 1){
-      setLife2(false);
+
+    //checks how many lives user has
+    const checkLives = () => {
+      if(mistakes === 0){
+        setLife1(false)
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft',
+          duration: 3,
+          maxCount: 2
+        });
+      }
+      if(mistakes === 1){
+        setLife2(false);
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft',
+          duration: 3,
+          maxCount: 2
+        });
+      }
+      if(mistakes === 2){
+        setLife3(false);
+        notification.error({
+          message: 'Oops!',
+          description: 'You moved the wrong tiles! Lost a life :(',
+          placement: 'topLeft',
+          duration: 3,
+          maxCount: 2
+        });
+      }
+  
     }
-    if(mistakes === 2){
-      setLife3(false);
+
+  // function to trigger when the user wins the level
+  function handleLevelComplete() {
+    playWinSound();
+  
+    notification.success({
+      message: 'Congrats!',
+      description: 'You have successfully completed the level',
+      placement: 'topLeft',
+      duration: 3,
+      maxCount: 2
+      });
     }
-  }
 
   // Checks what change the user has made in terms of moving the blocks
   const checkChange = (move) => {
@@ -130,6 +209,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
       arr.push(start)
       arr.push(end)
       setMistakes(mistakes + 1);
+      playErrorSound(); // play error sound to indicate error
       checkLives();
     }
 
@@ -148,6 +228,25 @@ function Level4({ blocks, steps, countUp, countDown }) {
     setVisible(true);
   };
 
+  // things to take care of when resetting level
+  function resetLevel() {
+    setLife1(true);
+    setLife2(true);
+    setLife3(true);
+
+    setMistakes(0);
+    setLost(false);
+
+    setOutOfPlace([]);
+  }
+  
+  // functions to handle pop-up
+  const handleRefresh = () => {
+    resetLevel();
+    refreshLevel();
+    setVisible(false);
+  };
+
   // functions to handle pop-up
   const handleOk = () => {
     setLoading(true);
@@ -161,17 +260,36 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const handleCancel = () => {
     setVisible(false);
   };
+
   // Switches what is being stored in the current array
   function handleSteps() {
-    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+    console.log(mergeSort(list, steps));
+
+    const arr = mergeSort(list, steps);
+    if(!arr)
+      return handleRefresh();
+
+    const min = arr[0];
+    const max = arr[arr.length - 1];
+
+
+
+    const curArr = [];
+    for (let i = min; i <= max; i++) {
+      curArr.push(i);
+    }
+
+    setCurrent(curArr);
   }
 
+
   return (
-    <div className="lvl4">
+    <div className="lvl5">
       <div className='prev-next-container'>
           <button onClick={countDown}><FaAngleLeft /></button>
-          <button onClick={countUp}><FaAngleRight /></button>
+          <button onClick={handleNextStep}><FaAngleRight /></button>
       </div>
+      {!won ? <Timer algorithm={algorithm} level={level} completed={completed} /> : undefined}
       <div className="lives">
       <div>{life1 ? <FaHeart/> : null}</div>
       <div>{life2 ? <FaHeart/> : null}</div>
@@ -186,20 +304,14 @@ function Level4({ blocks, steps, countUp, countDown }) {
           maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
           width={800}
           footer={[
-            <Button key="back" onClick={handleCancel}>
-              Return
-            </Button>,
             <Button
-              key="link"
-              href="https://google.com"
               type="primary"
               loading={loading}
-              onClick={handleOk}
+              onClick={handleRefresh}
             >
               Restart Level
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
@@ -208,16 +320,13 @@ function Level4({ blocks, steps, countUp, countDown }) {
               Return To A Previous Level
             </Button>,
             <Button
-            key="link"
-            href="http://localhost:3000/SelectionPage"
             type="primary"
             loading={loading}
-            onClick={handleOk}
+            onClick={handleRefresh}
             >
               Try Again With Another Algorithm
             </Button>,
             <Button
-            key="link"
             href="http://localhost:3000/MenuPage"
             type="primary"
             loading={loading}
@@ -241,7 +350,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
             >
               {list.map((block, i) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 200) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 // 
@@ -250,7 +359,7 @@ function Level4({ blocks, steps, countUp, countDown }) {
                   }
 
 
-                // If the user moves the correct step into order
+                  // If the user moves the correct step into order
                   if (current.includes(i) && !outOfPlace.includes(i)) {
                     bg = (currentStepValid ? '#4bc52e' : 'turquoise' )
                   }
@@ -296,4 +405,5 @@ function Level4({ blocks, steps, countUp, countDown }) {
   );
 }
 
-export default Level4;
+export default CustomLevel;
+>>>>>>> Stashed changes

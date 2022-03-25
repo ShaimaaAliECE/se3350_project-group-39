@@ -8,7 +8,6 @@ import { notification } from "antd";
 import Timer from "../../GenPage/Timer";
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
-import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
 
 
@@ -20,7 +19,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
-  const [changes,setChanges] = useState([]);
   const [won, setWon] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [mistakes, setMistakes] = useState(0);
@@ -29,11 +27,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level2&3"];
   const [lost, setLost] = useState(false);
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
-  const originialList = blocks;
   let dropOrNotToDrop = false;
 
   useEffect(() => {
