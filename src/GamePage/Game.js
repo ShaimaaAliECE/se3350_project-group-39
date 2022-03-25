@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './Game.css'
 import axios from "axios";
 import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
