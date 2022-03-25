@@ -62,17 +62,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
     // Increments steps according to how many steps there are
     function counter(){
         console.log(steps)
-<<<<<<< HEAD
-        setSteps(steps+1);
-        if(steps >= 7 && difficulty < 4){
-            setSteps(0);
-        }
-        if(steps >= 14 && difficulty === 4){
-            setSteps(0);
-        }
-=======
         setSteps(steps + 1);
->>>>>>> 3dcd2f5b6c4f75a00c6a34ffa06ff24838fd6793
     }
 
     function countDown() {
