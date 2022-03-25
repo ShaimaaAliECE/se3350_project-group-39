@@ -73,16 +73,19 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
             { difficulty === 1 ? 
                 <Level1 />
             : difficulty === 2 ? 
-                <Level2
-                    blocks={blocks}
-                    current={true}
-                    steps={steps}
-                    countUp={counter}
-                    countDown={countDown}
-                    algorithm={algorithm}
-                    level={difficulty}
-                    refreshLevel={() => refLevel(2, "mergeSort")}
-                />
+                <>
+                    <div className="stepCounter"> Step {steps + 1}</div>
+                    <Level2
+                        blocks={blocks}
+                        current={true}
+                        steps={steps}
+                        countUp={counter}
+                        countDown={countDown}
+                        algorithm={algorithm}
+                        level={difficulty}
+                        refreshLevel={() => refLevel(2, "mergeSort")}
+                    />
+                </>
             : difficulty === 3 ? 
                 <>
                 <div className="stepCounter"> Step {steps + 1}</div>

@@ -10,7 +10,6 @@
 
 .listBlocks li {
     margin: 1px;
-    /* background-color: red; */
 }
 
 .listBlocks .block {
@@ -45,7 +44,7 @@
     justify-content: space-between;
     /* background-color: green; */
     max-width: 300px;
-    margin: auto;
+    margin: 20px auto;
 }
 
 .lvl4{

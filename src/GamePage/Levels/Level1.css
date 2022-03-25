@@ -27,7 +27,7 @@
 }
 
 .step-label {
-    color: black;
+    color: white;
     font-size: 25px;
     /* overflow: hidden; */
     width: 70%;
@@ -67,11 +67,13 @@
     transition-duration: 0.3s;
 }
 
-.block  {
-    border: 1px solid black;
+.block {
+    /* border: 1px solid black; */
+    margin-right: 1px;
     background-color: turquoise;
+    text-align: center;
 }
 
-.block::hover   {
-
+.block:hover {
+    filter: brightness(80%);
 }
