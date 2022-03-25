@@ -3,6 +3,7 @@ import { FaAngleLeft, FaAngleRight, FaHeart } from 'react-icons/fa';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
+import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
 
 
@@ -14,28 +15,15 @@ function Level4({ blocks, steps, countUp, countDown }) {
   const [current, setCurrent] = useState([]); //The blocks the user should be highlighting
   const [outOfPlace, setOutOfPlace] = useState([]); //The array that stores the values of the blocks that are out of place
   const [currentStepValid, setCurrentStepValid] = useState(false);
-<<<<<<< Updated upstream
-  const [changes,setChanges] = useState([]);
-=======
   const [won, setWon] = useState(false);
   const [completed, setCompleted] = useState(false);
->>>>>>> Stashed changes
   const [mistakes, setMistakes] = useState(0);
   const [life1, setLife1] = useState(true);
   const [life2, setLife2] = useState(true);
   const [life3, setLife3] = useState(true);
   const [visible, setVisible] = useState(false); // fucntion for popup
   const [loading, setLoading] = useState(false); 
-<<<<<<< Updated upstream
   const correctBlocks = CorrectSteps["Steps"]["MergeSort"]["Level4"];
-=======
-  const [lost, setLost] = useState(false);
-
-  
-  // Sounds
-  const [playWinSound] = useSound(WinSound);
-  const [playErrorSound] = useSound(ErrorSound);
->>>>>>> Stashed changes
 
   const color = blocks.length <= 50 && width > 14 ? "black" : "transparent";
   let dropOrNotToDrop = false;
