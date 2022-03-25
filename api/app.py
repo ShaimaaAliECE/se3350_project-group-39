@@ -64,7 +64,7 @@ def myProfile():
     return response_body
 
 # method to sign up a user
-@api.route('./sign_up', methods=["POST"])
+@api.route('/sign_up', methods=["POST"])
 def signUp():
     if request.method == "POST":
         data = json.loads(request.data)
