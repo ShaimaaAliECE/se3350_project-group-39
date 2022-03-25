@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import StatView from './StatView';
 import './Statistics.css';
+import { Link } from "react-router-dom";
+
 
 // component to display the user statistics
 export default class Statistics extends Component {
+
     // constructor
     constructor(props) {
       super(props);
@@ -35,7 +38,9 @@ export default class Statistics extends Component {
 
     render() {
         return (
+
             <div className="stats-container">
+              <Link to='/MenuPage' id='backBtn'> Back </Link>
                 <div className="stat-header-container">
                   <label>STAT NO</label>
                   <label>LEVEL</label>

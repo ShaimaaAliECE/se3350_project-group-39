@@ -10,6 +10,7 @@ import 'antd/dist/antd.css';
 import { Modal, Button } from 'antd';
 import CorrectSteps from './CorrectSteps.json'
 import "./listBlock.css";
+import mergeSort from '../../Algos/MergeSort';
 
 
 function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLevel }) {
@@ -49,7 +50,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.success({
         message: 'Hooray!',
         description: 'You got it! Click on the right arrow to move to the next step',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3,
+        maxCount: 2
       });
     }
   }, [currentStepValid]);
@@ -100,8 +103,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
     items.splice(result.destination.index, 0, reorderedItem);
 
     setList(items);
-    console.log(current + "yeet")
-    console.log(correctBlocks[steps].current + "yellow")
     
   };
 
@@ -162,7 +163,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3,
+        maxCount: 2
       });
     }
     if(mistakes === 1){
@@ -170,7 +173,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3,
+        maxCount: 2
       });
     }
     if(mistakes === 2){
@@ -178,7 +183,9 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
       notification.error({
         message: 'Oops!',
         description: 'You moved the wrong tiles! Lost a life :(',
-        placement: 'topLeft'
+        placement: 'topLeft',
+        duration: 3,
+        maxCount: 2
       });
     }
 
@@ -191,8 +198,13 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
     notification.success({
       message: 'Congrats!',
       description: 'You have successfully completed the level',
-      placement: 'topLeft'
+      placement: 'topLeft',
+      duration: 3,
+      maxCount: 2
     });
+
+    // make modal visible and ask the user for what to do next
+    handleRefresh();
   }
 
   // Checks what change the user has made in terms of moving the blocks
@@ -262,7 +274,23 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
 
   // Switches what is being stored in the current array
   function handleSteps() {
-    return correctBlocks[steps] ? setCurrent(correctBlocks[steps].current) : undefined;
+    console.log(mergeSort(list, steps));
+
+    const arr = mergeSort(list, steps);
+    if(!arr)
+      return setCompleted(true);
+
+    const min = arr[0];
+    const max = arr[arr.length - 1];
+
+
+
+    const curArr = [];
+    for (let i = min; i <= max; i++) {
+      curArr.push(i);
+    }
+
+    setCurrent(curArr);
   }
 
   return (
@@ -286,9 +314,6 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
           maskStyle = {{backgroundColor: "black", opacity: "0.8"}}
           width={800}
           footer={[
-            <Button key="back" onClick={handleCancel}>
-              Return
-            </Button>,
             <Button
               type="primary"
               loading={loading}
@@ -335,7 +360,7 @@ function Level3({ blocks, steps, countUp, countDown, algorithm, level, refreshLe
             >
               {list.map((block, i) => {
                 
-                const height = ((block * 500) / list.length) + 10 ;
+                const height = ((block * 125) / list.length) + 10 ;
                 let bg = "turquoise";
 
                 // 

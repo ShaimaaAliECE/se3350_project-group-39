@@ -1,9 +1,8 @@
-.profile{
+#profile{
     display: flex;
     justify-content: center ;
     border-radius: 5px;
     background-color: white;
-    width: 75%;
     padding: 5px;
     font-size: 17px;
 }
@@ -22,14 +21,14 @@
 .data-container > * {
   width: max-content;
   padding: 5px;
-  border: 1px solid lightblue;
+  border: 1px solid #e040fb;
   border-radius: 5px;
   margin: 5px;
 }
 
 p {
   text-transform: uppercase;
-  color: lightblue;
+  color:  #e040fb;
 }
 
 i {
