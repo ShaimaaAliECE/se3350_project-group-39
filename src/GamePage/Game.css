@@ -9,3 +9,10 @@
     padding-top: 30px;
     border-radius: 25px;
 }
+
+.stepCounter{
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}

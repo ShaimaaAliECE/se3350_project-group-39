@@ -10,7 +10,6 @@ import { notification } from "antd";
 import useSound from "use-sound";
 import ErrorSound from '../../Sounds/error.mp3';
 import WinSound from '../../Sounds/win.mp3';
-import MergeSort from '../../Algos/MergeSort';
 import mergeSort from "../../Algos/MergeSort";
 
 function CustomLevel({ blocks, steps, countUp, countDown, algorithm, level,  refreshLevel }) {
