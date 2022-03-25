@@ -1,3 +1,39 @@
+.tutorial-div   {
+    margin: 0px;
+    min-height: 800px;
+    border-radius: 25px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.steps-div   {
+    min-height: 200px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    min-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    
+}
+
+.step-label-div {
+   height: 140px;
+}
+
+.step-label {
+    color: black;
+    font-size: 25px;
+    /* overflow: hidden; */
+    width: 70%;
+    min-height: 100px;
+}
+
 .prev-next-container > button {
     color: white;
     background: linear-gradient(to right, #9c27b0, #e040fb);
@@ -18,6 +54,7 @@
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 .tutorial-container {
     display: flex;
     flex-direction: column;
@@ -49,15 +86,18 @@
     /* overflow: hidden; */
     width: 70%;
 }
+=======
+
+>>>>>>> anuj-b
 
 
 
 .list   {
     display: flex;
+    min-height: 500px;
     flex-direction: row;
     justify-content: center;
-    padding: 50px;
-    margin: 20px;
+    padding: 0px;
     border-radius: 25px;
 }
 

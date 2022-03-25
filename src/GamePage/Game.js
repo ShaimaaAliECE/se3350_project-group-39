@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, createRef } from "react";
 import "./Game.css";
-=======
-import React, { useState, useEffect } from "react";
->>>>>>> 3dcd2f5b6c4f75a00c6a34ffa06ff24838fd6793
 import axios from "axios";
 import Level1 from "./Levels/Level1"
 import Level2 from "./Components/Level2";
@@ -11,19 +7,14 @@ import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
 import Timer from "../GenPage/Timer";
 
-<<<<<<< HEAD
-export default function Game({ algorithm, difficulty, size, clicked }) {
-=======
 export default function Game({ algorithm, difficulty, size, clicked, refreshLevel, max }) {
->>>>>>> 3dcd2f5b6c4f75a00c6a34ffa06ff24838fd6793
     // states
     const [blocks, setBlocks] = useState([]);
     const [steps, setSteps] = useState(0);
 
     // Gets random numbers from the back end and fills the blocks array with them
     function getRandomNumbers() {
-<<<<<<< HEAD
-=======
+
         
         // Determines what the max is depedning on the level
         if(difficulty <=3)
@@ -32,9 +23,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
             max = 50;
         else if(difficulty === 5)
             max = 99;
-        
-            
->>>>>>> 3dcd2f5b6c4f75a00c6a34ffa06ff24838fd6793
+    
         axios({
             method: "GET",
             url: "/random",
