@@ -35,7 +35,7 @@
 }
 
 .prev-next-container > button {
-    color: white;
+    color: white; 
     background: linear-gradient(to right, #9c27b0, #e040fb);
     border: none;
     text-transform: capitalize;
