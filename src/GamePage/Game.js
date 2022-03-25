@@ -7,7 +7,6 @@ import Level3 from "./Components/Level3";
 import Level4 from "./Components/Level4";
 import Level5 from "./Components/Level5";
 import Level6 from "./Components/CustomLevel";
-import Timer from "../GenPage/Timer";
 
 export default function Game({ algorithm, difficulty, size, clicked, refreshLevel, max }) {
     // states
@@ -31,7 +30,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
             params: {
                 size: size,
                 min: 1,
-                max: 20
+                max: max
             },
             
         }).then(({ data }) => {
@@ -63,6 +62,12 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
  
     }
 
+    function refLevel(level, alg) {
+        getRandomNumbers();
+        setSteps(0);
+        refreshLevel(level, alg);
+    }
+
     return (
         <div className="game" id="game-body">
             { difficulty === 1 ? 
@@ -76,7 +81,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                     countDown={countDown}
                     algorithm={algorithm}
                     level={difficulty}
-                    refreshLevel={() => refreshLevel(2, "mergeSort")}
+                    refreshLevel={() => refLevel(2, "mergeSort")}
                 />
             : difficulty === 3 ? 
                 <>
@@ -89,7 +94,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
-                        refreshLevel={() => refreshLevel(3, "mergeSort")}
+                        refreshLevel={() => refLevel(3, "mergeSort")}
                     />
                 </>
             : difficulty === 4 ? 
@@ -103,7 +108,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
-                        refreshLevel={() => refreshLevel(4, "mergeSort")}
+                        refreshLevel={() => refLevel(4, "mergeSort")}
                     />
                 </>
                 : difficulty === 5 ? 
@@ -117,7 +122,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
-                        refreshLevel={() => refreshLevel(5, "mergeSort")}
+                        refreshLevel={() => refLevel(5, "mergeSort")}
                     />
                 </>
                 : difficulty === 6 ? 
@@ -131,7 +136,7 @@ export default function Game({ algorithm, difficulty, size, clicked, refreshLeve
                         countDown={countDown}
                         algorithm={algorithm}
                         level={difficulty}
-                        refreshLevel={() => refreshLevel(6, "mergeSort")}
+                        refreshLevel={() => refLevel(6, "mergeSort")}
                     />
                 </>
             : <></>}
